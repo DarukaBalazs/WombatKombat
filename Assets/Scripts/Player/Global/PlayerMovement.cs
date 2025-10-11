@@ -16,24 +16,25 @@ public class PlayerMovement : MonoBehaviour
 
     float coyoteTime = 0.2f;
     float coyoteCounter;
+    float jumpBufferTime = 0.2f;
+    float jumpBufferCounter;
+    bool canCancelJump = false;
+
 
     private float horizontal;
 
     private void Update()
     {
-        if (horizontal > 0.01f)
-        {
-            transform.localScale = Vector3.one;
-        } else if (horizontal < -0.01)
-        {
-            transform.localScale = new Vector3(-1,1,1);
-        }
-        if (IsGrounded()) { coyoteCounter = coyoteTime; } else {  coyoteCounter -= Time.deltaTime; }
+        TurnTheRightWay();
+        
+        if (IsGrounded()) { coyoteCounter = coyoteTime; canCancelJump = true; } else {  coyoteCounter -= Time.deltaTime; }
+        jumpBufferCounter = Mathf.Max(0, jumpBufferCounter - Time.deltaTime);
     }
 
     void FixedUpdate()
     {
         rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocityY);
+        if (jumpBufferCounter > 0f && coyoteCounter > 0f) { canCancelJump = true; rb.linearVelocityY = jumpForce; }
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -43,12 +44,25 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed && IsGrounded() && coyoteCounter > 0f)
+        if (context.performed)
         {
-            rb.linearVelocityY = jumpForce;
-        } else if (context.canceled && !IsGrounded())
+            jumpBufferCounter = jumpBufferTime;
+        } else if (context.canceled && !IsGrounded() && canCancelJump)
         {
             rb.linearVelocityY = rb.linearVelocityY * 0.5f;
+            canCancelJump = false;
+        }
+    }
+
+    private void TurnTheRightWay()
+    {
+        if (horizontal > 0.01f)
+        {
+            transform.localScale = Vector3.one;
+        }
+        else if (horizontal < -0.01)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
         }
     }
 

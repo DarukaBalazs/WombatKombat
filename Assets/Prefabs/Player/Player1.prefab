@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 5932584976318363630}
   - component: {fileID: 3809019469939993728}
   m_Layer: 7
-  m_Name: Wombat
+  m_Name: Player1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -368,7 +368,7 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 13899a5f-b477-4837-8545-879dc5e60782
     m_ActionName: 'Player2/Jump[/Keyboard/upArrow]'
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player1
   m_SplitScreenIndex: -1
