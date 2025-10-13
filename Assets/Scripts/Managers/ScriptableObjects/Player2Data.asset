@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Player2Data
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterName: P2
-  prefab: {fileID: 4344789194333067100, guid: cb731a3627a7ccf42bc58c11eeda3676, type: 3}
+  prefab: {fileID: 4344789194333067100, guid: d792b12724fd30d49a80b4be7a8dc267, type: 3}
   portrait: {fileID: 0}
+  baseSpeed: 5
+  baseJumpForce: 30

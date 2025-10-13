@@ -15,3 +15,5 @@ MonoBehaviour:
   characterName: P1
   prefab: {fileID: 4344789194333067100, guid: d792b12724fd30d49a80b4be7a8dc267, type: 3}
   portrait: {fileID: 0}
+  baseSpeed: 10
+  baseJumpForce: 30
