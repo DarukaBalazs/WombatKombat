@@ -260,13 +260,16 @@ MonoBehaviour:
   rb: {fileID: 3537785145304537796}
   input: {fileID: 5932584976318363630}
   speed: 5
-  jumpForce: 2
+  jumpForce: 5
+  doubleJumpMultiplier: 0.7
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   groundCheck: {fileID: 6974954087122388668}
   wallCheck: {fileID: 8186245868333344002}
-  wallJumpSpeed: 5
+  wallJumpPowerX: 7
+  wallJumpPowerY: 13
+  wallJumpDuration: 0.3
   wallSlideSpeed: 1.5
 --- !u!114 &5932584976318363630
 MonoBehaviour:

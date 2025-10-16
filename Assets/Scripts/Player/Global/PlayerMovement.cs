@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,8 +10,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] PlayerInput input;
 
     [Header("Player settings")]
-    [SerializeField] float speed = 5;
-    [SerializeField] float jumpForce = 5;
+    [SerializeField] float speed = 5f;
+    [SerializeField] float jumpForce = 5f;
+    [SerializeField] float doubleJumpMultiplier = 0.7f;
 
     [Header("Grounding")]
     [SerializeField] LayerMask groundLayer;
@@ -18,7 +20,9 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Wall jumping")]
     [SerializeField] Transform wallCheck;
-    [SerializeField] float wallJumpSpeed = 5;
+    [SerializeField] float wallJumpPowerX = 7f;
+    [SerializeField] float wallJumpPowerY = 15f;
+    [SerializeField] float wallJumpDuration = 0.4f;
     [SerializeField] float wallSlideSpeed = 2f;
     #endregion
 
@@ -29,7 +33,11 @@ public class PlayerMovement : MonoBehaviour
     float jumpBufferTime = 0.2f;
     float jumpBufferCounter;
     bool canCancelJump = false;
+    bool canDoubleJump = false;
 
+    //wall jumping variables
+    bool isWallJumping;
+    float wallJumpDirection;
     //input variables
     InputAction moveAction;
     InputAction jumpAction;
@@ -39,37 +47,68 @@ public class PlayerMovement : MonoBehaviour
 
     //wallslide variables
     bool isSliding;
+
+    //animator variables
+    bool faceRight;
     #endregion
+
 
     #region Public fields
 
     #endregion
 
+    #region Update methods
     private void Update()
     {
+        if (!isWallJumping)
         TurnTheRightWay();
-        
-        if (IsGrounded()) { coyoteCounter = coyoteTime; canCancelJump = true; } else {  coyoteCounter -= Time.deltaTime; }
-        jumpBufferCounter = Mathf.Max(0, jumpBufferCounter - Time.deltaTime);
 
-        if (IsWallTouch() && !IsGrounded() && horizontal != 0)
+        #region Jumping
+        if (IsGrounded()) 
         {
-            isSliding = true;
+            coyoteCounter = coyoteTime;
+            canCancelJump = true; 
+            canDoubleJump = true;
         } else
         {
-            isSliding = false;
+            coyoteCounter -= Time.deltaTime;
         }
+        jumpBufferCounter = Mathf.Max(0, jumpBufferCounter - Time.deltaTime);
+        if (isSliding) canDoubleJump = true;    
+        #endregion
+
+        #region Wall sliding
+        isSliding = !isWallJumping && IsWallTouch() && !IsGrounded() && horizontal != 0;
+        #endregion
     }
 
     void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocityY);
-        if (jumpBufferCounter > 0f && coyoteCounter > 0f) { canCancelJump = true; rb.AddForce(new Vector2(0, jumpForce / 5), ForceMode2D.Impulse); }
+        if (!isWallJumping) rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocityY);
+        if (jumpBufferCounter > 0f && coyoteCounter > 0f)
+        {
+            canCancelJump = true;
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            jumpBufferCounter = 0f;
+        }
+
+        if (jumpBufferCounter > 0f && !IsGrounded() && canDoubleJump && !isWallJumping)
+        {
+            canCancelJump = true;
+            float doubleJumpForce;
+            if (rb.linearVelocityY < 0f) doubleJumpForce = jumpForce * 2f * doubleJumpMultiplier;
+            else doubleJumpForce = jumpForce * doubleJumpMultiplier;
+
+            rb.AddForce(new Vector2(0, doubleJumpForce), ForceMode2D.Impulse);
+            canDoubleJump = false;
+            jumpBufferCounter = 0f;
+        }
         if (isSliding)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocityX,Mathf.Clamp(rb.linearVelocityY, -wallSlideSpeed,float.MaxValue));
         }
-    }
+    }   
+    #endregion
 
     #region Start, OnEnable, OnDisable
     private void Start()
@@ -113,43 +152,90 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed)
         {
             jumpBufferCounter = jumpBufferTime;
+
+            if (isSliding)
+            {
+                StartWallJump();
+            }
         }
         if (context.canceled && canCancelJump && rb.linearVelocityY > 0f)
         {
-            rb.linearVelocityY = rb.linearVelocityY * 0.5f;
+            rb.linearVelocityY *= 0.5f;
             canCancelJump = false;
         }
     }
     #endregion
 
+    #region Private methods
+
+    #region Flipping the sprite
+    private void Flip(float targetDirection)
+    {
+        // Ha a jelenlegi skálával nem egyezik a kívánt irány
+        if (Mathf.Sign(transform.localScale.x) != Mathf.Sign(targetDirection))
+        {
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+
+            faceRight = !faceRight;
+        }
+    }
     private void TurnTheRightWay()
     {
         if (horizontal > 0.01f)
         {
-            transform.localScale = Vector3.one;
+            Flip(1f);
         }
-        else if (horizontal < -0.01)
+        else if (horizontal < -0.01f)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            Flip(-1f);
         }
     }
+    #endregion
 
-    private bool IsGrounded()
-    {
-        return Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.5f, 0.1f), CapsuleDirection2D.Horizontal, 0, groundLayer);
-    }
-
+    #region Checkers
+    private bool IsGrounded() => Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.5f, 0.1f), CapsuleDirection2D.Horizontal, 0, groundLayer);
     private bool IsWallTouch() => Physics2D.OverlapBox(wallCheck.position, new Vector2(0.16f, 1.2f), 0, groundLayer);
+    #endregion
 
-    private void OnDrawGizmos()
+    private void StartWallJump()
     {
-        Gizmos.color = Color.darkRed;
-       Gizmos.DrawSphere(groundCheck.position, 0.1f);
-        Gizmos.DrawCube(wallCheck.position, new Vector2(0.15f, 1.2f));
+        wallJumpDirection = -Mathf.Sign(transform.localScale.x);
+        rb.linearVelocity = new Vector2(wallJumpDirection*wallJumpPowerX, wallJumpPowerY);
+
+        Flip(wallJumpDirection);
+
+        StopAllCoroutines();
+        StartCoroutine(WallJump());
     }
+
+    #region Routines
+    private IEnumerator WallJump()
+    {
+        isWallJumping = true;
+
+        yield return new WaitForSeconds(wallJumpDuration);
+
+        isWallJumping = false;
+    }
+    #endregion
+    #endregion
+
+    #region Public methods
     public void ApplyCharacterData(CharacterData data)
     {
         speed = data.baseSpeed;
         jumpForce = data.baseJumpForce;
     }
+
+    #endregion
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.darkRed;
+        Gizmos.DrawSphere(groundCheck.position, 0.1f);
+        Gizmos.DrawCube(wallCheck.position, new Vector2(0.15f, 1.2f));
+    }
+
 }
