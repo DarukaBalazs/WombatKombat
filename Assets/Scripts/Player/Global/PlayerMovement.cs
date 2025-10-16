@@ -231,11 +231,13 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    #region Prebuilt methods
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.darkRed;
         Gizmos.DrawSphere(groundCheck.position, 0.1f);
         Gizmos.DrawCube(wallCheck.position, new Vector2(0.15f, 1.2f));
     }
+    #endregion
 
 }

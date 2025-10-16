@@ -15,6 +15,5 @@ public class CharacterSelectionManager : MonoBehaviour
         else
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
-        
     }
 }
