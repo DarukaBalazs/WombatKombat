@@ -2,66 +2,65 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public abstract class PlayerMovement : MonoBehaviour
 {
-    #region Private SerializeFields
+    #region Protected SerializeFields
     [Header("Player Component References")]
-    [SerializeField] Rigidbody2D rb;
-    [SerializeField] PlayerInput input;
+    [SerializeField] protected Rigidbody2D rb;
+    [SerializeField] protected PlayerInput input;
 
     [Header("Player settings")]
-    [SerializeField] float speed = 5f;
-    [SerializeField] float jumpForce = 5f;
-    [SerializeField] float doubleJumpMultiplier = 0.7f;
+    [SerializeField] protected float speed = 5f;
+    [SerializeField] protected float jumpForce = 5f;
+    [SerializeField] protected float doubleJumpMultiplier = 0.7f;
 
     [Header("Grounding")]
-    [SerializeField] LayerMask groundLayer;
-    [SerializeField] Transform groundCheck;
+    [SerializeField] protected LayerMask groundLayer;
+    [SerializeField] protected Transform groundCheck;
 
     [Header("Wall jumping")]
-    [SerializeField] Transform wallCheck;
-    [SerializeField] float wallJumpPowerX = 7f;
-    [SerializeField] float wallJumpPowerY = 15f;
-    [SerializeField] float wallJumpDuration = 0.4f;
-    [SerializeField] float wallSlideSpeed = 2f;
+    [SerializeField] protected Transform wallCheck;
+    [SerializeField] protected float wallJumpPowerX = 7f;
+    [SerializeField] protected float wallJumpPowerY = 15f;
+    [SerializeField] protected float wallJumpDuration = 0.4f;
+    [SerializeField] protected float wallSlideSpeed = 2f;
     #endregion
 
-    #region Private fields
+    #region Protected fields
     //jumping variables
-    float coyoteTime = 0.2f;
-    float coyoteCounter;
-    float jumpBufferTime = 0.2f;
-    float jumpBufferCounter;
-    bool canCancelJump = false;
-    bool canDoubleJump = false;
+    protected float coyoteTime = 0.2f;
+    protected float coyoteCounter;
+    protected float jumpBufferTime = 0.2f;
+    protected float jumpBufferCounter;
+    protected bool canCancelJump = false;
+    protected bool canDoubleJump = false;
 
     //wall jumping variables
-    bool isWallJumping;
-    float wallJumpDirection;
+    protected bool isWallJumping;
+    protected float wallJumpDirection;
     //input variables
-    InputAction moveAction;
-    InputAction jumpAction;
+    protected InputAction moveAction;
+    protected InputAction jumpAction;
 
     //movement variables
-    float horizontal;
+    protected float horizontal;
 
     //wallslide variables
-    bool isSliding;
+    protected bool isSliding;
 
     //animator variables
-    bool faceRight;
+    protected bool faceRight;
     #endregion
-
 
     #region Public fields
 
     #endregion
 
     #region Update methods
-    private void Update()
+    protected virtual void Update()
     {
         if (!isWallJumping)
-        TurnTheRightWay();
+            TurnTheRightWay();
 
         #region Jumping
         if (IsGrounded()) 
@@ -82,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         #endregion
     }
 
-    void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (!isWallJumping) rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocityY);
         if (jumpBufferCounter > 0f && coyoteCounter > 0f)
@@ -111,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region Start, OnEnable, OnDisable
-    private void Start()
+    protected void Start()
     {
         #region Input map setting
         var map = input.currentActionMap;
@@ -129,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
         #endregion
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
         #region Input map setting
         moveAction.performed -= Move;
@@ -142,12 +141,12 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region Events from Input System
-    public void Move(InputAction.CallbackContext context)
+    public virtual void Move(InputAction.CallbackContext context)
     {
         horizontal = context.ReadValue<Vector2>().x;
     }
 
-    public void Jump(InputAction.CallbackContext context)
+    public virtual void Jump(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -166,12 +165,11 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
-    #region Private methods
+    #region Protected methods
 
     #region Flipping the sprite
-    private void Flip(float targetDirection)
+    protected void Flip(float targetDirection)
     {
-        // Ha a jelenlegi skálával nem egyezik a kívánt irány
         if (Mathf.Sign(transform.localScale.x) != Mathf.Sign(targetDirection))
         {
             Vector3 localScale = transform.localScale;
@@ -181,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
             faceRight = !faceRight;
         }
     }
-    private void TurnTheRightWay()
+    protected void TurnTheRightWay()
     {
         if (horizontal > 0.01f)
         {
@@ -195,11 +193,11 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region Checkers
-    private bool IsGrounded() => Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.5f, 0.1f), CapsuleDirection2D.Horizontal, 0, groundLayer);
-    private bool IsWallTouch() => Physics2D.OverlapBox(wallCheck.position, new Vector2(0.16f, 1.2f), 0, groundLayer);
+    protected bool IsGrounded() => Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.5f, 0.1f), CapsuleDirection2D.Horizontal, 0, groundLayer);
+    protected bool IsWallTouch() => Physics2D.OverlapBox(wallCheck.position, new Vector2(0.16f, 1.2f), 0, groundLayer);
     #endregion
 
-    private void StartWallJump()
+    protected void StartWallJump()
     {
         wallJumpDirection = -Mathf.Sign(transform.localScale.x);
         rb.linearVelocity = new Vector2(wallJumpDirection*wallJumpPowerX, wallJumpPowerY);
@@ -211,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #region Routines
-    private IEnumerator WallJump()
+    protected IEnumerator WallJump()
     {
         isWallJumping = true;
 
@@ -223,7 +221,7 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region Public methods
-    public void ApplyCharacterData(CharacterData data)
+    public virtual void ApplyCharacterData(CharacterData data)
     {
         speed = data.baseSpeed;
         jumpForce = data.baseJumpForce;
@@ -232,7 +230,7 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region Prebuilt methods
-    private void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
         Gizmos.color = Color.darkRed;
         Gizmos.DrawSphere(groundCheck.position, 0.1f);
