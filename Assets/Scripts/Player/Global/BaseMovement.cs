@@ -4,7 +4,7 @@ using UnityEngine;
 public class BaseMovement : MonoBehaviour
 {
     [Header("Player settings")]
-    [SerializeField] CharacterController controller;
+    [SerializeField] PlayerController controller;
     [SerializeField] float speed = 5f;
     [SerializeField] float jumpForce = 5f;
     [SerializeField] float doubleJumpMultiplier = 0.7f;

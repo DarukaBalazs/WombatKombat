@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class InputHandling : MonoBehaviour
 {
-    public CharacterController characterController;
+    public PlayerController playerController;
 
     [Header("Current Input States")]
     public Vector2 MoveInput { get; private set; }
