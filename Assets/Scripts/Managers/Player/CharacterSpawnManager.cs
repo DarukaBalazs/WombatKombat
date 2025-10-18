@@ -17,21 +17,21 @@ public class CharacterSpawnManager : MonoBehaviour
         }
 
         var p1Obj = Instantiate(selection.player1.prefab, player1Spawn.position, Quaternion.identity);
-        var  p1Input = p1Obj.GetComponent<PlayerInput>();
-        var p1Movement = p1Obj.GetComponent<PlayerMovement>();
+        var p1Input = p1Obj.GetComponent<PlayerInput>();
+        var p1Controller = p1Obj.GetComponent<CharacterController>();
 
         p1Obj.name = selection.player1.characterName;
-        p1Movement.ApplyCharacterData(selection.player1);
         p1Input.SwitchCurrentControlScheme("Keyboard&Mouse",Keyboard.current);
         p1Input.SwitchCurrentActionMap("Player1");
+        p1Controller.ApplyCharacterData(selection.player1);
 
         var p2Obj = Instantiate(selection.player2.prefab, player2Spawn.position, Quaternion.identity);
         var p2Input = p2Obj.GetComponent<PlayerInput>();
-        var p2Movement = p2Obj.GetComponent <PlayerMovement>();
+        var p2Controller = p2Obj.GetComponent <CharacterController>();
 
         p2Obj.name = selection.player2.characterName;
-        p2Movement.ApplyCharacterData(selection.player2);
         p2Input.SwitchCurrentControlScheme("Keyboard&Mouse", Keyboard.current);
         p2Input.SwitchCurrentActionMap("Player2");
+        p2Controller.ApplyCharacterData(selection.player2);
     }
 }

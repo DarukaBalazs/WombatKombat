@@ -132,9 +132,11 @@ GameObject:
   - component: {fileID: 6530193269820740492}
   - component: {fileID: 5814150207367280882}
   - component: {fileID: 3537785145304537796}
-  - component: {fileID: 3274409129252110581}
+  - component: {fileID: 4116721338042596488}
   - component: {fileID: 5932584976318363630}
   - component: {fileID: 3809019469939993728}
+  - component: {fileID: 4572771647219044432}
+  - component: {fileID: 3884950402043867153}
   m_Layer: 7
   m_Name: Player1
   m_TagString: Untagged
@@ -151,7 +153,7 @@ Transform:
   m_GameObject: {fileID: 4344789194333067100}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.50791, y: 0.55728, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -245,7 +247,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3274409129252110581
+--- !u!114 &4116721338042596488
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,11 +256,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4344789194333067100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f72fe201550b874790afca910110613, type: 3}
+  m_Script: {fileID: 11500000, guid: 6daf4edfe9ac2524996d3f3f6f3e0dd8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  rb: {fileID: 3537785145304537796}
-  input: {fileID: 5932584976318363630}
+  m_EditorClassIdentifier: Assembly-CSharp::BaseMovement
+  controller: {fileID: 3884950402043867153}
   speed: 5
   jumpForce: 5
   doubleJumpMultiplier: 0.7
@@ -268,9 +269,9 @@ MonoBehaviour:
   groundCheck: {fileID: 6974954087122388668}
   wallCheck: {fileID: 8186245868333344002}
   wallJumpPowerX: 7
-  wallJumpPowerY: 13
-  wallJumpDuration: 0.3
-  wallSlideSpeed: 1.5
+  wallJumpPowerY: 15
+  wallJumpDuration: 0.4
+  wallSlideSpeed: 2
 --- !u!114 &5932584976318363630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,6 +353,30 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 13899a5f-b477-4837-8545-879dc5e60782
     m_ActionName: 'Player2/Jump[/Keyboard/upArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e53cb952-f121-4444-acd5-7376cd8bf284
+    m_ActionName: 'Player1/LightAttack[/Keyboard/x]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 270ddd03-de2b-47b1-9e54-54a02b363a1a
+    m_ActionName: 'Player1/HeavyAttack[/Keyboard/c]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 18e07765-b9bb-4144-83ec-9cfdd4610d0d
+    m_ActionName: 'Player1/SpecialMove[/Keyboard/v]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1d801bee-825f-4273-b722-16e64e620821
+    m_ActionName: 'Player2/LightAttack[/Keyboard/j]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 29d3095e-cc10-4001-ae1a-2da4a07edee8
+    m_ActionName: 'Player2/HeavyAttack[/Keyboard/k]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2895f415-7fd8-4bda-b641-be2a10a54a88
+    m_ActionName: 'Player2/SpecialMove[/Keyboard/l]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: 
@@ -394,6 +419,38 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!114 &4572771647219044432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344789194333067100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d8eaa52befd7144ca6f41a2da8ee6f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputHandling
+  characterController: {fileID: 3884950402043867153}
+  playerInput: {fileID: 5932584976318363630}
+--- !u!114 &3884950402043867153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344789194333067100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7c9427366992754597702d436a4e464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterController
+  input: {fileID: 4572771647219044432}
+  movement: {fileID: 4116721338042596488}
+  rb: {fileID: 3537785145304537796}
+  animator: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  data: {fileID: 0}
 --- !u!1 &6241156413517850086
 GameObject:
   m_ObjectHideFlags: 0
