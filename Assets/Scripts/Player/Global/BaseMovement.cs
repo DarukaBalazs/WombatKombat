@@ -1,6 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// A karakter mozgásáért, ugrásáért, falcsúszásáért és falugrásáért felelõs komponens.
+/// Külön kezeli a coyote time-ot, jump buffert és a duplaugrást.
+/// </summary>
 public class BaseMovement : MonoBehaviour
 {
     [Header("Player settings")]
@@ -43,6 +47,7 @@ public class BaseMovement : MonoBehaviour
     bool faceRight;
     #endregion
 
+    #region Update methods
     private void Update()
     {
         if (!isWallJumping)
@@ -73,12 +78,21 @@ public class BaseMovement : MonoBehaviour
         Jump();
         Slide();
     }
+    #endregion
 
+    #region Private methods
+    /// <summary>
+    /// Vízszintes mozgás a megadott input alapján.
+    /// </summary>
     private void Move()
     {
         if (!isWallJumping) controller.Rb.linearVelocity = new Vector2(horizontal * speed, controller.Rb.linearVelocityY);
     }
 
+
+    /// <summary>
+    /// A karakter sprite irányának megfordítása mozgás irány szerint.
+    /// </summary>
     private void TurnTheRightWay()
     {
         if (horizontal > 0.01f)
@@ -91,6 +105,9 @@ public class BaseMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Kezeli az ugrás logikáját: földi, dupla és falugrásokat.
+    /// </summary>
     private void Jump()
     {
         if (jumpBufferCounter > 0f && coyoteCounter > 0f)
@@ -113,6 +130,9 @@ public class BaseMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Falcsúszás lassítása, amikor a játékos a fal mellett lefele mozog.
+    /// </summary>
     private void Slide()
     {
         if (isSliding)
@@ -121,49 +141,9 @@ public class BaseMovement : MonoBehaviour
         }
     }
 
-    public void HandleMove(float h)
-    {
-        horizontal = h;
-    }
-
-    public void HandleJump()
-    {
-        jumpBufferCounter = jumpBufferTime;
-        if (isSliding)
-        {
-            StartWallJump();
-        }
-    }
-
-    public void CancelJump()
-    {
-        if (canCancelJump && controller.Rb.linearVelocityY > 0f)
-        {
-            controller.Rb.linearVelocityY *= 0.5f;
-            canCancelJump = false;
-        }
-    }
-
-    private void StartWallJump()
-    {
-        wallJumpDirection = -Mathf.Sign(transform.localScale.x);
-        controller.Rb.linearVelocity = new Vector2(wallJumpDirection * wallJumpPowerX, wallJumpPowerY);
-
-        Flip(wallJumpDirection);
-
-        StopAllCoroutines();
-        StartCoroutine(WallJump());
-    }
-
-    private IEnumerator WallJump()
-    {
-        isWallJumping = true;
-
-        yield return new WaitForSeconds(wallJumpDuration);
-
-        isWallJumping = false;
-    }
-
+    /// <summary>
+    /// Sprite irányának megfordítása.
+    /// </summary>
     private void Flip(float targetDirection)
     {
         // Ha a jelenlegi skálával nem egyezik a kívánt irány
@@ -176,20 +156,87 @@ public class BaseMovement : MonoBehaviour
             faceRight = !faceRight;
         }
     }
+
+    /// <summary>
+    /// Falugrás elindítása, irányváltással és ideiglenes input tiltással.
+    /// </summary>
+    private void StartWallJump()
+    {
+        wallJumpDirection = -Mathf.Sign(transform.localScale.x);
+        controller.Rb.linearVelocity = new Vector2(wallJumpDirection * wallJumpPowerX, wallJumpPowerY);
+
+        Flip(wallJumpDirection);
+
+        StopAllCoroutines();
+        StartCoroutine(WallJump());
+    }
+
+    #region Checkers
     private bool IsGrounded() => Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.5f, 0.1f), CapsuleDirection2D.Horizontal, 0, groundLayer);
 
     private bool IsWallTouch() => Physics2D.OverlapBox(wallCheck.position, new Vector2(0.16f, 1.2f), 0, groundLayer);
+    #endregion
 
-    private void OnDrawGizmos()
+    #endregion
+
+    #region Public methods
+    /// <summary>
+    /// Hívja meg, ha mozgás input érkezett a játékostól.
+    /// </summary>
+    public void HandleMove(float h)
     {
-        Gizmos.color = Color.darkRed;
-        Gizmos.DrawSphere(groundCheck.position, 0.1f);
-        Gizmos.DrawCube(wallCheck.position, new Vector2(0.15f, 1.2f));
+        horizontal = h;
+    }
+
+    /// <summary>
+    /// Ugrás elõkészítése (jump buffer és falugrás logika kezelése).
+    /// </summary>
+    public void HandleJump()
+    {
+        jumpBufferCounter = jumpBufferTime;
+        if (isSliding)
+        {
+            StartWallJump();
+        }
+    }
+
+    /// <summary>
+    /// Ugrás megszakítása (ha a játékos elengedi a gombot).
+    /// </summary>
+    public void CancelJump()
+    {
+        if (canCancelJump && controller.Rb.linearVelocityY > 0f)
+        {
+            controller.Rb.linearVelocityY *= 0.5f;
+            canCancelJump = false;
+        }
     }
 
     public void ApplyCharacterData(CharacterData data)
     {
         speed = data.baseSpeed;
         jumpForce = data.baseJumpForce;
+    }
+
+    #endregion
+
+
+    #region Coroutines
+    private IEnumerator WallJump()
+    {
+        isWallJumping = true;
+
+        yield return new WaitForSeconds(wallJumpDuration);
+
+        isWallJumping = false;
+    }
+
+    #endregion
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.darkRed;
+        Gizmos.DrawSphere(groundCheck.position, 0.1f);
+        Gizmos.DrawCube(wallCheck.position, new Vector2(0.15f, 1.2f));
     }
 }

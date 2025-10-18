@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A karakter fõ vezérlõje, amely összefogja az inputkezelést, a mozgást és az animációt.
+/// Ez az osztály kapcsolja össze a játékos bevitelét a mozgáslogikával.
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     [Header("Component References")]
@@ -11,6 +15,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
 
     [Header("Character Data")]
+    /// <summary>
+    /// A karakter aktuális adatát (sebesség, ugróerõ stb.) tartalmazó objektum.
+    /// </summary>
     [SerializeField] CharacterData data;
 
     [Header("Modules")]
@@ -39,6 +46,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Beállítja a karakter adatait és inicializálja az input rendszert.
+    /// </summary>
+    /// <param name="data">A karakter tulajdonságait tartalmazó objektum.</param>
     public void ApplyCharacterData(CharacterData data)
     {
         movement.ApplyCharacterData(data);

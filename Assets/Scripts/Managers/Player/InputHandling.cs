@@ -1,5 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+/// <summary>
+/// Beállítja a karakter adatait és inicializálja az input rendszert.
+/// </summary>
+/// <param name="data">A karakter tulajdonságait tartalmazó objektum.</param>
 public class InputHandling : MonoBehaviour
 {
     public PlayerController playerController;
@@ -19,6 +23,11 @@ public class InputHandling : MonoBehaviour
     InputAction lightAttackAction;
     InputAction heavyAttackAction;
     InputAction specialMoveAction;
+
+    /// <summary>
+    /// Inicializálja az input action-öket és hozzárendeli az eseményeket.
+    /// Ezt egyszer kell meghívni, amikor a karakter létrejön vagy aktiválódik.
+    /// </summary>
     public void Initialize()
     {
 
@@ -42,6 +51,9 @@ public class InputHandling : MonoBehaviour
         playerInput.actions.Enable();
     }
 
+    /// <summary>
+    /// Események eltávolítása, ha az objektum letiltódik (memory leak elkerülése).
+    /// </summary>
     private void OnDisable()
     {
         if (playerInput == null) return;
@@ -57,6 +69,10 @@ public class InputHandling : MonoBehaviour
         specialMoveAction.performed -= ctx => SpecialMovePressed = true;
     }
 
+    /// <summary>
+    /// Az input bool értékek visszaállítása minden frame végén.
+    /// Ezzel biztosítjuk, hogy egy gombnyomás csak egy frame-re érvényes.
+    /// </summary>
     private void LateUpdate()
     {
         JumpPressed = false;
