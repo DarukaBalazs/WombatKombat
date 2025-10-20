@@ -2,7 +2,7 @@
 - Project name: KortalWombat
 - Unity version: Unity 6000.2.8f1
 - Active game object:
-  - Name: Main Camera
-  - Tag: MainCamera
-  - Layer: Default
+  - Name: Player1
+  - Tag: Untagged
+  - Layer: Player
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

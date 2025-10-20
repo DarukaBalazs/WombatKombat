@@ -34,13 +34,11 @@ public class PlayerController : MonoBehaviour
 
         if (input.JumpPressed)
         {
-            Debug.Log("pressed");
             movement.HandleJump();
         }
 
         if (input.JumpReleased)
         {
-            Debug.Log("Released");
             movement.CancelJump();
         }
 

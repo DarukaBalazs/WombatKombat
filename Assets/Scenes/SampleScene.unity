@@ -637,9 +637,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b6acdbca14af2b42afc800265fe8957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraMovement
-  cam: {fileID: 519420031}
-  minSizeY: 5
-  maxSizeY: 8
+  player1: {fileID: 0}
+  player2: {fileID: 0}
+  smoothTime: 0.3
+  minZoom: 5
+  maxZoom: 10
+  zoomLimiter: 20
+  minBounds: {x: -10, y: -10}
+  maxBounds: {x: 10, y: 10}
 --- !u!1 &602590908
 GameObject:
   m_ObjectHideFlags: 0
