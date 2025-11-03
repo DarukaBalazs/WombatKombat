@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 /// <summary>
@@ -8,15 +9,14 @@ public class InputHandling : MonoBehaviour
 {
     public PlayerController playerController;
 
-    [Header("Current Input States")]
-    public Vector2 MoveInput { get; private set; }
-    public bool JumpPressed { get; private set; }
-    public bool JumpReleased { get; private set; }
-    public bool LightAttackPressed { get; private set; }
-    public bool HeavyAttackPressed { get; private set; }
-    public bool SpecialMovePressed { get; private set; }
-    
     [SerializeField] PlayerInput playerInput;
+
+    public event Action<Vector2> OnMove;
+    public event Action OnJumpPressed;
+    public event Action OnJumpReleased;
+    public event Action OnLightAttack;
+    public event Action OnHeavyAttack;
+    public event Action OnSpecialMove;
 
     InputAction moveAction;
     InputAction jumpAction;
@@ -38,15 +38,15 @@ public class InputHandling : MonoBehaviour
         specialMoveAction = playerInput.actions["SpecialMove"];
 
         // Bind callbacks
-        moveAction.performed += ctx => MoveInput = ctx.ReadValue<Vector2>();
-        moveAction.canceled += ctx => MoveInput = Vector2.zero;
+        moveAction.performed += ctx => OnMove?.Invoke(ctx.ReadValue<Vector2>());
+        moveAction.canceled += ctx => OnMove?.Invoke(Vector2.zero);
 
-        jumpAction.performed += ctx => JumpPressed = true;
-        jumpAction.canceled += ctx => JumpReleased = true;
+        jumpAction.performed += ctx => OnJumpPressed?.Invoke();
+        jumpAction.canceled += ctx => OnJumpReleased?.Invoke();
 
-        lightAttackAction.performed += ctx => LightAttackPressed = true;
-        heavyAttackAction.performed += ctx => HeavyAttackPressed = true;
-        specialMoveAction.performed += ctx => SpecialMovePressed = true;
+        lightAttackAction.performed += ctx => OnLightAttack?.Invoke();
+        heavyAttackAction.performed += ctx => OnHeavyAttack?.Invoke();
+        specialMoveAction.performed += ctx => OnSpecialMove?.Invoke();
 
         playerInput.actions.Enable();
     }
@@ -57,28 +57,14 @@ public class InputHandling : MonoBehaviour
     private void OnDisable()
     {
         if (playerInput == null) return;
+        moveAction.performed -= ctx => OnMove?.Invoke(ctx.ReadValue<Vector2>());
+        moveAction.canceled -= ctx => OnMove?.Invoke(Vector2.zero);
 
-        moveAction.performed -= ctx => MoveInput = ctx.ReadValue<Vector2>();
-        moveAction.canceled -= ctx => MoveInput = Vector2.zero;
+        jumpAction.performed -= ctx => OnJumpPressed?.Invoke();
+        jumpAction.canceled -= ctx => OnJumpReleased?.Invoke();
 
-        jumpAction.performed -= ctx => JumpPressed = true;
-        jumpAction.canceled -= ctx => JumpReleased = true; 
-
-        lightAttackAction.performed -= ctx => LightAttackPressed = true;
-        heavyAttackAction.performed -= ctx => HeavyAttackPressed = true;
-        specialMoveAction.performed -= ctx => SpecialMovePressed = true;
-    }
-
-    /// <summary>
-    /// Az input bool értékek visszaállítása minden frame végén.
-    /// Ezzel biztosítjuk, hogy egy gombnyomás csak egy frame-re érvényes.
-    /// </summary>
-    private void LateUpdate()
-    {
-        JumpPressed = false;
-        JumpReleased = false;
-        LightAttackPressed = false;
-        HeavyAttackPressed = false;
-        SpecialMovePressed = false;
+        lightAttackAction.performed -= ctx => OnLightAttack?.Invoke();
+        heavyAttackAction.performed -= ctx => OnHeavyAttack?.Invoke();
+        specialMoveAction.performed -= ctx => OnSpecialMove?.Invoke();
     }
 }
