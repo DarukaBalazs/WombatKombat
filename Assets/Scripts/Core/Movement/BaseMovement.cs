@@ -9,6 +9,7 @@ public class BaseMovement : MonoBehaviour
 {
     [Header("Player settings")]
     [SerializeField] PlayerController controller;
+    [SerializeField] PlayerStateManager state;
     [SerializeField] float speed = 5f;
     [SerializeField] float jumpForce = 5f;
     [SerializeField] float doubleJumpMultiplier = 0.7f;
