@@ -28,22 +28,11 @@ public class PlayerController : MonoBehaviour
     public Animator Animator => animator;
     public CharacterData Data => data;
 
-    private void Update()
+    private void Awake()
     {
-        movement.HandleMove(input.MoveInput.x);
-
-        if (input.JumpPressed)
-        {
-            Debug.Log("pressed");
-            movement.HandleJump();
-        }
-
-        if (input.JumpReleased)
-        {
-            Debug.Log("Released");
-            movement.CancelJump();
-        }
-
+        input.OnMove += movement.HandleMove;
+        input.OnJumpPressed += movement.HandleJump;
+        input.OnJumpReleased += movement.CancelJump;
     }
 
     /// <summary>

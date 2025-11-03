@@ -183,9 +183,9 @@ public class BaseMovement : MonoBehaviour
     /// <summary>
     /// Hívja meg, ha mozgás input érkezett a játékostól.
     /// </summary>
-    public void HandleMove(float h)
+    public void HandleMove(Vector2 input)
     {
-        horizontal = h;
+        horizontal = input.x;
     }
 
     /// <summary>

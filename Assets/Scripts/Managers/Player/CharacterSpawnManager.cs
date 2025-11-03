@@ -5,7 +5,7 @@ public class CharacterSpawnManager : MonoBehaviour
 {
     public Transform player1Spawn;
     public Transform player2Spawn;
-
+    public CameraMovement camMovement;
     private void Start()
     {
         var selection = CharacterSelectionManager.Instance;
@@ -33,5 +33,7 @@ public class CharacterSpawnManager : MonoBehaviour
         p2Input.SwitchCurrentControlScheme("Keyboard&Mouse", Keyboard.current);
         p2Input.SwitchCurrentActionMap("Player2");
         p2Controller.ApplyCharacterData(selection.player2);
+
+        camMovement.SetPlayers(p1Obj.transform, p2Obj.transform);
     }
 }

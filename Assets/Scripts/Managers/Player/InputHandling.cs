@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class InputHandling : MonoBehaviour
 {
     public PlayerController playerController;
-
+    
     [SerializeField] PlayerInput playerInput;
 
     public event Action<Vector2> OnMove;
