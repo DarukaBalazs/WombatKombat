@@ -9,10 +9,15 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Component References")]
     [SerializeField] InputHandling input;
+    [SerializeField] PlayerStateManager state;
     [SerializeField] BaseMovement movement;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Animator animator;
     [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] AttackRunner attackRunner;
+    [SerializeField] AttackAsset lightAttack;
+    [SerializeField] AttackAsset heavyAttack;
+    [SerializeField] AttackAsset specialAttack;
 
     [Header("Character Data")]
     /// <summary>
@@ -35,6 +40,20 @@ public class PlayerController : MonoBehaviour
         input.OnJumpReleased += movement.CancelJump;
     }
 
+    private void Update()
+    {
+        float dt = Time.deltaTime;
+        state.Tick(dt);
+        movement.Tick(dt);
+    }
+
+    private void FixedUpdate()
+    {
+        float dt = Time.fixedDeltaTime;
+        state.FixedTick(dt);
+        movement.FixedTick(dt);
+    }
+
     /// <summary>
     /// Beállítja a karakter adatait és inicializálja az input rendszert.
     /// </summary>
@@ -44,6 +63,17 @@ public class PlayerController : MonoBehaviour
         movement.ApplyCharacterData(data);
         this.data = data;
         input.Initialize();
+        ApplyLoadout(data.loadout);
+    }
+
+    public void ApplyLoadout(CharacterLoadout lo)
+    {
+        lightAttack = lo?.lightAttack ?? null;
+        heavyAttack = lo?.heavyAttack ?? null;
+        specialAttack = lo?.specialAttack ?? null;
+        input.OnLightAttack += () => attackRunner.TryStart(lightAttack);
+        input.OnHeavyAttack += () => attackRunner.TryStart(heavyAttack);
+        input.OnSpecialMove += () => attackRunner.TryStart(specialAttack);
     }
 
 }

@@ -39,23 +39,26 @@ public class BaseMovement : MonoBehaviour
     float wallJumpDirection;
 
     //movement variables
-    float horizontal;
+    [HideInInspector] public float horizontal;
 
-    //wallslide variables
+    //Environment variables
     bool isSliding;
+    bool isGrounded;
 
     //animator variables
     bool faceRight;
     #endregion
 
     #region Update methods
-    private void Update()
+    public void Tick(float dt)
     {
+        
         if (!isWallJumping)
             TurnTheRightWay();
 
         #region Jumping
-        if (IsGrounded())
+        state.OnGroundedChanged(isGrounded);
+        if (isGrounded)
         {
             coyoteCounter = coyoteTime;
             canCancelJump = true;
@@ -63,21 +66,27 @@ public class BaseMovement : MonoBehaviour
         }
         else
         {
-            coyoteCounter -= Time.deltaTime;
+            coyoteCounter -= dt;
         }
-        jumpBufferCounter = Mathf.Max(0, jumpBufferCounter - Time.deltaTime);
+        jumpBufferCounter = Mathf.Max(0, jumpBufferCounter - dt);
         if (isSliding) canDoubleJump = true;
         #endregion
 
         #region Wall sliding
-        isSliding = !isWallJumping && IsWallTouch() && !IsGrounded() && horizontal != 0;
+        isSliding = !isWallJumping && IsWallTouch() && !isGrounded && horizontal != 0;
         #endregion
     }
-    void FixedUpdate()
+    public void FixedTick(float dt)
     {
-        Move();
-        Jump();
-        Slide();
+        bool groundedNow = IsGrounded();
+        if (groundedNow != isGrounded)
+        {
+            isGrounded = groundedNow;
+            state.OnGroundedChanged(isGrounded);
+        }
+        if (state.CanMove())  Move();
+        if (state.CanJump())  Jump();
+        if (state.CanSlide()) Slide();
     }
     #endregion
 
@@ -113,9 +122,12 @@ public class BaseMovement : MonoBehaviour
     {
         if (jumpBufferCounter > 0f && coyoteCounter > 0f)
         {
-            canCancelJump = true;
-            controller.Rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-            jumpBufferCounter = 0f;
+            if (state.RequestTransition(State.Jump))
+            {
+                controller.Rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+                canCancelJump = true;
+                jumpBufferCounter = 0f;
+            }
         }
 
         if (jumpBufferCounter > 0f && !IsGrounded() && canDoubleJump && !isWallJumping)
@@ -126,7 +138,9 @@ public class BaseMovement : MonoBehaviour
             else doubleJumpForce = jumpForce * doubleJumpMultiplier;
 
             controller.Rb.AddForce(new Vector2(0, doubleJumpForce), ForceMode2D.Impulse);
+            state.RequestTransition(State.Jump);
             canDoubleJump = false;
+            state.MarkDoubleJumpUsed();
             jumpBufferCounter = 0f;
         }
     }
@@ -138,7 +152,12 @@ public class BaseMovement : MonoBehaviour
     {
         if (isSliding)
         {
+            state.RequestTransition(State.Fall);
+            state.SetWallSliding(true);
             controller.Rb.linearVelocity = new Vector2(controller.Rb.linearVelocityX, Mathf.Clamp(controller.Rb.linearVelocityY, -wallSlideSpeed, float.MaxValue));
+        } else
+        {
+            state.SetWallSliding(false);
         }
     }
 
@@ -173,9 +192,9 @@ public class BaseMovement : MonoBehaviour
     }
 
     #region Checkers
-    private bool IsGrounded() => Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.5f, 0.1f), CapsuleDirection2D.Horizontal, 0, groundLayer);
+    private bool IsGrounded() => Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.5f, 0.1f), CapsuleDirection2D.Horizontal, 0f, groundLayer);
 
-    private bool IsWallTouch() => Physics2D.OverlapBox(wallCheck.position, new Vector2(0.16f, 1.2f), 0, groundLayer);
+    private bool IsWallTouch() => Physics2D.OverlapBox(wallCheck.position, new Vector2(0.16f, 1.2f), 0f, groundLayer);
     #endregion
 
     #endregion
@@ -195,8 +214,9 @@ public class BaseMovement : MonoBehaviour
     public void HandleJump()
     {
         jumpBufferCounter = jumpBufferTime;
-        if (isSliding)
+        if (isSliding && state.CanJump())
         {
+            state.RequestTransition(State.WallJump);
             StartWallJump();
         }
     }

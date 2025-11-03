@@ -51,6 +51,8 @@ public class InputHandling : MonoBehaviour
         playerInput.actions.Enable();
     }
 
+
+
     /// <summary>
     /// Események eltávolítása, ha az objektum letiltódik (memory leak elkerülése).
     /// </summary>
