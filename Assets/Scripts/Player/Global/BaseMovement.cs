@@ -50,6 +50,7 @@ public class BaseMovement : MonoBehaviour
     #region Update methods
     private void Update()
     {
+        controller.Animator.SetFloat("velocity", Mathf.Abs(controller.Rb.linearVelocityX));
         if (!isWallJumping)
             TurnTheRightWay();
 
@@ -233,10 +234,10 @@ public class BaseMovement : MonoBehaviour
 
     #endregion
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.darkRed;
-        Gizmos.DrawSphere(groundCheck.position, 0.1f);
-        Gizmos.DrawCube(wallCheck.position, new Vector2(0.15f, 1.2f));
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.darkRed;
+    //    Gizmos.DrawSphere(groundCheck.position, 0.1f);
+    //    Gizmos.DrawCube(wallCheck.position, new Vector2(0.15f, 1.2f));
+    //}
 }
