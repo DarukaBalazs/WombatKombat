@@ -11,6 +11,7 @@ public abstract class AttackStep : ScriptableObject
     public float startTime;
     public float endTime;
 
+    public virtual void Setup(GameObject go) { }
     public virtual void Tick(AttackRunner ctx, float localTime, float dt) { }
     public virtual void OnEnter(AttackRunner ctx) { }
     public virtual void OnExit(AttackRunner ctx) { }

@@ -10,7 +10,9 @@ public class AttackRunner : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] InputHandling input;
+    [SerializeField] HitboxGroup hitboxGroup;
     public InputHandling Input => input;
+    public HitboxGroup Hitboxes => hitboxGroup;
 
     private Coroutine running;
     private float cooldownUntil;

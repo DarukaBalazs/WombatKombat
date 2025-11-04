@@ -254,7 +254,7 @@ public class BaseMovement : MonoBehaviour
 
     #endregion
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.darkRed;
         Gizmos.DrawSphere(groundCheck.position, 0.1f);
