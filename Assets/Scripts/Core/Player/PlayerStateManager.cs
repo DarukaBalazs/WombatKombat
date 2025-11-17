@@ -186,7 +186,7 @@ public class PlayerStateManager : MonoBehaviour
         State prev = currentState;
         currentState = next;
 
-        Debug.Log($"State changed: {prev} → {next}");
+        //Debug.Log($"State changed: {prev} → {next}");
 
         OnStateChanged?.Invoke(prev, next);
     }

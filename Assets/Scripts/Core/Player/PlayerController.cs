@@ -31,11 +31,10 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody2D Rb => rb;
     public Animator Animator => animator;
-    public CharacterData Data => data;
+    public CharacterData Data => data;  
 
     private void Awake()
     {
-        input.OnMove += movement.HandleMove;
         input.OnJumpPressed += movement.HandleJump;
         input.OnJumpReleased += movement.CancelJump;
     }
@@ -43,6 +42,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         float dt = Time.deltaTime;
+        input.Tick();
         state.Tick(dt);
         movement.Tick(dt);
     }
@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
     {
         float dt = Time.fixedDeltaTime;
         state.FixedTick(dt);
+        movement.HandleMove(input.Movement);
         movement.FixedTick(dt);
     }
 

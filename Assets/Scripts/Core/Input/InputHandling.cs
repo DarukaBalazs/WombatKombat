@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 /// <summary>
 /// Beállítja a karakter adatait és inicializálja az input rendszert.
@@ -11,7 +12,7 @@ public class InputHandling : MonoBehaviour
     
     [SerializeField] PlayerInput playerInput;
 
-    public event Action<Vector2> OnMove;
+    public float Movement;
     public event Action OnJumpPressed;
     public event Action OnJumpReleased;
     public event Action OnLightAttack;
@@ -38,8 +39,7 @@ public class InputHandling : MonoBehaviour
         specialMoveAction = playerInput.actions["SpecialMove"];
 
         // Bind callbacks
-        moveAction.performed += ctx => OnMove?.Invoke(ctx.ReadValue<Vector2>());
-        moveAction.canceled += ctx => OnMove?.Invoke(Vector2.zero);
+
 
         jumpAction.performed += ctx => OnJumpPressed?.Invoke();
         jumpAction.canceled += ctx => OnJumpReleased?.Invoke();
@@ -51,6 +51,11 @@ public class InputHandling : MonoBehaviour
         playerInput.actions.Enable();
     }
 
+    public void Tick()
+    {
+        Movement = moveAction.ReadValue<float>();
+    }
+
 
 
     /// <summary>
@@ -59,8 +64,6 @@ public class InputHandling : MonoBehaviour
     private void OnDisable()
     {
         if (playerInput == null) return;
-        moveAction.performed -= ctx => OnMove?.Invoke(ctx.ReadValue<Vector2>());
-        moveAction.canceled -= ctx => OnMove?.Invoke(Vector2.zero);
 
         jumpAction.performed -= ctx => OnJumpPressed?.Invoke();
         jumpAction.canceled -= ctx => OnJumpReleased?.Invoke();

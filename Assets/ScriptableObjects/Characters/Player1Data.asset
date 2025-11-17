@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Player1Data
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterName: P1
-  prefab: {fileID: 4344789194333067100, guid: d792b12724fd30d49a80b4be7a8dc267, type: 3}
+  prefab: {fileID: 265072717623203303, guid: a97a5908e62dcf1428bde966aeb06e8f, type: 3}
   baseSpeed: 10
   baseJumpForce: 30
   loadout: {fileID: 11400000, guid: c96043b941ac83a409e9a70dc5a65579, type: 2}
