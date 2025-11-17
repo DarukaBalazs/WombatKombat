@@ -25,6 +25,25 @@ public class InputHandling : MonoBehaviour
     InputAction heavyAttackAction;
     InputAction specialMoveAction;
 
+    // HOLD STATE
+    private bool isLightHeld;
+    private float lightHoldStartTime;
+
+    private bool isHeavyHeld;
+    private float heavyHoldStartTime;
+
+    private bool isSpecialHeld;
+    private float specialHoldStartTime;
+
+    public bool IsLightHeld => isLightHeld;
+    public float LightHoldDuration => isLightHeld ? Time.time - lightHoldStartTime : 0f;
+
+    public bool IsHeavyHeld => isHeavyHeld;
+    public float HeavyHoldDuration => isHeavyHeld ? Time.time - heavyHoldStartTime : 0f;
+
+    public bool IsSpecialHeld => isSpecialHeld;
+    public float SpecialHoldDuration => isSpecialHeld ? Time.time - specialHoldStartTime : 0f;
+
     /// <summary>
     /// Inicializálja az input action-öket és hozzárendeli az eseményeket.
     /// Ezt egyszer kell meghívni, amikor a karakter létrejön vagy aktiválódik.
@@ -54,9 +73,30 @@ public class InputHandling : MonoBehaviour
     public void Tick()
     {
         Movement = moveAction.ReadValue<float>();
+
+        UpdateHoldState(lightAttackAction, ref isLightHeld, ref lightHoldStartTime);
+        UpdateHoldState(heavyAttackAction, ref isHeavyHeld, ref heavyHoldStartTime);
+        UpdateHoldState(specialMoveAction, ref isSpecialHeld, ref specialHoldStartTime);
     }
 
+    private void UpdateHoldState(InputAction action, ref bool isHeld, ref float holdStartTime)
+    {
+        if (action == null) return;
 
+        bool pressed = action.IsPressed();
+        if (pressed)
+        {
+            if (!isHeld)
+            {
+                isHeld = true;
+                holdStartTime = Time.time;
+            }
+        }
+        else
+        {
+            isHeld = false;
+        }
+    }
 
     /// <summary>
     /// Események eltávolítása, ha az objektum letiltódik (memory leak elkerülése).

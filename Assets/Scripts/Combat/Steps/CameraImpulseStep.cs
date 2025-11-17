@@ -1,7 +1,11 @@
 using UnityEngine;
-
-[CreateAssetMenu(menuName ="Combat/Steps/Camera Impulse")]
-public class CameraImpulseStep : AttackStep 
+namespace Combat
 {
-    
+    [CreateAssetMenu(menuName = "Combat/Steps/Camera Impulse")]
+    public class CameraImpulseStep : AttackStep
+    {
+
+    }
 }
+
+

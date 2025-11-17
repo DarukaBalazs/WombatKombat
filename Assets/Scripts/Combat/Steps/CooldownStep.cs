@@ -1,7 +1,10 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="Combat/Steps/Cooldown")]
-public class CooldownStep : AttackStep 
+namespace Combat
 {
-    
+    [CreateAssetMenu(menuName ="Combat/Steps/Cooldown")]
+    public class CooldownStep : AttackStep
+    {
+
+    }
 }

@@ -16,6 +16,7 @@ public class AttackRunner : MonoBehaviour
 
     private Coroutine running;
     private float cooldownUntil;
+    private bool cancelledByLanding;
 
     public bool TryStart(AttackAsset asset)
     {
@@ -47,14 +48,19 @@ public class AttackRunner : MonoBehaviour
 
     private IEnumerator Run(AttackAsset asset)
     {
+        cancelledByLanding = false;
+
         EnterPhase(AttackPhase.StartUp, asset);
         yield return Wait(asset.windup);
 
         EnterPhase(AttackPhase.Active, asset);
         yield return StartCoroutine(RunActiveTimeline(asset));
-
-        if (asset.steps != null) foreach (var step in asset.steps) step.OnExit(this);
         
+        if (cancelledByLanding)
+        {
+            ExitAttack(asset);
+            yield break;
+        }
 
         EnterPhase(AttackPhase.Recovery, asset);
         yield return Wait(asset.recovery);
@@ -97,6 +103,8 @@ public class AttackRunner : MonoBehaviour
         var steps = new List<AttackStep>(asset.steps);
         steps.Sort((a, b) => a.startTime.CompareTo(b.startTime));
 
+        bool wasGrounded = state != null && state.IsGrounded;
+
         float t = 0f;
         int i = 0;
 
@@ -105,11 +113,25 @@ public class AttackRunner : MonoBehaviour
         {
             float dt = Time.deltaTime;
             t += dt;
+
+            bool groundedNow = state != null && state.IsGrounded;
+            if (asset.cancelOnLanding && !wasGrounded && groundedNow)
+            {
+                foreach (var step in steps)
+                {
+                    if (step != null) step.OnExit(this);
+                }
+
+                cancelledByLanding = true;
+                yield break;
+            }
+
             // köv. step belépési ideje
             for (int k = 0; k < i; k++)
             {
                 var s = steps[k];
                 if (s != null && t >= s.startTime && t <= s.endTime)
+                    
                     s.Tick(this, t, dt);
             }
 

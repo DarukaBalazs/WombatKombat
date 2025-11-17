@@ -1,7 +1,10 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="Combat/Steps/Gravity Scale")]
-public class GravityScaleStep : AttackStep 
+namespace Combat
 {
-    
+    [CreateAssetMenu(menuName = "Combat/Steps/Gravity Scale")]
+    public class GravityScaleStep : AttackStep
+    {
+
+    }
 }

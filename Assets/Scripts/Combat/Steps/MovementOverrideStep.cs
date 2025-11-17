@@ -1,7 +1,10 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="Combat/Steps/Movement Override")]
-public class MovementOverrideStep : AttackStep 
+namespace Combat
 {
-    
+    [CreateAssetMenu(menuName = "Combat/Steps/Movement Override")]
+    public class MovementOverrideStep : AttackStep
+    {
+
+    }
 }

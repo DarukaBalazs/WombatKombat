@@ -21,6 +21,7 @@ public class AttackAsset : ScriptableObject
     public bool allowAir;
     public bool lovkMovement;
     public bool lockJump;
+    public bool cancelOnLanding;
 
     [Header("Steps")]
     public List<AttackStep> steps;
