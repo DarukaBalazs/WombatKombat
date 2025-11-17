@@ -51,6 +51,7 @@ public class BaseMovement : MonoBehaviour
     //Environment variables
     bool isSliding;
     bool isGrounded;
+    public bool IsWallSliding => isSliding;
 
     //animator variables
     bool faceRight;

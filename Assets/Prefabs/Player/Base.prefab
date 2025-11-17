@@ -467,6 +467,10 @@ PrefabInstance:
       value: -21.927
       objectReference: {fileID: 0}
     - target: {fileID: -3238993863962540330, guid: 32ef1e3244bc33f4e90f4f89c3c5eda9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3238993863962540330, guid: 32ef1e3244bc33f4e90f4f89c3c5eda9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.32081872
       objectReference: {fileID: 0}
@@ -476,7 +480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3238993863962540330, guid: 32ef1e3244bc33f4e90f4f89c3c5eda9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9999874
+      value: 0.99819666
       objectReference: {fileID: 0}
     - target: {fileID: -3238993863962540330, guid: 32ef1e3244bc33f4e90f4f89c3c5eda9, type: 3}
       propertyPath: m_LocalRotation.x
@@ -488,11 +492,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3238993863962540330, guid: 32ef1e3244bc33f4e90f4f89c3c5eda9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0050258334
+      value: 0.06002876
       objectReference: {fileID: 0}
     - target: {fileID: -3238993863962540330, guid: 32ef1e3244bc33f4e90f4f89c3c5eda9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.576
+      value: 6.883
       objectReference: {fileID: 0}
     - target: {fileID: -3210546026927269810, guid: 32ef1e3244bc33f4e90f4f89c3c5eda9, type: 3}
       propertyPath: m_Name
@@ -960,9 +964,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimator
   state: {fileID: 4794407544469336052}
+  movement: {fileID: 0}
   rb: {fileID: 1080525413999859839}
   animator: {fileID: 2685419193116577143}
   runSpeedThreshold: 0.1
+  runStopDelay: 0.1
   fallSpeedThreshold: -0.1
 --- !u!95 &2685419193116577143
 Animator:
