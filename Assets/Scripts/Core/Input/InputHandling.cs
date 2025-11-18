@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 /// <summary>
 /// Beállítja a karakter adatait és inicializálja az input rendszert.
 /// </summary>
@@ -13,6 +14,8 @@ public class InputHandling : MonoBehaviour
     [SerializeField] PlayerInput playerInput;
 
     public float Movement;
+    public float Vertical;
+
     public event Action OnJumpPressed;
     public event Action OnJumpReleased;
     public event Action OnLightAttack;
@@ -20,6 +23,7 @@ public class InputHandling : MonoBehaviour
     public event Action OnSpecialMove;
 
     InputAction moveAction;
+    InputAction verticalAction;
     InputAction jumpAction;
     InputAction lightAttackAction;
     InputAction heavyAttackAction;
@@ -52,6 +56,7 @@ public class InputHandling : MonoBehaviour
     {
 
         moveAction = playerInput.actions["Move"];
+        verticalAction = playerInput.actions["Vertical"];
         jumpAction = playerInput.actions["Jump"];
         lightAttackAction = playerInput.actions["LightAttack"];
         heavyAttackAction = playerInput.actions["HeavyAttack"];
@@ -73,6 +78,7 @@ public class InputHandling : MonoBehaviour
     public void Tick()
     {
         Movement = moveAction.ReadValue<float>();
+        Vertical = verticalAction.ReadValue<float>();
 
         UpdateHoldState(lightAttackAction, ref isLightHeld, ref lightHoldStartTime);
         UpdateHoldState(heavyAttackAction, ref isHeavyHeld, ref heavyHoldStartTime);

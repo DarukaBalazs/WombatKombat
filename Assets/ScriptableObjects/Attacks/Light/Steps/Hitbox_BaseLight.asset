@@ -9,15 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f37965c327f6e8c41ae1daabd03930e6, type: 3}
-  m_Name: Hitbox_Base_Light
-  m_EditorClassIdentifier: Assembly-CSharp::HitboxWindowStep
-  stepName: Base Light
+  m_Script: {fileID: 11500000, guid: 7264361a782cbc1418fa2895e5d84fa1, type: 3}
+  m_Name: Hitbox_BaseLight
+  m_EditorClassIdentifier: Assembly-CSharp::Combat.DirectionalHitboxWindowStep
+  stepName: LightAttack
   startTime: 0
   endTime: 1
-  hitboxIds:
+  forwardHitboxIds:
   - LightFront
+  downHitboxIds:
   - LightUp
   percentGain: 10
-  knockbackForce: 5
+  knockbackForward: 5
+  knockbackDown: 5
   hitstun: 0.2
+  downThreshold: -0.5

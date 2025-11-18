@@ -186,7 +186,11 @@ GameObject:
   - component: {fileID: 4116721338042596488}
   - component: {fileID: -8213523275286858160}
   - component: {fileID: 6195341001879178083}
+  - component: {fileID: 5408432138965909376}
+  - component: {fileID: -1077158784398397356}
+  - component: {fileID: -3772879123134103837}
   - component: {fileID: 9155313629037338614}
+  - component: {fileID: 3126005631746261499}
   - component: {fileID: 5932584976318363630}
   - component: {fileID: 3809019469939993728}
   m_Layer: 7
@@ -209,6 +213,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7568954501651972316}
   - {fileID: 6974954087122388668}
   - {fileID: 8251028791336042802}
   - {fileID: 8186245868333344002}
@@ -316,7 +321,7 @@ MonoBehaviour:
   state: {fileID: 9038540530244758863}
   movement: {fileID: 4116721338042596488}
   rb: {fileID: 3537785145304537796}
-  animator: {fileID: 0}
+  animator: {fileID: 3126005631746261499}
   spriteRenderer: {fileID: 0}
   attackRunner: {fileID: -8213523275286858160}
   lightAttack: {fileID: 0}
@@ -335,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a344bf12d931b5498b6433e6d2a9a57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateManager
-  animator: {fileID: 0}
+  animator: {fileID: 3126005631746261499}
   rb: {fileID: 3537785145304537796}
   currentState: 0
 --- !u!114 &4116721338042596488
@@ -364,6 +369,9 @@ MonoBehaviour:
   wallJumpPowerY: 15
   wallJumpDuration: 0.4
   wallSlideSpeed: 2
+  runInputThreshold: 0.1
+  idleStateDelay: 0.1
+  fallVelocityThreshold: -0.1
   horizontal: 0
 --- !u!114 &-8213523275286858160
 MonoBehaviour:
@@ -378,7 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackRunner
   state: {fileID: 9038540530244758863}
-  animator: {fileID: 0}
+  animator: {fileID: 3126005631746261499}
   rb: {fileID: 3537785145304537796}
   input: {fileID: 9155313629037338614}
   hitboxGroup: {fileID: 6665543271321643774}
@@ -403,6 +411,82 @@ MonoBehaviour:
   maxSpeed: 30
   minStunSeconds: 0.1
   stunLinearDrag: 0
+--- !u!114 &5408432138965909376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344789194333067100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ae5b2e79bdfdb44999a6ad0abceff0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hurtbox
+  col: {fileID: 8520099130761044919}
+  stock: {fileID: -1077158784398397356}
+  kb: {fileID: 6195341001879178083}
+--- !u!114 &-1077158784398397356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344789194333067100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c416c30435640d408e95805e34fce0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StockSystem
+  state: {fileID: 9038540530244758863}
+  rb: {fileID: 3537785145304537796}
+  stocks: 5
+  damagePercent: 0
+  maxCritChance: 100
+  percentToCritchance:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0.4
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 150
+      value: 60
+      inSlope: 0.4
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  onHitPercentGain: 8
+--- !u!114 &-3772879123134103837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344789194333067100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73a6a21434da5104087ff693127b3b68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimator
+  state: {fileID: 9038540530244758863}
+  movement: {fileID: 4116721338042596488}
+  rb: {fileID: 3537785145304537796}
+  animator: {fileID: 3126005631746261499}
+  runSpeedThreshold: 0.1
+  runStopDelay: 0.1
+  fallSpeedThreshold: -0.1
 --- !u!114 &9155313629037338614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,6 +501,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InputHandling
   playerController: {fileID: 9001392571205353076}
   playerInput: {fileID: 5932584976318363630}
+  Movement: 0
+  Vertical: 0
+--- !u!95 &3126005631746261499
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344789194333067100}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &5932584976318363630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,6 +630,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2895f415-7fd8-4bda-b641-be2a10a54a88
     m_ActionName: 'Player2/SpecialMove[/Keyboard/l]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cc4d1462-e237-4e80-996e-72eb1e9a0219
+    m_ActionName: 'Player1/Vertical[/Keyboard/s,/Keyboard/w]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fa1d7de4-938a-4ae0-89e6-2dca8138eb62
+    m_ActionName: 'Player2/Vertical[/Keyboard/downArrow,/Keyboard/upArrow]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: 
@@ -563,6 +679,75 @@ CapsuleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
+  m_Direction: 0
+--- !u!1 &5668361505069554583
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7568954501651972316}
+  - component: {fileID: 8520099130761044919}
+  m_Layer: 7
+  m_Name: Hurtbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7568954501651972316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5668361505069554583}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6530193269820740492}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &8520099130761044919
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5668361505069554583}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.18230236, y: 0.33279145}
+  m_Size: {x: 1.5258772, y: 1.6655829}
   m_Direction: 0
 --- !u!1 &6241156413517850086
 GameObject:

@@ -31,6 +31,8 @@ public class PlayerStateManager : MonoBehaviour
     private bool isDead;
     private bool isInvulnerable;
     private bool didDoubleJump;
+    private bool attackLockMovement;
+    private bool attackLockJump;
 
     private AttackPhase currentAttackPhase = AttackPhase.None;
     private float attackPhaseTimer;   // visszaszámláló a fázishoz
@@ -74,15 +76,18 @@ public class PlayerStateManager : MonoBehaviour
     #endregion
 
     #region Gate
-    public bool CanMove() => !isAttacking && !isStunned && !isDead;
+    public bool CanMove() => !attackLockMovement && !isStunned && !isDead;
 
-    public bool CanJump() => (isGrounded || isWallSliding || !didDoubleJump) && !isAttacking && !isStunned && !isDead;
+    public bool CanJump() => 
+        (isGrounded || isWallSliding || !didDoubleJump)
+        && !attackLockJump
+        && !isStunned && !isDead;
 
     public bool CanAirAttack() => !isGrounded && !hasAirAttacked && !isStunned && !isDead;
 
     public bool CanAttack() => !isAttacking && !hasAirAttacked && !isStunned && !isDead;
 
-    public bool CanSlide() => !isAttacking && !isStunned && !isDead;
+    public bool CanSlide() => !attackLockMovement && !isStunned && !isDead;
     #endregion
 
     #region Life-cycle
@@ -221,6 +226,18 @@ public class PlayerStateManager : MonoBehaviour
     }
     #endregion
     #region Attack Control
+
+    public void SetAttackLocks(bool lockMovement, bool lockJump)
+    {
+        attackLockMovement = lockMovement;
+        attackLockJump = lockJump;
+    }
+
+    public void ClearAttackLocks()
+    {
+        attackLockMovement = false;
+        attackLockJump = false;
+    }
     public void EnterAttackPhase(AttackPhase phase, float phaseDuration)
     {
         currentAttackPhase = phase;

@@ -19,7 +19,7 @@ public class AttackAsset : ScriptableObject
     [Header("Rules")]
     public bool requiresGrounded;
     public bool allowAir;
-    public bool lovkMovement;
+    public bool lockMovement;
     public bool lockJump;
     public bool cancelOnLanding;
 
