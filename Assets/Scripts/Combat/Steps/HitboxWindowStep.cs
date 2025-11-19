@@ -54,7 +54,7 @@ namespace Combat
             if (!hurt) return;
 
             hurt.RecieveHit(info, percentGain, knockbackForce, hitstun);
-        }
 
+        }
     }
 }

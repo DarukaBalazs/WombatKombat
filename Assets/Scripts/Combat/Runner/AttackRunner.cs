@@ -12,11 +12,16 @@ public class AttackRunner : MonoBehaviour
     [SerializeField] InputHandling input;
     [SerializeField] HitboxGroup hitboxGroup;
 
+    [Header("Properties")]
     public InputHandling Input => input;
     public HitboxGroup Hitboxes => hitboxGroup;
     public PlayerStateManager State => state;
     public Animator Animator => animator;
     public Rigidbody2D Body => rb;
+
+    [Header("States")]
+    public bool LandedThisAttack { get; private set; }
+    public bool HitConnectedThisAttack { get ; private set; }
 
     private Coroutine running;
     private float cooldownUntil;
@@ -43,6 +48,10 @@ public class AttackRunner : MonoBehaviour
         return true;
     }
 
+    public void MarkHitConnected()
+    {
+        HitConnectedThisAttack = true;
+    } 
     public void CancelCurrent()
     {
         // minden step OnExit
@@ -71,6 +80,8 @@ public class AttackRunner : MonoBehaviour
     private IEnumerator Run(AttackAsset asset)
     {
         currentAsset = asset;
+        LandedThisAttack = false;
+        HitConnectedThisAttack = false;
 
         if (state != null)
             state.SetAttackLocks(asset.lockMovement, asset.lockJump);
@@ -140,23 +151,29 @@ public class AttackRunner : MonoBehaviour
             float dt = Time.deltaTime;
             t += dt;
 
-            // cancelOnLanding: landoláskor az összes aktív step OnExit, ACTIVE vége
-            if (asset.cancelOnLanding && state != null)
-            {
-                bool grounded = state.IsGrounded;
-                if (!wasGrounded && grounded)
-                {
-                    for (int i = 0; i < activeSteps.Count; i++)
-                    {
-                        var s = activeSteps[i];
-                        if (s != null) s.OnExit(this);
-                    }
-                    activeSteps.Clear();
-                    yield break;
-                }
+            bool grounded = state != null && state.IsGrounded;
+            bool justLanded = !wasGrounded && grounded;
 
-                wasGrounded = grounded;
+            if (justLanded)
+            {
+                LandedThisAttack = true;
             }
+
+            // cancelOnLanding: landoláskor az összes aktív step OnExit, ACTIVE vége
+            if (asset.cancelOnLanding && justLanded)
+            {
+
+                for (int i = 0; i < activeSteps.Count; i++)
+                {
+                    var s = activeSteps[i];
+                    if (s != null) s.OnExit(this);
+                }
+                activeSteps.Clear();
+                yield break;
+                
+            }
+            wasGrounded = grounded;
+            
 
             // új step-ek beléptetése
             while (nextIndex < sorted.Count && t >= sorted[nextIndex].startTime)

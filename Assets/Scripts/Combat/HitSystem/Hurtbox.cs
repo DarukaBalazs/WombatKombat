@@ -16,6 +16,14 @@ public class Hurtbox : MonoBehaviour
 
     public void RecieveHit(Hitbox.HitInfo info, float percentgain, float knockbackForce, float hitstun )
     {
+        if (info.attacker != null)
+        {
+            var runner = info.attacker.GetComponentInParent<AttackRunner>();
+            if (runner != null)
+            {
+                runner.MarkHitConnected();
+            }
+        }
         if (!stock) stock = GetComponent<StockSystem>();
         bool crit = stock ? stock.RegisterHitAndRollCrit(percentgain) : false;
         if (!kb) kb = GetComponent<KnockbackHandler>();
