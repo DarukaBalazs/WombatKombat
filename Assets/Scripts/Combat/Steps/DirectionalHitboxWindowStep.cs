@@ -28,6 +28,9 @@ namespace Combat
         [Tooltip("Ekkora negatív vertical érték alatt számít 'lefelé' támadásnak")]
         public float downThreshold = -0.5f;
 
+        [Tooltip("Találatkor ennyi ideig fagyjon be a játék (sec). 0 = nincs hitstop.")]
+        public float hitstopDuration = 0.05f;
+
         private readonly List<Hitbox> activeHitboxes = new();
         private float currentKnockback;
 
@@ -89,6 +92,10 @@ namespace Combat
 
             // A választott iránynak megfelelõ knockbacket használjuk
             hurt.RecieveHit(info, percentGain, currentKnockback, hitstun);
+            if (hitstopDuration > 0f && HitstopManager.Instance != null)
+            {
+                HitstopManager.Instance.RequestHitstop(hitstopDuration);
+            }
         }
     }
 }
