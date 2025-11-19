@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c42163e878fa74db8e81eec264fa8a, type: 3}
+  m_Name: BaseSpecial
+  m_EditorClassIdentifier: Assembly-CSharp::AttackAsset
+  id: BaseSpecial
+  type: 2
+  windup: 0.05
+  active: 2
+  recovery: 0.05
+  cooldown: 5
+  requiresGrounded: 1
+  allowAir: 1
+  lockMovement: 0
+  lockJump: 1
+  cancelOnLanding: 0
+  steps:
+  - {fileID: 11400000, guid: 3b6d38c63c7698a478fbd1d354fe62a6, type: 2}
+  - {fileID: 11400000, guid: 4a04a65107c580342bc95029e92c313d, type: 2}
+  - {fileID: 11400000, guid: ce6a3e291dc39f342a44d05294c90b9f, type: 2}
