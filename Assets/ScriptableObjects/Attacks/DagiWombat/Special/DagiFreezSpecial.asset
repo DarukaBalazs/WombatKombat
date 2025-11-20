@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a642653c63a94f4eb669ed2d7632e1a, type: 3}
   m_Name: DagiFreezSpecial
   m_EditorClassIdentifier: Assembly-CSharp::Combat.FreezeRequestStep
-  stepName: 
-  startTime: 0
-  endTime: 0
+  stepName: DagiFreez
+  startTime: 0.5
+  endTime: 2

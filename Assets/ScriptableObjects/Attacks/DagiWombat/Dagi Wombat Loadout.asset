@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a4dd14f9064454cab38ee839d5edd8, type: 3}
   m_Name: Dagi Wombat Loadout
   m_EditorClassIdentifier: Assembly-CSharp::CharacterLoadout
-  lightAttack: {fileID: 0}
-  heavyAttack: {fileID: 0}
-  specialAttack: {fileID: 0}
+  lightAttack: {fileID: 11400000, guid: ab746dc98e6a1db4e9eec15c5133a5c9, type: 2}
+  heavyAttack: {fileID: 11400000, guid: 682caf1bd68fb22478e1d9b5e58ffb59, type: 2}
+  specialAttack: {fileID: 11400000, guid: 03d4fd420e1fcf74dae5a1143831319a, type: 2}

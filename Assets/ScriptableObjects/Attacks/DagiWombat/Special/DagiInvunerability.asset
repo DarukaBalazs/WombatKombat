@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: DagiInvunerability
   m_EditorClassIdentifier: Assembly-CSharp::Combat.InvulnerabilityStep
   stepName: DagiInvunerability
-  startTime: 0
-  endTime: 0
+  startTime: 0.5
+  endTime: 2.5
   seconds: 0

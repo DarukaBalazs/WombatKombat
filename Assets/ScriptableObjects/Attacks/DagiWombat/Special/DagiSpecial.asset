@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: DagiSpecial
   m_EditorClassIdentifier: Assembly-CSharp::AttackAsset
   id: 
-  type: 0
-  windup: 0
-  active: 0
-  recovery: 0
+  type: 2
+  windup: 0.5
+  active: 2
+  recovery: 0.5
   cooldown: 0
   requiresGrounded: 0
   allowAir: 0
   lockMovement: 0
   lockJump: 0
   cancelOnLanding: 0
-  steps: []
+  steps:
+  - {fileID: 11400000, guid: c5e0d11362f9c694bb00311c7e771a64, type: 2}
