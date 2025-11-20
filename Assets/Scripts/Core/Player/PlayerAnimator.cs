@@ -52,6 +52,7 @@ public class PlayerAnimator : MonoBehaviour
         Vector2 vel = rb.linearVelocity;
         float speedX = Mathf.Abs(vel.x);
         float speedY = vel.y;
+        float animSpeedX = movement.AnimSpeed;
 
         bool wallSliding = movement != null && movement.IsWallSliding;
 
@@ -60,6 +61,7 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetBool("IsWallSliding", wallSliding);
         animator.SetFloat("Speed", speedX);
         animator.SetFloat("VerticalSpeed", speedY);
+        animator.SetFloat("AnimSpeed",animSpeedX);
 
         // Futás logika időküszöbbel – NE fusson/álljon le 1 frame spike-ra
         bool shouldRunNow = grounded && speedX > runSpeedThreshold && !wallSliding;

@@ -30,10 +30,11 @@ public class BaseMovement : MonoBehaviour
     [SerializeField] float idleStateDelay = 0.1f;     // ennyi ideig kell "�ll�s" �llapotban lennie, hogy Idle-re v�ltsunk
     [SerializeField] float fallVelocityThreshold = -0.1f; // ez alatt m�r es�snek vessz�k (Y sebess�g)
 
-    
+
 
     #region Private fields
     //jumping variables
+    float animSpeed;
     float coyoteTime = 0.2f;
     float coyoteCounter;
     float jumpBufferTime = 0.2f;
@@ -52,7 +53,7 @@ public class BaseMovement : MonoBehaviour
     bool isSliding;
     bool isGrounded;
     public bool IsWallSliding => isSliding;
-
+    public float AnimSpeed => animSpeed;
     //animator variables
     bool faceRight;
 
@@ -88,6 +89,7 @@ public class BaseMovement : MonoBehaviour
 
         // �J: locomotion state friss�t�s (Idle / Run / Fall)
         UpdateLocomotionState(dt);
+        UpdateAnimSpeed(dt);
     }
     public void FixedTick(float dt)
     {
@@ -161,6 +163,22 @@ public class BaseMovement : MonoBehaviour
                 state.RequestTransition(State.Idle);
             }
         }
+    }
+
+    private void UpdateAnimSpeed(float dt)
+    {
+        // Nyers horizontális sebesség abszolút értékben
+        float rawSpeedX = Mathf.Abs(controller.Rb.linearVelocityX);
+
+        // Normalizáljuk 0..1 közé a beállított "speed" alapján
+        float target01 = 0f;
+        if (speed > 0f)
+            target01 = Mathf.Clamp01(rawSpeedX / speed);
+
+        // Simítás, hogy ne ugráljon 0 ↔ 1 között
+        // smoothFactor: minél nagyobb, annál gyorsabban reagál
+        float smoothFactor = 10f;
+        animSpeed = Mathf.MoveTowards(animSpeed, target01, smoothFactor * dt);
     }
     /// <summary>
     /// A karakter sprite ir�ny�nak megford�t�sa mozg�s ir�ny szerint.

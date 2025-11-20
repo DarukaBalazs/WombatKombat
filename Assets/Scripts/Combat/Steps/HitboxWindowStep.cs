@@ -15,6 +15,9 @@ namespace Combat
         public float knockbackForce = 5f;
         public float hitstun = 0.2f;
 
+        [Tooltip("Találatkor ennyi ideig fagyjon be a játék (sec). 0 = nincs hitstop.")]
+        public float hitstopDuration = 0.05f;
+
         private readonly List<Hitbox> activeHitboxes = new();
 
         public override void OnEnter(AttackRunner ctx)
@@ -51,7 +54,7 @@ namespace Combat
             if (!hurt) return;
 
             hurt.RecieveHit(info, percentGain, knockbackForce, hitstun);
-        }
 
+        }
     }
 }

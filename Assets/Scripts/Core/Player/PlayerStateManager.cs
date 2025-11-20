@@ -33,6 +33,7 @@ public class PlayerStateManager : MonoBehaviour
     private bool didDoubleJump;
     private bool attackLockMovement;
     private bool attackLockJump;
+    private bool hasSuperArmor;
 
     private AttackPhase currentAttackPhase = AttackPhase.None;
     private float attackPhaseTimer;   // visszaszámláló a fázishoz
@@ -73,6 +74,8 @@ public class PlayerStateManager : MonoBehaviour
     public bool IsDead => isDead;
     public bool IsInvulnerable => isInvulnerable;
     public bool DidDoubleJump => didDoubleJump;
+
+    public bool HasSuperArmor => hasSuperArmor;
     #endregion
 
     #region Gate
@@ -191,7 +194,7 @@ public class PlayerStateManager : MonoBehaviour
         State prev = currentState;
         currentState = next;
 
-        //Debug.Log($"State changed: {prev} → {next}");
+        Debug.Log($"{gameObject.GetEntityId()}, State changed: {prev} → {next}");
 
         OnStateChanged?.Invoke(prev, next);
     }
@@ -298,6 +301,15 @@ public class PlayerStateManager : MonoBehaviour
         isInvulnerable = true;
         invulnTimer = Mathf.Max(invulnTimer, seconds);
     }
+    public void EnableSuperArmor()
+    {
+        hasSuperArmor = true;
+    }
+
+    public void DisableSuperArmor()
+    {
+        hasSuperArmor = false;
+    }
 
     private void ClearHitstun()
     {
@@ -306,8 +318,8 @@ public class PlayerStateManager : MonoBehaviour
         // animator?.SetBool("IsStunned", false);
 
         // vissza locomotion-be
-        if (isGrounded) RequestTransition(State.Idle);
-        else RequestTransition(State.Fall);
+        if (isGrounded) ForceTransition(State.Idle);
+        else ForceTransition(State.Fall);
     }
     #endregion
 

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a4dd14f9064454cab38ee839d5edd8, type: 3}
+  m_Name: BaseWombatLoadout
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterLoadout
+  lightAttack: {fileID: 11400000, guid: 91156d8848092ee488a8ea4a95e44abf, type: 2}
+  heavyAttack: {fileID: 11400000, guid: f0170c49b42221b409dbfc861cdcdc1e, type: 2}
+  specialAttack: {fileID: 11400000, guid: 2b1baeadc3787474e9ded16af998e53d, type: 2}
