@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c42163e878fa74db8e81eec264fa8a, type: 3}
+  m_Name: DagiSpecial
+  m_EditorClassIdentifier: Assembly-CSharp::AttackAsset
+  id: 
+  type: 0
+  windup: 0
+  active: 0
+  recovery: 0
+  cooldown: 0
+  requiresGrounded: 0
+  allowAir: 0
+  lockMovement: 0
+  lockJump: 0
+  cancelOnLanding: 0
+  steps: []
