@@ -16,4 +16,4 @@ MonoBehaviour:
   prefab: {fileID: 265072717623203303, guid: a97a5908e62dcf1428bde966aeb06e8f, type: 3}
   baseSpeed: 10
   baseJumpForce: 30
-  loadout: {fileID: 11400000, guid: c96043b941ac83a409e9a70dc5a65579, type: 2}
+  loadout: {fileID: 11400000, guid: 17b0ea05cf9e2cd41be27575fdd85c97, type: 2}

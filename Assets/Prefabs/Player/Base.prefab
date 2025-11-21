@@ -888,6 +888,10 @@ PrefabInstance:
       propertyPath: id
       value: Down_Light
       objectReference: {fileID: 0}
+    - target: {fileID: 5408432138965909376, guid: d792b12724fd30d49a80b4be7a8dc267, type: 3}
+      propertyPath: state
+      value: 
+      objectReference: {fileID: 4794407544469336052}
     - target: {fileID: 5932584976318363630, guid: d792b12724fd30d49a80b4be7a8dc267, type: 3}
       propertyPath: m_ActionEvents.Array.size
       value: 22
