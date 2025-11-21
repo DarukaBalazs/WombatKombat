@@ -10,19 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84c42163e878fa74db8e81eec264fa8a, type: 3}
-  m_Name: BaseLight
+  m_Name: DagiHeavy
   m_EditorClassIdentifier: Assembly-CSharp::AttackAsset
-  id: BaseLight
-  type: 0
-  windup: 0.1
-  active: 0.3
-  recovery: 0.1
+  id: DagiHeavy
+  type: 1
+  windup: 0.3
+  active: 1.1
+  recovery: 0.4
   cooldown: 0.5
   requiresGrounded: 0
-  allowAir: 1
-  lockMovement: 1
-  lockJump: 1
+  allowAir: 0
+  lockMovement: 0
+  lockJump: 0
   cancelOnLanding: 0
   steps:
-  - {fileID: 11400000, guid: 57edd446e57a3354b9650e1a71691993, type: 2}
-  - {fileID: 11400000, guid: 3635d99060c079e408aff0815837ce70, type: 2}
+  - {fileID: 11400000, guid: c17dc4fbd73ef6e4f9a3829e1afe601d, type: 2}
+  - {fileID: 11400000, guid: 96404575a612f354883c6726aa3b54f5, type: 2}
+  - {fileID: 11400000, guid: e7c05ad11a9ebc14e959fbdadbf5eb6f, type: 2}
+  - {fileID: 11400000, guid: 32e6c79fbca05c34da6a2a1ca5b08ea5, type: 2}
