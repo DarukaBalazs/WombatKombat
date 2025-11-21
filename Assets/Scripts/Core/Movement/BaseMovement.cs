@@ -9,6 +9,7 @@ public class BaseMovement : MonoBehaviour
 {
     [Header("Player settings")]
     [SerializeField] PlayerController controller;
+    [SerializeField] PlayerStateManager state;
     [SerializeField] float speed = 5f;
     [SerializeField] float jumpForce = 5f;
     [SerializeField] float doubleJumpMultiplier = 0.7f;
@@ -239,4 +240,6 @@ public class BaseMovement : MonoBehaviour
         Gizmos.DrawSphere(groundCheck.position, 0.1f);
         Gizmos.DrawCube(wallCheck.position, new Vector2(0.15f, 1.2f));
     }
+
+    
 }

@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 3809019469939993728}
   - component: {fileID: 4572771647219044432}
   - component: {fileID: 3884950402043867153}
+  - component: {fileID: -9105672640874908570}
   m_Layer: 7
   m_Name: Player1
   m_TagString: Untagged
@@ -431,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d8eaa52befd7144ca6f41a2da8ee6f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandling
-  characterController: {fileID: 3884950402043867153}
+  playerController: {fileID: 0}
   playerInput: {fileID: 5932584976318363630}
 --- !u!114 &3884950402043867153
 MonoBehaviour:
@@ -451,6 +452,18 @@ MonoBehaviour:
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
   data: {fileID: 0}
+--- !u!114 &-9105672640874908570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344789194333067100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f61b87b97593514d8e3fa0ef8bedb69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlatformFollower
 --- !u!1 &6241156413517850086
 GameObject:
   m_ObjectHideFlags: 0
