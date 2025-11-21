@@ -877,8 +877,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 2.6698418e-35
+  m_labelHash: 2.3514638e-31
   m_SpriteKey: 0
   m_SpriteHash: 395675442
 --- !u!4 &3579203070444235541 stripped
@@ -903,8 +903,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 0.0047193225
+  m_labelHash: 0.015172831
   m_SpriteKey: 0
   m_SpriteHash: 616177901
 --- !u!1 &3611562651255811898 stripped
@@ -967,8 +967,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 1.2787314e-12
+  m_labelHash: 8.0790717e-16
   m_SpriteKey: 0
   m_SpriteHash: 855012581
 --- !u!1 &5890939880491437283 stripped
@@ -988,8 +988,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 3.5554285e-35
+  m_labelHash: 5.6256487e-24
   m_SpriteKey: 0
   m_SpriteHash: 395269456
 --- !u!4 &6362692322607556443 stripped
@@ -1014,8 +1014,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 9.311122e-13
+  m_labelHash: 0.000000009888673
   m_SpriteKey: 0
   m_SpriteHash: 854369927
 --- !u!1 &7388383480897361609 stripped
@@ -1035,8 +1035,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 2.9092094e-34
+  m_labelHash: 3.252393e-39
   m_SpriteKey: 0
   m_SpriteHash: 222863266
 --- !u!1001 &4604491896091935419
@@ -1067,6 +1067,10 @@ PrefabInstance:
       propertyPath: id
       value: Down_Light
       objectReference: {fileID: 0}
+    - target: {fileID: 5408432138965909376, guid: d792b12724fd30d49a80b4be7a8dc267, type: 3}
+      propertyPath: state
+      value: 
+      objectReference: {fileID: 4794407544469336052}
     - target: {fileID: 5932584976318363630, guid: d792b12724fd30d49a80b4be7a8dc267, type: 3}
       propertyPath: m_ActionEvents.Array.size
       value: 22
