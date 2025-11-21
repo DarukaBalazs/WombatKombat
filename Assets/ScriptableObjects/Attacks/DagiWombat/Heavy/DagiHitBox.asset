@@ -16,7 +16,7 @@ MonoBehaviour:
   startTime: 0.6
   endTime: 0
   hitboxIds:
-  - HeavyFront
+  - Front_Heavy
   percentGain: 20
   knockbackForce: 5
   hitstun: 0.5

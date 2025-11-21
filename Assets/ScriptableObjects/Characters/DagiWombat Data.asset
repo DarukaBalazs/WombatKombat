@@ -15,5 +15,5 @@ MonoBehaviour:
   characterName: DagiWombat
   prefab: {fileID: 5135831890134642216, guid: ed5af59893c3c284aa26774efb6fac4b, type: 3}
   baseSpeed: 7
-  baseJumpForce: 20
+  baseJumpForce: 30
   loadout: {fileID: 11400000, guid: 17b0ea05cf9e2cd41be27575fdd85c97, type: 2}

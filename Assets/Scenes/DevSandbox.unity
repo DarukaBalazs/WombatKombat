@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSelectionManager
   player1: {fileID: 11400000, guid: 2a03984b5aa28f0449b10232ce89f0e3, type: 2}
-  player2: {fileID: 11400000, guid: 2a03984b5aa28f0449b10232ce89f0e3, type: 2}
+  player2: {fileID: 11400000, guid: aeada2cf032ccce4b903f205134ec22d, type: 2}
 --- !u!114 &1480580754
 MonoBehaviour:
   m_ObjectHideFlags: 0

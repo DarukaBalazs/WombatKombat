@@ -707,8 +707,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 003b8c1d360be4149a4142c55c94a1bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSelectionManager
-  player1: {fileID: 11400000, guid: 8431e4bfadd52294cb9fc1f1af9f6370, type: 2}
-  player2: {fileID: 11400000, guid: bc1ff0f90ef1a84429fddbb5f5575c86, type: 2}
+  player1: {fileID: 11400000, guid: 2a03984b5aa28f0449b10232ce89f0e3, type: 2}
+  player2: {fileID: 11400000, guid: aeada2cf032ccce4b903f205134ec22d, type: 2}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0

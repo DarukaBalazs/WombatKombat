@@ -16,7 +16,7 @@ MonoBehaviour:
   startTime: 0
   endTime: 0.3
   forwardHitboxIds:
-  - Front_Light
+  - FrontLight
   downHitboxIds:
   - Down_Light
   percentGain: 10
