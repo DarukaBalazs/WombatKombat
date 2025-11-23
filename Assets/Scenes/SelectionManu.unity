@@ -1771,7 +1771,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5989462958255894664, guid: b9eaba434a502c549aab84b7673b1eb1, type: 3}
+  m_Sprite: {fileID: -2247079934792992800, guid: 0d52052da71afdd4eb13ab1ec8357db0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2424,6 +2424,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960576617}
   m_CullTransparentMesh: 1
+--- !u!1 &2013098051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2013098052}
+  - component: {fileID: 2013098054}
+  - component: {fileID: 2013098053}
+  m_Layer: 0
+  m_Name: SelectioManuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2013098052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013098051}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2013098053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013098051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a93f2cab9d44844389a0c2e8b9bb349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapSelectManager
+  Map1: 1
+  Map2: 2
+  Map3: 3
+  backgroundImage: {fileID: 1772558210}
+  Map1Image: {fileID: 3468244779728606172, guid: 6800a02c288e851479478413b9afc969, type: 3}
+  Map2Image: {fileID: -2247079934792992800, guid: 0d52052da71afdd4eb13ab1ec8357db0, type: 3}
+  Map3Image: {fileID: -1046444227985733684, guid: 2cebf2df7a022c6498dc8a9f477131c5, type: 3}
+--- !u!114 &2013098054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013098051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02c126d58bbd1f344a6d69400a5c14ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterSelectManager
+  Base: {fileID: 11400000, guid: 8431e4bfadd52294cb9fc1f1af9f6370, type: 2}
+  Mary: {fileID: 11400000, guid: 8431e4bfadd52294cb9fc1f1af9f6370, type: 2}
+  Dagi: {fileID: 11400000, guid: 8431e4bfadd52294cb9fc1f1af9f6370, type: 2}
+  Selector: {fileID: 11400000, guid: 4e84e45c66d47c543889bde987df021b, type: 2}
 --- !u!1 &2031030557
 GameObject:
   m_ObjectHideFlags: 0
@@ -2673,3 +2741,4 @@ SceneRoots:
   - {fileID: 1034308731}
   - {fileID: 1132111398}
   - {fileID: 1124857175}
+  - {fileID: 2013098052}
