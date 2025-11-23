@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c42163e878fa74db8e81eec264fa8a, type: 3}
   m_Name: DagiSpecial
   m_EditorClassIdentifier: Assembly-CSharp::AttackAsset
-  id: 
+  id: DagiSpecial
   type: 2
   windup: 0.5
   active: 2
