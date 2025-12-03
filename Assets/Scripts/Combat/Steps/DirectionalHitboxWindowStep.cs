@@ -24,6 +24,11 @@ namespace Combat
 
         public float hitstun = 0.2f;
 
+        [Header("Camera shake")]
+        public bool shakeCamera = false;
+        public float shakeMagnitude = 1.0f;
+        public float shakeDuration = 1.0f;
+
         [Header("Input küszöb")]
         [Tooltip("Ekkora negatív vertical érték alatt számít 'lefelé' támadásnak")]
         public float downThreshold = -0.5f;
@@ -95,6 +100,13 @@ namespace Combat
             if (hitstopDuration > 0f && HitstopManager.Instance != null)
             {
                 HitstopManager.Instance.RequestHitstop(hitstopDuration);
+            }
+            if (shakeCamera)
+            {
+                if (shakeDuration > 0f)
+                {
+                    CameraImpulseSystem.TriggerShake(shakeMagnitude,shakeDuration);
+                }
             }
         }
     }

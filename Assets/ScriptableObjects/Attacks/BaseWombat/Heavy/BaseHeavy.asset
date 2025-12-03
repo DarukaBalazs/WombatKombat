@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c42163e878fa74db8e81eec264fa8a, type: 3}
   m_Name: BaseHeavy
   m_EditorClassIdentifier: Assembly-CSharp::AttackAsset
-  id: BaseHeavy
   type: 1
   windup: 0.1
   active: 0.6
@@ -24,7 +23,6 @@ MonoBehaviour:
   lockJump: 1
   cancelOnLanding: 0
   steps:
-  - {fileID: 11400000, guid: 2febe3e726e377f428c5c7b1046e1ce5, type: 2}
   - {fileID: 11400000, guid: 11aae75cd6962cf4481c8af018b01e8f, type: 2}
   - {fileID: 11400000, guid: eadd3e3856f82c44eb7a353cbd769712, type: 2}
   - {fileID: 11400000, guid: 665d6d44187e76d48a0b5b434826c11d, type: 2}

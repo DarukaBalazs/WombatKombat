@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7264361a782cbc1418fa2895e5d84fa1, type: 3}
+  m_Name: MaryHitHeavy
+  m_EditorClassIdentifier: Assembly-CSharp::Combat.DirectionalHitboxWindowStep
+  startTime: 0
+  endTime: 0.2
+  forwardHitboxIds:
+  - HeavyFront
+  downHitboxIds:
+  - HeavyDown
+  percentGain: 15
+  knockbackForward: 10
+  knockbackDown: 10
+  hitstun: 0.3
+  shakeCamera: 1
+  shakeMagnitude: 2
+  shakeDuration: 0.5
+  downThreshold: -0.5
+  hitstopDuration: 0.05

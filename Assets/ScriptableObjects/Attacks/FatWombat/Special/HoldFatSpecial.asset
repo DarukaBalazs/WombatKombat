@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b4056fae71022408254ba18bec43dc, type: 3}
+  m_Name: HoldFatSpecial
+  m_EditorClassIdentifier: Assembly-CSharp::Combat.HoldCancelStep
+  startTime: 0
+  endTime: 3
+  button: 3
+  maxHoldTime: 3

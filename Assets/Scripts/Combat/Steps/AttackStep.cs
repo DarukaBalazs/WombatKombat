@@ -5,8 +5,6 @@ namespace Combat
     public abstract class AttackStep : ScriptableObject
     {
         [Header("Base")]
-        [Tooltip("Debug név a szerkesztõben")]
-        public string stepName;
 
         [Tooltip("ACTIVE fázison belüli kezdet (sec)")]
         public float startTime;

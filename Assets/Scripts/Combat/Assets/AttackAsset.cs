@@ -7,7 +7,6 @@ using Combat;
 public class AttackAsset : ScriptableObject
 {
     [Header("Identity")]
-    public string id;
     public AttackType type;
 
     [Header("Timings (Second)")]

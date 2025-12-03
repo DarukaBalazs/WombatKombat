@@ -428,7 +428,7 @@ MonoBehaviour:
   col: {fileID: 8520099130761044919}
   stock: {fileID: -1077158784398397356}
   kb: {fileID: 6195341001879178083}
-  state: {fileID: 0}
+  state: {fileID: 9038540530244758863}
 --- !u!114 &-1077158784398397356
 MonoBehaviour:
   m_ObjectHideFlags: 0

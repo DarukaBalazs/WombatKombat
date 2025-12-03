@@ -10,17 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84c42163e878fa74db8e81eec264fa8a, type: 3}
-  m_Name: BaseLight
+  m_Name: MarySpecial
   m_EditorClassIdentifier: Assembly-CSharp::AttackAsset
-  type: 0
-  windup: 0.05
-  active: 0.3
-  recovery: 0.2
-  cooldown: 0
+  type: 2
+  windup: 0.3
+  active: 2
+  recovery: 0.4
+  cooldown: 4
   requiresGrounded: 0
   allowAir: 1
   lockMovement: 1
   lockJump: 1
   cancelOnLanding: 0
   steps:
-  - {fileID: 11400000, guid: fdef3a2df33dfa746a951797f0850d7f, type: 2}
+  - {fileID: 11400000, guid: 1a531397a3c9d5b478dcb258f644da58, type: 2}
+  - {fileID: 11400000, guid: 98fb843cb7dcb8543b5b454f035826e0, type: 2}
+  - {fileID: 11400000, guid: cc6455930e0957643ab76c6a873b72e4, type: 2}
+  - {fileID: 11400000, guid: bf6dae027c709424087770abd3a9b25a, type: 2}
+  - {fileID: 11400000, guid: 170cf3b6e8467d948a86aafaf281cc99, type: 2}

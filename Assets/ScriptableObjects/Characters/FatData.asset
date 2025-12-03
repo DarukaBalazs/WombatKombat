@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b339b6cd2d00123408406468f95e05cb, type: 3}
+  m_Name: FatData
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterData
+  characterName: Fat
+  prefab: {fileID: 1209519621586994089, guid: a97a5908e62dcf1428bde966aeb06e8f, type: 3}
+  baseSpeed: 5
+  baseJumpForce: 10
+  loadout: {fileID: 11400000, guid: b68436d92fa1dec408d9196fe0f33258, type: 2}

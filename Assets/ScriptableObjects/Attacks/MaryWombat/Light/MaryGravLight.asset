@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e36fc5beb997a6449d5b2c74ad070b3, type: 3}
-  m_Name: CamShakeFinishBaseHeavy
-  m_EditorClassIdentifier: Assembly-CSharp::Combat.CameraImpulseStep
-  stepName: CamShakeFinish
+  m_Script: {fileID: 11500000, guid: 9c8f265d50872054db774bedfd474305, type: 3}
+  m_Name: MaryGravLight
+  m_EditorClassIdentifier: Assembly-CSharp::Combat.GravityScaleStep
   startTime: 0
-  endTime: 0
-  magnitude: 1
-  duration: 0.05
-  triggerMode: 2
+  endTime: 0.1
+  scale: 0
