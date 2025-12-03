@@ -2,8 +2,8 @@ using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// A karakter mozgásáért, ugrásáért, falcsúszásáért és falugrásáért felelõs komponens.
-/// Külön kezeli a coyote time-ot, jump buffert és a duplaugrást.
+/// A karakter mozgï¿½sï¿½ï¿½rt, ugrï¿½sï¿½ï¿½rt, falcsï¿½szï¿½sï¿½ï¿½rt ï¿½s falugrï¿½sï¿½ï¿½rt felelï¿½s komponens.
+/// Kï¿½lï¿½n kezeli a coyote time-ot, jump buffert ï¿½s a duplaugrï¿½st.
 /// </summary>
 public class BaseMovement : MonoBehaviour
 {
@@ -25,8 +25,16 @@ public class BaseMovement : MonoBehaviour
     [SerializeField] float wallJumpDuration = 0.4f;
     [SerializeField] float wallSlideSpeed = 2f;
 
+    [Header("Locomotion thresholds")]
+    [SerializeField] float runInputThreshold = 0.1f;     // mekkora input/sebessï¿½gnï¿½l szï¿½mï¿½t futï¿½snak
+    [SerializeField] float idleStateDelay = 0.1f;     // ennyi ideig kell "ï¿½llï¿½s" ï¿½llapotban lennie, hogy Idle-re vï¿½ltsunk
+    [SerializeField] float fallVelocityThreshold = -0.1f; // ez alatt mï¿½r esï¿½snek vesszï¿½k (Y sebessï¿½g)
+
+
+
     #region Private fields
     //jumping variables
+    float animSpeed;
     float coyoteTime = 0.2f;
     float coyoteCounter;
     float jumpBufferTime = 0.2f;
@@ -39,23 +47,28 @@ public class BaseMovement : MonoBehaviour
     float wallJumpDirection;
 
     //movement variables
-    float horizontal;
+    [HideInInspector] public float horizontal;
 
-    //wallslide variables
+    //Environment variables
     bool isSliding;
-
+    bool isGrounded;
+    public bool IsWallSliding => isSliding;
+    public float AnimSpeed => animSpeed;
     //animator variables
     bool faceRight;
+
+    float idleTimer; // ennyi ideje "ï¿½ll" a karakter
     #endregion
 
     #region Update methods
-    private void Update()
+    public void Tick(float dt)
     {
         if (!isWallJumping)
             TurnTheRightWay();
 
         #region Jumping
-        if (IsGrounded())
+        state.OnGroundedChanged(isGrounded);
+        if (isGrounded)
         {
             coyoteCounter = coyoteTime;
             canCancelJump = true;
@@ -63,36 +76,112 @@ public class BaseMovement : MonoBehaviour
         }
         else
         {
-            coyoteCounter -= Time.deltaTime;
+            coyoteCounter -= dt;
         }
-        jumpBufferCounter = Mathf.Max(0, jumpBufferCounter - Time.deltaTime);
+
+        jumpBufferCounter = Mathf.Max(0, jumpBufferCounter - dt);
         if (isSliding) canDoubleJump = true;
         #endregion
 
         #region Wall sliding
-        isSliding = !isWallJumping && IsWallTouch() && !IsGrounded() && horizontal != 0;
+        isSliding = !isWallJumping && IsWallTouch() && !isGrounded && horizontal != 0;
         #endregion
+
+        // ï¿½J: locomotion state frissï¿½tï¿½s (Idle / Run / Fall)
+        UpdateLocomotionState(dt);
+        UpdateAnimSpeed(dt);
     }
-    void FixedUpdate()
+    public void FixedTick(float dt)
     {
-        Move();
-        Jump();
-        Slide();
+        bool groundedNow = IsGrounded();
+        if (groundedNow != isGrounded)
+        {
+            isGrounded = groundedNow;
+            state.OnGroundedChanged(isGrounded);
+        }
+        if (state.CanMove())  Move();
+        if (state.CanJump())  Jump();
+        if (state.CanSlide()) Slide();
     }
     #endregion
 
     #region Private methods
     /// <summary>
-    /// Vízszintes mozgás a megadott input alapján.
+    /// Vï¿½zszintes mozgï¿½s a megadott input alapjï¿½n.
     /// </summary>
     private void Move()
     {
-        if (!isWallJumping) controller.Rb.linearVelocity = new Vector2(horizontal * speed, controller.Rb.linearVelocityY);
+        
+        if (!isWallJumping) controller.Rb.linearVelocity = new Vector2(horizontal * speed, controller.Rb.linearVelocityY); 
     }
 
-
     /// <summary>
-    /// A karakter sprite irányának megfordítása mozgás irány szerint.
+    /// ï¿½llapot vï¿½ltï¿½sok kezelï¿½se mozgï¿½s alapjï¿½n:
+    /// - fï¿½ldï¿½n: Idle / Run
+    /// - levegï¿½ben: Fall (ha lefelï¿½ megy)
+    /// </summary>
+    private void UpdateLocomotionState(float dt)
+    {
+        // Ha amï¿½gy sem mozoghat (tï¿½madï¿½s, stun, halott), ne piszkï¿½ljuk a locomotion state-et
+        if (!state.CanMove())
+            return;
+
+        bool grounded = isGrounded;
+        Vector2 vel = controller.Rb.linearVelocity;
+        float velX = Mathf.Abs(vel.x);
+        float velY = vel.y;
+
+        // Levegï¿½ben
+        if (!grounded)
+        {
+            // Ha mï¿½r lefelï¿½ megyï¿½nk, esï¿½s ï¿½llapot
+            if (velY < fallVelocityThreshold)
+            {
+                state.RequestTransition(State.Fall);
+            }
+
+            // Levegï¿½ben nem kezelï¿½nk Idle/Run-t
+            idleTimer = 0f;
+            return;
+        }
+
+        // Fï¿½ldï¿½n: Idle / Run
+        float absInput = Mathf.Abs(horizontal);
+
+        // Ha van ï¿½rtelmezhetï¿½ input vagy sebessï¿½g ? Run
+        if (absInput > runInputThreshold || velX > runInputThreshold)
+        {
+            idleTimer = 0f;
+            state.RequestTransition(State.Run);
+        }
+        else
+        {
+            // Nincs input: egy kis kï¿½sleltetï¿½s utï¿½n vï¿½ltson Idle-re
+            idleTimer += dt;
+            if (idleTimer >= idleStateDelay)
+            {
+                state.RequestTransition(State.Idle);
+            }
+        }
+    }
+
+    private void UpdateAnimSpeed(float dt)
+    {
+        // Nyers horizontÃ¡lis sebessÃ©g abszolÃºt Ã©rtÃ©kben
+        float rawSpeedX = Mathf.Abs(controller.Rb.linearVelocityX);
+
+        // NormalizÃ¡ljuk 0..1 kÃ¶zÃ© a beÃ¡llÃ­tott "speed" alapjÃ¡n
+        float target01 = 0f;
+        if (speed > 0f)
+            target01 = Mathf.Clamp01(rawSpeedX / speed);
+
+        // SimÃ­tÃ¡s, hogy ne ugrÃ¡ljon 0 â†” 1 kÃ¶zÃ¶tt
+        // smoothFactor: minÃ©l nagyobb, annÃ¡l gyorsabban reagÃ¡l
+        float smoothFactor = 10f;
+        animSpeed = Mathf.MoveTowards(animSpeed, target01, smoothFactor * dt);
+    }
+    /// <summary>
+    /// A karakter sprite irï¿½nyï¿½nak megfordï¿½tï¿½sa mozgï¿½s irï¿½ny szerint.
     /// </summary>
     private void TurnTheRightWay()
     {
@@ -107,15 +196,18 @@ public class BaseMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Kezeli az ugrás logikáját: földi, dupla és falugrásokat.
+    /// Kezeli az ugrï¿½s logikï¿½jï¿½t: fï¿½ldi, dupla ï¿½s falugrï¿½sokat.
     /// </summary>
     private void Jump()
     {
         if (jumpBufferCounter > 0f && coyoteCounter > 0f)
         {
-            canCancelJump = true;
-            controller.Rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-            jumpBufferCounter = 0f;
+            if (state.RequestTransition(State.Jump))
+            {
+                controller.Rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+                canCancelJump = true;
+                jumpBufferCounter = 0f;
+            }
         }
 
         if (jumpBufferCounter > 0f && !IsGrounded() && canDoubleJump && !isWallJumping)
@@ -126,28 +218,35 @@ public class BaseMovement : MonoBehaviour
             else doubleJumpForce = jumpForce * doubleJumpMultiplier;
 
             controller.Rb.AddForce(new Vector2(0, doubleJumpForce), ForceMode2D.Impulse);
+            state.RequestTransition(State.Jump);
             canDoubleJump = false;
+            state.MarkDoubleJumpUsed();
             jumpBufferCounter = 0f;
         }
     }
 
     /// <summary>
-    /// Falcsúszás lassítása, amikor a játékos a fal mellett lefele mozog.
+    /// Falcsï¿½szï¿½s lassï¿½tï¿½sa, amikor a jï¿½tï¿½kos a fal mellett lefele mozog.
     /// </summary>
     private void Slide()
     {
         if (isSliding)
         {
+            state.RequestTransition(State.Fall);
+            state.SetWallSliding(true);
             controller.Rb.linearVelocity = new Vector2(controller.Rb.linearVelocityX, Mathf.Clamp(controller.Rb.linearVelocityY, -wallSlideSpeed, float.MaxValue));
+        } else
+        {
+            state.SetWallSliding(false);
         }
     }
 
     /// <summary>
-    /// Sprite irányának megfordítása.
+    /// Sprite irï¿½nyï¿½nak megfordï¿½tï¿½sa.
     /// </summary>
     private void Flip(float targetDirection)
     {
-        // Ha a jelenlegi skálával nem egyezik a kívánt irány
+        // Ha a jelenlegi skï¿½lï¿½val nem egyezik a kï¿½vï¿½nt irï¿½ny
         if (Mathf.Sign(transform.localScale.x) != Mathf.Sign(targetDirection))
         {
             Vector3 localScale = transform.localScale;
@@ -159,7 +258,7 @@ public class BaseMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Falugrás elindítása, irányváltással és ideiglenes input tiltással.
+    /// Falugrï¿½s elindï¿½tï¿½sa, irï¿½nyvï¿½ltï¿½ssal ï¿½s ideiglenes input tiltï¿½ssal.
     /// </summary>
     private void StartWallJump()
     {
@@ -173,36 +272,37 @@ public class BaseMovement : MonoBehaviour
     }
 
     #region Checkers
-    private bool IsGrounded() => Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.5f, 0.1f), CapsuleDirection2D.Horizontal, 0, groundLayer);
+    private bool IsGrounded() => Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.5f, 0.1f), CapsuleDirection2D.Horizontal, 0f, groundLayer);
 
-    private bool IsWallTouch() => Physics2D.OverlapBox(wallCheck.position, new Vector2(0.16f, 1.2f), 0, groundLayer);
+    private bool IsWallTouch() => Physics2D.OverlapBox(wallCheck.position, new Vector2(0.16f, 1.2f), 0f, groundLayer);
     #endregion
 
     #endregion
 
     #region Public methods
     /// <summary>
-    /// Hívja meg, ha mozgás input érkezett a játékostól.
+    /// Hï¿½vja meg, ha mozgï¿½s input ï¿½rkezett a jï¿½tï¿½kostï¿½l.
     /// </summary>
-    public void HandleMove(Vector2 input)
+    public void HandleMove(float input)
     {
-        horizontal = input.x;
+        horizontal = input;
     }
 
     /// <summary>
-    /// Ugrás elõkészítése (jump buffer és falugrás logika kezelése).
+    /// Ugrï¿½s elï¿½kï¿½szï¿½tï¿½se (jump buffer ï¿½s falugrï¿½s logika kezelï¿½se).
     /// </summary>
     public void HandleJump()
     {
         jumpBufferCounter = jumpBufferTime;
-        if (isSliding)
+        if (isSliding && state.CanJump())
         {
+            state.RequestTransition(State.WallJump);
             StartWallJump();
         }
     }
 
     /// <summary>
-    /// Ugrás megszakítása (ha a játékos elengedi a gombot).
+    /// Ugrï¿½s megszakï¿½tï¿½sa (ha a jï¿½tï¿½kos elengedi a gombot).
     /// </summary>
     public void CancelJump()
     {
@@ -234,7 +334,7 @@ public class BaseMovement : MonoBehaviour
 
     #endregion
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.darkRed;
         Gizmos.DrawSphere(groundCheck.position, 0.1f);
