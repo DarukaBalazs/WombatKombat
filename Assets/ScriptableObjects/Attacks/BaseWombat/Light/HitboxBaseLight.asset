@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Combat.DirectionalHitboxWindowStep
   stepName: Hitbox
   startTime: 0
-  endTime: 0.3
+  endTime: 0.4
   forwardHitboxIds:
   - Front_Light
   downHitboxIds:

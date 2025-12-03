@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         lightAttack = lo?.lightAttack ?? null;
         heavyAttack = lo?.heavyAttack ?? null;
         specialAttack = lo?.specialAttack ?? null;
-        input.OnLightAttack += () => attackRunner.TryStart(lightAttack);
+        input.OnLightAttack += () => { attackRunner.TryStart(lightAttack); animator.SetTrigger("LightPressed"); };
         input.OnHeavyAttack += () => attackRunner.TryStart(heavyAttack);
         input.OnSpecialMove += () => attackRunner.TryStart(specialAttack);
     }

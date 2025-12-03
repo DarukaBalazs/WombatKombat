@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackAsset
   id: BaseLight
   type: 0
-  windup: 0.1
+  windup: 0.05
   active: 0.3
-  recovery: 0.1
-  cooldown: 0.5
+  recovery: 0.2
+  cooldown: 0
   requiresGrounded: 0
   allowAir: 1
   lockMovement: 1
@@ -25,4 +25,3 @@ MonoBehaviour:
   cancelOnLanding: 0
   steps:
   - {fileID: 11400000, guid: fdef3a2df33dfa746a951797f0850d7f, type: 2}
-  - {fileID: 11400000, guid: 17f74f4026fc09e4fa359fa4528c6ea8, type: 2}

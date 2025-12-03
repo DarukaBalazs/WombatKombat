@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Az állapotgépből, a BaseMovement-ből és a Rigidbody sebességéből
@@ -14,7 +15,7 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] BaseMovement movement;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Animator animator;
-
+ 
     [Header("Locomotion thresholds")]
     [SerializeField] float runSpeedThreshold = 0.1f;    // vízszintes sebesség, ami fölött futás
     [SerializeField] float runStopDelay = 0.1f;     // ennyi ideig lehet lassú, mielőtt leáll a futás
