@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 02c126d58bbd1f344a6d69400a5c14ab
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Base: {instanceID: 0}
+  - Mary: {instanceID: 0}
+  - Dagi: {instanceID: 0}
+  - Selector: {fileID: 11400000, guid: 4e84e45c66d47c543889bde987df021b, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
