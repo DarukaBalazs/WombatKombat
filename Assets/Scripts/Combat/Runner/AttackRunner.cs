@@ -2,6 +2,7 @@ using UnityEngine;
 using Combat;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class AttackRunner : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class AttackRunner : MonoBehaviour
     private Coroutine running;
     private float cooldownUntil;
     private AttackAsset currentAsset;
+
+    public event Action<AttackAsset> OnAttackStarted;
 
     public bool TryStart(AttackAsset asset)
     {

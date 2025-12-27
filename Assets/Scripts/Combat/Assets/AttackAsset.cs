@@ -9,6 +9,10 @@ public class AttackAsset : ScriptableObject
     [Header("Identity")]
     public AttackType type;
 
+    [Header("Animation Settings")]
+    [Tooltip("Az Animator trigger neve, amit ez a támadás aktivál.")]
+    public string animationTriggerName;
+
     [Header("Timings (Second)")]
     public float windup;
     public float active;
