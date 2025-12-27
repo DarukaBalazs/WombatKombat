@@ -85,6 +85,8 @@ public class AttackRunner : MonoBehaviour
         currentAsset = asset;
         LandedThisAttack = false;
         HitConnectedThisAttack = false;
+        
+        OnAttackStarted?.Invoke(asset);
 
         if (state != null)
             state.SetAttackLocks(asset.lockMovement, asset.lockJump);
@@ -112,8 +114,6 @@ public class AttackRunner : MonoBehaviour
             phase == AttackPhase.Recovery ? asset.recovery : 0f;
 
         state.EnterAttackPhase(phase, phaseDur);
-
-        // ide jön majd az animáció váltás
     }
 
     private void ExitAttack(AttackAsset asset)

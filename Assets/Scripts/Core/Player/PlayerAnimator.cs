@@ -15,6 +15,7 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] BaseMovement movement;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Animator animator;
+    [SerializeField] AttackRunner attackRunner;
  
     [Header("Locomotion thresholds")]
     [SerializeField] float runSpeedThreshold = 0.1f;    // vízszintes sebesség, ami fölött futás
@@ -25,11 +26,16 @@ public class PlayerAnimator : MonoBehaviour
     bool isRunning;
     float runStopTimer;
 
+    private int comboIndex = 0;
+    private float lastAttackTime;
+    private AttackAsset lastAsset;
+
     void Awake()
     {
         if (!state) state = GetComponent<PlayerStateManager>();
         if (!movement) movement = GetComponent<BaseMovement>();
         if (!rb) rb = GetComponent<Rigidbody2D>();
+        if (!attackRunner) attackRunner = GetComponent<AttackRunner>();
         if (!animator) animator = GetComponentInChildren<Animator>();
     }
 
@@ -37,12 +43,18 @@ public class PlayerAnimator : MonoBehaviour
     {
         if (state != null)
             state.OnStateChanged += HandleStateChanged;
+
+        if (attackRunner != null)
+            attackRunner.OnAttackStarted += HandleAttackStarted;
     }
 
     void OnDisable()
     {
         if (state != null)
             state.OnStateChanged -= HandleStateChanged;
+
+        if (attackRunner != null)
+            attackRunner.OnAttackStarted -= HandleAttackStarted;
     }
 
     void Update()
@@ -115,5 +127,17 @@ public class PlayerAnimator : MonoBehaviour
                 animator.SetTrigger("WallJump");
                 break;
         }
+    }
+
+    void HandleAttackStarted(AttackAsset asset)
+    {
+        if (!animator) return;
+
+        // Az AttackType (Enum) átalakítása stringgé.
+        // Például: AttackType.Light -> "Light"
+        // Például: AttackType.Heavy -> "Heavy"
+        string triggerName = asset.type.ToString();
+
+        animator.SetTrigger(triggerName);
     }
 }
