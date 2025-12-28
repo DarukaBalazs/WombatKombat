@@ -26,10 +26,6 @@ public class PlayerAnimator : MonoBehaviour
     bool isRunning;
     float runStopTimer;
 
-    private int comboIndex = 0;
-    private float lastAttackTime;
-    private AttackAsset lastAsset;
-
     void Awake()
     {
         if (!state) state = GetComponent<PlayerStateManager>();

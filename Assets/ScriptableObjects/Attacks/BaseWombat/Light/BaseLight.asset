@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: BaseLight
   m_EditorClassIdentifier: Assembly-CSharp::AttackAsset
   type: 0
-  windup: 0.05
-  active: 0.3
-  recovery: 0.2
-  cooldown: 0
+  Windup: 10
+  Active: 20
+  Recovery: 10
+  Cooldown: 0
   requiresGrounded: 0
   allowAir: 1
-  lockMovement: 1
+  lockMovement: 0
   lockJump: 1
   cancelOnLanding: 0
   steps:

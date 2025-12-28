@@ -22,6 +22,11 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     [Header("Current states")]
     [SerializeField] State currentState = State.Idle;
+
+    [Header("Particles")]
+    [SerializeField] GameObject landParticle;
+    [SerializeField] Transform ground;
+
     #endregion
     private bool isGrounded;
     private bool isWallSliding;
@@ -221,6 +226,7 @@ public class PlayerStateManager : MonoBehaviour
             // ha esésből érkeztünk, álljunk Idle/Run-ba (hagyjuk a Movementre a döntést)
             if (IsIn(State.Fall) || IsIn(State.Jump) || IsIn(State.WallJump))
                 RequestTransition(State.Idle);
+            Instantiate(landParticle, ground.position, Quaternion.identity);
         }
     }
     public void SetWallSliding(bool wallSliding)

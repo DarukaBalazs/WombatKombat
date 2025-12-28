@@ -9,11 +9,17 @@ public class AttackAsset : ScriptableObject
     [Header("Identity")]
     public AttackType type;
 
-    [Header("Timings (Second)")]
-    public float windup;
-    public float active;
-    public float recovery;
-    public float cooldown;
+    [Header("Timings (MiliSeconds)")]
+    public float Windup;
+    public float Active;
+    public float Recovery;
+    public float Cooldown;
+
+
+    [HideInInspector] public float windup => Windup / 60f;
+    [HideInInspector] public float active => Active / 60f;
+    [HideInInspector] public float recovery => Recovery / 60f;
+    [HideInInspector] public float cooldown => Cooldown / 60f;
 
     [Header("Rules")]
     public bool requiresGrounded;

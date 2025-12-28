@@ -345,6 +345,8 @@ MonoBehaviour:
   animator: {fileID: 3126005631746261499}
   rb: {fileID: 3537785145304537796}
   currentState: 0
+  landParticle: {fileID: 2233332810338871469, guid: 1673c4855283ccc4a81718ca150938b1, type: 3}
+  ground: {fileID: 6974954087122388668}
 --- !u!114 &4116721338042596488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,6 +489,7 @@ MonoBehaviour:
   movement: {fileID: 4116721338042596488}
   rb: {fileID: 3537785145304537796}
   animator: {fileID: 3126005631746261499}
+  attackRunner: {fileID: 0}
   runSpeedThreshold: 0.1
   runStopDelay: 0.1
   fallSpeedThreshold: -0.1

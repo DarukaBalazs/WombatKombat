@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c42163e878fa74db8e81eec264fa8a, type: 3}
   m_Name: BaseSpecial
   m_EditorClassIdentifier: Assembly-CSharp::AttackAsset
-  id: BaseSpecial
   type: 2
   windup: 0.05
   active: 2
   recovery: 0.05
   cooldown: 5
-  requiresGrounded: 1
+  requiresGrounded: 0
   allowAir: 1
   lockMovement: 0
   lockJump: 1
