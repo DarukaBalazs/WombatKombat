@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: MaryHeavy
   m_EditorClassIdentifier: Assembly-CSharp::AttackAsset
   type: 1
-  windup: 0.5
-  active: 0.2
-  recovery: 0.2
-  cooldown: 1
+  Windup: 30
+  Active: 15
+  Recovery: 15
+  Cooldown: 1
   requiresGrounded: 0
   allowAir: 1
   lockMovement: 1

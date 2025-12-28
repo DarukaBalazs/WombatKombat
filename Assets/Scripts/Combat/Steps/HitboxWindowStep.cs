@@ -15,6 +15,12 @@ namespace Combat
         public float knockbackForce = 5f;
         public float hitstun = 0.2f;
 
+
+        [Header("Camera shake")]
+        public bool shakeCamera = false;
+        public float shakeMagnitude = 1.0f;
+        public float shakeDuration = 1.0f;
+
         [Tooltip("Találatkor ennyi ideig fagyjon be a játék (sec). 0 = nincs hitstop.")]
         public float hitstopDuration = 0.05f;
 
@@ -54,6 +60,18 @@ namespace Combat
             if (!hurt) return;
 
             hurt.RecieveHit(info, percentGain, knockbackForce, hitstun);
+            if (hitstopDuration > 0f && HitstopManager.Instance != null)
+            {
+                HitstopManager.Instance.RequestHitstop(hitstopDuration);
+            }
+            if (shakeCamera)
+            {
+                if (shakeDuration > 0f)
+                {
+                    CameraImpulseSystem.TriggerShake(shakeMagnitude, shakeDuration);
+                }
+            }
+
 
         }
     }

@@ -39,9 +39,6 @@ public class PlayerAnimator : MonoBehaviour
     {
         if (state != null)
             state.OnStateChanged += HandleStateChanged;
-
-        if (attackRunner != null)
-            attackRunner.OnAttackStarted += HandleAttackStarted;
     }
 
     void OnDisable()
@@ -49,8 +46,6 @@ public class PlayerAnimator : MonoBehaviour
         if (state != null)
             state.OnStateChanged -= HandleStateChanged;
 
-        if (attackRunner != null)
-            attackRunner.OnAttackStarted -= HandleAttackStarted;
     }
 
     void Update()
@@ -58,6 +53,7 @@ public class PlayerAnimator : MonoBehaviour
         if (!animator || !state || !rb) return;
 
         bool grounded = state.IsGrounded;
+        bool stunned  = state.IsStunned;
         Vector2 vel = rb.linearVelocity;
         float speedX = Mathf.Abs(vel.x);
         float speedY = vel.y;
@@ -68,9 +64,10 @@ public class PlayerAnimator : MonoBehaviour
         // Alap paraméterek
         animator.SetBool("IsGrounded", grounded);
         animator.SetBool("IsWallSliding", wallSliding);
+        animator.SetBool("IsStunned", stunned);
         animator.SetFloat("Speed", speedX);
         animator.SetFloat("VerticalSpeed", speedY);
-        animator.SetFloat("AnimSpeed",animSpeedX);
+        animator.SetFloat("AnimSpeed", animSpeedX);
 
         // Futás logika időküszöbbel – NE fusson/álljon le 1 frame spike-ra
         bool shouldRunNow = grounded && speedX > runSpeedThreshold && !wallSliding;
@@ -91,7 +88,7 @@ public class PlayerAnimator : MonoBehaviour
         }
 
         animator.SetBool("IsRunning", isRunning);
-
+        animator.SetBool("DownPressed", attackRunner.Input.Vertical < -0.01);
         // Esés flag – csak ha nem wallslide
         bool isFalling = !grounded && speedY < fallSpeedThreshold && !wallSliding;
         animator.SetBool("IsFalling", isFalling);
@@ -123,17 +120,5 @@ public class PlayerAnimator : MonoBehaviour
                 animator.SetTrigger("WallJump");
                 break;
         }
-    }
-
-    void HandleAttackStarted(AttackAsset asset)
-    {
-        if (!animator) return;
-
-        // Az AttackType (Enum) átalakítása stringgé.
-        // Például: AttackType.Light -> "Light"
-        // Például: AttackType.Heavy -> "Heavy"
-        string triggerName = asset.type.ToString();
-
-        animator.SetTrigger(triggerName);
     }
 }

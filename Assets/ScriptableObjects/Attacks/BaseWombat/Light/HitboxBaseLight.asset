@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7264361a782cbc1418fa2895e5d84fa1, type: 3}
   m_Name: HitboxBaseLight
   m_EditorClassIdentifier: Assembly-CSharp::Combat.DirectionalHitboxWindowStep
-  stepName: Hitbox
   startTime: 0
-  endTime: 0.4
+  endTime: 0.3
   forwardHitboxIds:
   - Front_Light
   downHitboxIds:
@@ -23,5 +22,8 @@ MonoBehaviour:
   knockbackForward: 5
   knockbackDown: 5
   hitstun: 0.2
+  shakeCamera: 1
+  shakeMagnitude: 0.05
+  shakeDuration: 0.1
   downThreshold: -0.5
-  hitstopDuration: 0.05
+  hitstopDuration: 0.2

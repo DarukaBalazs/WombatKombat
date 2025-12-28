@@ -262,10 +262,6 @@ public class PlayerStateManager : MonoBehaviour
             if (!isGrounded && !hasAirAttacked)
                 hasAirAttacked = true;
         }
-
-        // opcionális: animátor jelzők itt (ha már be van kötve)
-        // animator?.SetBool("IsAttacking", true);
-        // animator?.SetInteger("AttackPhase", (int)currentAttackPhase);
     }
 
     public void ExitAttack()
@@ -274,11 +270,9 @@ public class PlayerStateManager : MonoBehaviour
         currentAttackPhase = AttackPhase.None;
         attackPhaseTimer = 0f;
 
-        // HA magasabb prioritású lockban vagyunk, ne váltsunk (stun/dead).
         if (isDead || isStunned || IsIn(State.Hitstun) || IsIn(State.Dead))
             return;
 
-        // Csak akkor kényszeríts vissza locomotion-be, ha tényleg Attackingból jövünk.
         if (IsIn(State.Attacking))
         {
             if (isGrounded)

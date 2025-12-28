@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
@@ -16,12 +17,27 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Vector2 minBounds;
     [SerializeField] private Vector2 maxBounds;
 
-    private Vector3 velocity;
-    private Camera cam;
+    Vector3 velocity;
+    Camera cam;
 
-    void Start()
+    // --- SHAKE ---
+    Vector3 shakeOffset;
+    Coroutine shakeRoutine;
+
+    private void Awake()
     {
         cam = GetComponent<Camera>();
+    }
+
+    private void OnEnable()
+    {
+        CameraImpulseSystem.OnCameraShake += StartCameraShake;
+    }
+
+    private void OnDisable()
+    {
+        CameraImpulseSystem.OnCameraShake -= StartCameraShake;
+        shakeOffset = Vector3.zero;
     }
 
     void LateUpdate()
@@ -36,15 +52,21 @@ public class CameraMovement : MonoBehaviour
     void Move()
     {
         Vector3 centerPoint = GetCenterPoint();
-        Vector3 newPosition = centerPoint;
+        Vector3 targetPos = centerPoint;
+        targetPos.z = transform.position.z;
 
-        newPosition.z = transform.position.z;
+        targetPos.x = Mathf.Clamp(targetPos.x, minBounds.x, maxBounds.x);
+        targetPos.y = Mathf.Clamp(targetPos.y, minBounds.y, maxBounds.y);
 
-        // Clamp kamera mozgása a határokon belül
-        newPosition.x = Mathf.Clamp(newPosition.x, minBounds.x, maxBounds.x);
-        newPosition.y = Mathf.Clamp(newPosition.y, minBounds.y, maxBounds.y);
+        Vector3 basePos = Vector3.SmoothDamp(
+            transform.position,
+            targetPos,
+            ref velocity,
+            smoothTime
+        );
 
-        transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
+        // ADDITÍV SHAKE (NEM RESETEL)
+        transform.position = basePos + shakeOffset;
     }
 
     void Zoom()
@@ -56,12 +78,42 @@ public class CameraMovement : MonoBehaviour
 
     Vector3 GetCenterPoint()
     {
-        return (player1.position + player2.position) / 2f;
+        return (player1.position + player2.position) * 0.5f;
     }
 
-    public void SetPlayers(Transform player1,  Transform player2)
+    public void SetPlayers(Transform p1, Transform p2)
     {
-        this.player1 = player1;
-        this.player2 = player2;
+        player1 = p1;
+        player2 = p2;
+    }
+
+    // =========================
+    // CAMERA SHAKE
+    // =========================
+
+    void StartCameraShake(float magnitude, float duration)
+    {
+        if (shakeRoutine != null)
+            StopCoroutine(shakeRoutine);
+
+        shakeRoutine = StartCoroutine(CameraShakeRoutine(magnitude, duration));
+    }
+
+    IEnumerator CameraShakeRoutine(float magnitude, float duration)
+    {
+        float timer = duration;
+
+        while (timer > 0f)
+        {
+            timer -= Time.unscaledDeltaTime;
+
+            Vector2 rnd = Random.insideUnitCircle * magnitude;
+            shakeOffset = new Vector3(rnd.x, rnd.y, 0f);
+
+            yield return null;
+        }
+
+        shakeOffset = Vector3.zero;
+        shakeRoutine = null;
     }
 }

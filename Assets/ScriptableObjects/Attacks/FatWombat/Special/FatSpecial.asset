@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: FatSpecial
   m_EditorClassIdentifier: Assembly-CSharp::AttackAsset
   type: 2
-  windup: 0.01
-  active: 3
-  recovery: 0.5
-  cooldown: 5
+  Windup: 1
+  Active: 180
+  Recovery: 50
+  Cooldown: 5
   requiresGrounded: 0
   allowAir: 1
   lockMovement: 0

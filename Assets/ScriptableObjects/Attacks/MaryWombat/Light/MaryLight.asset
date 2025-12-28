@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: MaryLight
   m_EditorClassIdentifier: Assembly-CSharp::AttackAsset
   type: 0
-  windup: 0.05
-  active: 0.1
-  recovery: 0.05
-  cooldown: 0
+  Windup: 5
+  Active: 10
+  Recovery: 5
+  Cooldown: 0
   requiresGrounded: 0
   allowAir: 1
   lockMovement: 0

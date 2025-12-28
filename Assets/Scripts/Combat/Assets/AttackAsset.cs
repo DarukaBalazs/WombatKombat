@@ -13,13 +13,14 @@ public class AttackAsset : ScriptableObject
     public float Windup;
     public float Active;
     public float Recovery;
+    [Header("CD (Seconds)")]
     public float Cooldown;
 
 
     [HideInInspector] public float windup => Windup / 60f;
     [HideInInspector] public float active => Active / 60f;
     [HideInInspector] public float recovery => Recovery / 60f;
-    [HideInInspector] public float cooldown => Cooldown / 60f;
+    [HideInInspector] public float cooldown => Cooldown;
 
     [Header("Rules")]
     public bool requiresGrounded;

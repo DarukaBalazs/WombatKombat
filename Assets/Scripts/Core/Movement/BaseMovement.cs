@@ -122,7 +122,7 @@ public class BaseMovement : MonoBehaviour
     /// </summary>
     private void UpdateLocomotionState(float dt)
     {
-        // Ha am�gy sem mozoghat (t�mad�s, stun, halott), ne piszk�ljuk a locomotion state-et
+        
         if (!state.CanMove())
             return;
 
@@ -134,7 +134,7 @@ public class BaseMovement : MonoBehaviour
         // Leveg�ben
         if (!grounded)
         {
-            // Ha m�r lefel� megy�nk, es�s �llapot
+            
             if (velY < fallVelocityThreshold)
             {
                 state.RequestTransition(State.Fall);

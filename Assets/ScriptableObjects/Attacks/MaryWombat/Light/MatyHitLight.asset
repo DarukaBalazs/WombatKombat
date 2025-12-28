@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MatyHitLight
   m_EditorClassIdentifier: Assembly-CSharp::Combat.DirectionalHitboxWindowStep
   startTime: 0
-  endTime: 0.1
+  endTime: 0.2
   forwardHitboxIds:
   - LightFront
   downHitboxIds:

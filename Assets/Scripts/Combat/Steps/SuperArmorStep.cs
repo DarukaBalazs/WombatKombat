@@ -7,7 +7,12 @@ namespace Combat
     {
         public override void OnEnter(AttackRunner ctx)
         {
+            ctx.State.EnableSuperArmor();
+        }
 
+        public override void OnExit(AttackRunner ctx)
+        {
+            ctx.State.DisableSuperArmor();
         }
     }
 }

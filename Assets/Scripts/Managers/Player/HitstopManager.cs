@@ -5,10 +5,13 @@ public class HitstopManager : MonoBehaviour
 {
     public static HitstopManager Instance { get; private set; }
 
-    [SerializeField] float hitstopTimeScale = 0.05f; //lehet változtatgatni
+    [Header("Settings")]
+    [Tooltip("0 = teljes fagyás, 0.03–0.08 ajánlott")]
+    [SerializeField] float hitstopTimeScale = 0.05f;
 
     bool isHitstopActive;
     float originalTimeScale = 1f;
+    float remainingTime;
 
     private void Awake()
     {
@@ -17,38 +20,47 @@ public class HitstopManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
-        originalTimeScale = Time.timeScale;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void RequestHitstop(float duration)
     {
-        if (duration <= 0) return;
+        if (duration <= 0f)
+            return;
 
+        // Ha már fut, hosszabbítsuk, ha erõsebb
         if (isHitstopActive)
         {
+            remainingTime = Mathf.Max(remainingTime, duration);
             return;
         }
 
         StartCoroutine(HitstopRoutine(duration));
-
-
     }
 
-    IEnumerator HitstopRoutine(float duration)
+    private IEnumerator HitstopRoutine(float duration)
     {
         isHitstopActive = true;
+
         originalTimeScale = Time.timeScale;
+        remainingTime = duration;
 
         Time.timeScale = hitstopTimeScale;
 
-        float timer = duration;
-        while (timer > 0f)
+        while (remainingTime > 0f)
         {
-            timer -= Time.unscaledDeltaTime;
+            remainingTime -= Time.unscaledDeltaTime;
             yield return null;
         }
 
+        Time.timeScale = originalTimeScale;
+        isHitstopActive = false;
+    }
+
+    private void OnDisable()
+    {
         Time.timeScale = originalTimeScale;
         isHitstopActive = false;
     }

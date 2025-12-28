@@ -106,14 +106,24 @@ public class AttackRunner : MonoBehaviour
 
     private void EnterPhase(AttackPhase phase, AttackAsset asset)
     {
-        if (state == null) return;
+        if (asset.lockMovement &&
+            phase == AttackPhase.StartUp &&
+            state != null &&
+            state.IsGrounded &&
+            rb != null)
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        }
 
-        float phaseDur =
-            phase == AttackPhase.StartUp ? asset.windup :
-            phase == AttackPhase.Active ? asset.active :
-            phase == AttackPhase.Recovery ? asset.recovery : 0f;
+        if (state != null)
+        {
+            float phaseDur =
+                phase == AttackPhase.StartUp ? asset.windup :
+                phase == AttackPhase.Active ? asset.active :
+                phase == AttackPhase.Recovery ? asset.recovery : 0f;
 
-        state.EnterAttackPhase(phase, phaseDur);
+            state.EnterAttackPhase(phase, phaseDur);
+        }
     }
 
     private void ExitAttack(AttackAsset asset)
