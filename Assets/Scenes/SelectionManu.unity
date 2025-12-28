@@ -602,7 +602,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000046492, y: -67.41}
+  m_AnchoredPosition: {x: -0.0000046492, y: -49.212}
   m_SizeDelta: {x: 64.61, y: 34.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &421009195
@@ -625,7 +625,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Map1
+  m_text: Mountains
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -690,7 +690,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -0.84352875, w: 0}
+  m_margin: {x: -30.524452, y: 0, z: -29.518085, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1256,7 +1256,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1046444227985733684, guid: 2cebf2df7a022c6498dc8a9f477131c5, type: 3}
+  m_Sprite: {fileID: 2633479153720894850, guid: 1cdd5086678570049aa003538c0a5a0c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1780,8 +1780,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 7312741802210037878, guid: 63ce9f342fbf3f047bfdb449c22b29b7, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1855,7 +1855,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2247079934792992800, guid: 0d52052da71afdd4eb13ab1ec8357db0, type: 3}
+  m_Sprite: {fileID: -8576004767412532847, guid: 95b29e5212709db4a8263212e4d94bcc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1907,8 +1907,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.71, y: -67.41}
-  m_SizeDelta: {x: 64.61, y: 34.82}
+  m_AnchoredPosition: {x: -11, y: -49.212}
+  m_SizeDelta: {x: 109.01, y: 34.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1598648311
 MonoBehaviour:
@@ -1930,7 +1930,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Map2
+  m_text: Playground
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1995,7 +1995,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -0.84352875, w: 0}
+  m_margin: {x: 0, y: -2.7749653, z: -27.668167, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2047,9 +2047,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Map3
-
-'
+  m_text: Cave
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2114,7 +2112,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -0.84352875, w: 0}
+  m_margin: {x: -0.9249687, y: -2.7749424, z: -14.71833, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2144,7 +2142,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00000095367, y: -67.41}
+  m_AnchoredPosition: {x: -0.00000095367, y: -49.212}
   m_SizeDelta: {x: 64.61, y: 34.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1772558208
@@ -2197,14 +2195,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9803922, b: 0.9803922, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -8576004767412532847, guid: 95b29e5212709db4a8263212e4d94bcc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2415,7 +2413,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3468244779728606172, guid: 6800a02c288e851479478413b9afc969, type: 3}
+  m_Sprite: {fileID: 7312741802210037878, guid: 63ce9f342fbf3f047bfdb449c22b29b7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2557,9 +2555,9 @@ MonoBehaviour:
   Map2: 2
   Map3: 3
   backgroundImage: {fileID: 1772558210}
-  Map1Image: {fileID: 3468244779728606172, guid: 6800a02c288e851479478413b9afc969, type: 3}
-  Map2Image: {fileID: -2247079934792992800, guid: 0d52052da71afdd4eb13ab1ec8357db0, type: 3}
-  Map3Image: {fileID: -1046444227985733684, guid: 2cebf2df7a022c6498dc8a9f477131c5, type: 3}
+  Map1Image: {fileID: 7312741802210037878, guid: 63ce9f342fbf3f047bfdb449c22b29b7, type: 3}
+  Map2Image: {fileID: -8576004767412532847, guid: 95b29e5212709db4a8263212e4d94bcc, type: 3}
+  Map3Image: {fileID: 2633479153720894850, guid: 1cdd5086678570049aa003538c0a5a0c, type: 3}
 --- !u!114 &2013098054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2572,9 +2570,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c126d58bbd1f344a6d69400a5c14ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSelectManager
-  Base: {fileID: 11400000, guid: 8431e4bfadd52294cb9fc1f1af9f6370, type: 2}
-  Mary: {fileID: 11400000, guid: 8431e4bfadd52294cb9fc1f1af9f6370, type: 2}
-  Dagi: {fileID: 11400000, guid: 8431e4bfadd52294cb9fc1f1af9f6370, type: 2}
+  Base: {fileID: 11400000, guid: 2a03984b5aa28f0449b10232ce89f0e3, type: 2}
+  Mary: {fileID: 11400000, guid: a1f54ca405384cb4d8e4aa3be309c731, type: 2}
+  Dagi: {fileID: 11400000, guid: fec39d2ab98b14c43b07cacb5169764e, type: 2}
   Selector: {fileID: 11400000, guid: 4e84e45c66d47c543889bde987df021b, type: 2}
 --- !u!1 &2031030557
 GameObject:

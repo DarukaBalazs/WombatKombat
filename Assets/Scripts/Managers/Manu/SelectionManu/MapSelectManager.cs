@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class MapSelectManager : MonoBehaviour
 {
-    private string mapToLoad;
-    public string Map1;
-    public string Map2;
-    public string Map3;
+    private int  mapToLoad=2;
+    public int Map1;
+    public int Map2;
+    public int Map3;
 
     public Image backgroundImage;
     public Sprite Map1Image;
