@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 /// <summary>
 /// Az állapotgépből, a BaseMovement-ből és a Rigidbody sebességéből
@@ -86,6 +87,9 @@ public class PlayerAnimator : MonoBehaviour
                     isRunning = false;
             }
         }
+        animator.SetBool("LightHeld", attackRunner.Input.IsLightHeld);
+        animator.SetBool("HeavyHeld", attackRunner.Input.IsHeavyHeld);
+        animator.SetBool("SpecialHeld", attackRunner.Input.IsSpecialHeld);
 
         animator.SetBool("IsRunning", isRunning);
         animator.SetBool("DownPressed", attackRunner.Input.Vertical < -0.01);

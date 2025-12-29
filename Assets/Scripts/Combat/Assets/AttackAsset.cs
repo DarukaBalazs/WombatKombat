@@ -28,6 +28,8 @@ public class AttackAsset : ScriptableObject
     public bool lockMovement;
     public bool lockJump;
     public bool cancelOnLanding;
+    [Header("Movement")]
+    public bool stopMovementOnWindup = false;
 
     [Header("Steps")]
     public List<AttackStep> steps;

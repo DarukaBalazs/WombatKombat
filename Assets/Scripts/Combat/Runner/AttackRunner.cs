@@ -48,6 +48,7 @@ public class AttackRunner : MonoBehaviour
             StopCoroutine(running);
 
         running = StartCoroutine(Run(asset));
+        animator.SetTrigger(asset.type.ToString()+"Pressed");
         return true;
     }
 
@@ -92,7 +93,18 @@ public class AttackRunner : MonoBehaviour
             state.SetAttackLocks(asset.lockMovement, asset.lockJump);
 
         EnterPhase(AttackPhase.StartUp, asset);
-        yield return Wait(asset.windup);
+
+        float t = 0f;
+        while (t < asset.windup)
+        {
+            if (asset.stopMovementOnWindup && rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
+
+            t += Time.deltaTime;
+            yield return null;
+        }
 
         EnterPhase(AttackPhase.Active, asset);
         yield return StartCoroutine(RunActiveTimeline(asset));
@@ -123,6 +135,11 @@ public class AttackRunner : MonoBehaviour
                 phase == AttackPhase.Recovery ? asset.recovery : 0f;
 
             state.EnterAttackPhase(phase, phaseDur);
+        }
+
+        if (phase == AttackPhase.StartUp && asset.stopMovementOnWindup && rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
         }
     }
 

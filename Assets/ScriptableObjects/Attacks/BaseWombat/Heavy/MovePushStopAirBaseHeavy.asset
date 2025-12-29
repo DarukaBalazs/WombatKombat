@@ -18,6 +18,6 @@ MonoBehaviour:
   directionFilter: 0
   returnBase: 0
   overrideX: 1
-  xVelocity: 5
+  xVelocity: 10
   overrideY: 1
-  yVelocity: 10
+  yVelocity: 5
