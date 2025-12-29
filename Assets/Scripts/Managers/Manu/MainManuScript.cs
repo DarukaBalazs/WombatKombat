@@ -20,6 +20,11 @@ public class MainManuScript : MonoBehaviour
         
     }
 
+    public void Back() 
+    {
+        SceneManager.LoadSceneAsync(4);
+    }
+
 
 
 
