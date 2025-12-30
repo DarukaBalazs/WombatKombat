@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class CharacterSpawnManager : MonoBehaviour
 {
+    private int player1HP=5;
+    private int player2HP=5;
     public Transform player1Spawn;
     public Transform player2Spawn;
     public CameraMovement camMovement;
+    public BoxCollider2D boxCollider;
     private void Start()
     {
         var selection = CharacterSelectionManager.Instance;
@@ -35,5 +39,15 @@ public class CharacterSpawnManager : MonoBehaviour
         p2Controller.ApplyCharacterData(selection.player2);
 
         camMovement.SetPlayers(p1Obj.transform, p2Obj.transform);
+    }
+
+    public void ReSpawn() 
+    {
+        
+    }
+
+    public void EndGamer() 
+    {
+        SceneManager.LoadScene(5);
     }
 }
