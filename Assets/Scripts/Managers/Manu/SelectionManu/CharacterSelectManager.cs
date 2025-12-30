@@ -13,7 +13,7 @@ public class CharacterSelectManager : MonoBehaviour
     public CharacterData Base;
     public CharacterData Mary;
     public CharacterData Dagi;
-    public CharacterSelectorú Selector;
+    public CharacterSelector Selector;
 
     public void pluss1()
     {

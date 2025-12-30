@@ -7,6 +7,7 @@ public class CharacterSpawnManager : MonoBehaviour
     public Transform player1Spawn;
     public Transform player2Spawn;
     public CameraMovement camMovement;
+
     private void Start()
     {
         var selection = CharacterSelectionManager.Instance;
