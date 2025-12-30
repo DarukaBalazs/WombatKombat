@@ -56,5 +56,6 @@ public class CharacterSelectManager : MonoBehaviour
     {
         Selector.player1 = Selection(wombat1);
         Selector.player2 = Selection(wombat2);
+        
     }
 }
