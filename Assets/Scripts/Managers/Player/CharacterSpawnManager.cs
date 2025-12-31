@@ -7,6 +7,9 @@ public class CharacterSpawnManager : MonoBehaviour
     public Transform player1Spawn;
     public Transform player2Spawn;
     public CameraMovement camMovement;
+
+    [HideInInspector] public GameObject p1Obj;
+    [HideInInspector] public GameObject p2Obj;
     private void Start()
     {
         var selection = CharacterSelectionManager.Instance;
@@ -17,7 +20,7 @@ public class CharacterSpawnManager : MonoBehaviour
             return;
         }
 
-        var p1Obj = Instantiate(selection.player1.prefab, player1Spawn.position, Quaternion.identity);
+        p1Obj = Instantiate(selection.player1.prefab, player1Spawn.position, Quaternion.identity);
         var p1Input = p1Obj.GetComponent<PlayerInput>();
         var p1Controller = p1Obj.GetComponent<PlayerController>();
 
@@ -26,7 +29,7 @@ public class CharacterSpawnManager : MonoBehaviour
         p1Input.SwitchCurrentActionMap("Player1");
         p1Controller.ApplyCharacterData(selection.player1);
 
-        var p2Obj = Instantiate(selection.player2.prefab, player2Spawn.position, Quaternion.identity);
+        p2Obj = Instantiate(selection.player2.prefab, player2Spawn.position, Quaternion.identity);
         var p2Input = p2Obj.GetComponent<PlayerInput>();
         var p2Controller = p2Obj.GetComponent <PlayerController>();
 
