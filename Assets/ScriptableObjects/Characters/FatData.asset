@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FatData
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterName: Fat
-  prefab: {fileID: 1209519621586994089, guid: a97a5908e62dcf1428bde966aeb06e8f, type: 3}
+  prefab: {fileID: 2039274539744314597, guid: 6fddc2fbf7c963345b834a8c8c9c7fa1, type: 3}
   baseSpeed: 5
-  baseJumpForce: 10
+  baseJumpForce: 30
   loadout: {fileID: 11400000, guid: b68436d92fa1dec408d9196fe0f33258, type: 2}
