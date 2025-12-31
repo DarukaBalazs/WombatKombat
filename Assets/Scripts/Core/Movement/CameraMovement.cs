@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
@@ -9,18 +9,27 @@ public class CameraMovement : MonoBehaviour
 
     [Header("Camera Settings")]
     [SerializeField] private float smoothTime = 0.3f;
-    [SerializeField] private float minZoom = 5f;
-    [SerializeField] private float maxZoom = 10f;
+
+    [Tooltip("Kamera legközelebbi Z távolság")]
+    [SerializeField] private float minZoom = -8f;
+
+    [Tooltip("Kamera legtávolabbi Z távolság")]
+    [SerializeField] private float maxZoom = -16f;
+
     [SerializeField] private float zoomLimiter = 20f;
 
     [Header("Camera Bounds")]
     [SerializeField] private Vector2 minBounds;
     [SerializeField] private Vector2 maxBounds;
 
+    [Header("Player Follow Bounds")]
+    [SerializeField] private Vector2 playerMinBounds;
+    [SerializeField] private Vector2 playerMaxBounds;
+
     Vector3 velocity;
     Camera cam;
 
-    // --- SHAKE ---
+    // SHAKE
     Vector3 shakeOffset;
     Coroutine shakeRoutine;
 
@@ -53,10 +62,10 @@ public class CameraMovement : MonoBehaviour
     {
         Vector3 centerPoint = GetCenterPoint();
         Vector3 targetPos = centerPoint;
-        targetPos.z = transform.position.z;
 
         targetPos.x = Mathf.Clamp(targetPos.x, minBounds.x, maxBounds.x);
         targetPos.y = Mathf.Clamp(targetPos.y, minBounds.y, maxBounds.y);
+        targetPos.z = transform.position.z;
 
         Vector3 basePos = Vector3.SmoothDamp(
             transform.position,
@@ -65,26 +74,57 @@ public class CameraMovement : MonoBehaviour
             smoothTime
         );
 
-        // ADDIT�V SHAKE (NEM RESETEL)
         transform.position = basePos + shakeOffset;
     }
 
     void Zoom()
     {
+        bool p1Inside = IsInsidePlayerBounds(player1);
+        bool p2Inside = IsInsidePlayerBounds(player2);
+
+        if (!p1Inside || !p2Inside)
+            return;
+
         float distance = Vector3.Distance(player1.position, player2.position);
-        float newZoom = Mathf.Lerp(minZoom, maxZoom, distance / zoomLimiter);
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
+        float t = Mathf.Clamp01(distance / zoomLimiter);
+
+        float targetZ = Mathf.Lerp(minZoom, maxZoom, t);
+
+        Vector3 pos = transform.position;
+        pos.z = Mathf.Lerp(pos.z, targetZ, Time.deltaTime * 5f);
+        transform.position = pos;
     }
 
     Vector3 GetCenterPoint()
     {
-        return (player1.position + player2.position) * 0.5f;
+        bool p1Inside = IsInsidePlayerBounds(player1);
+        bool p2Inside = IsInsidePlayerBounds(player2);
+
+        if (p1Inside && p2Inside)
+            return (player1.position + player2.position) * 0.5f;
+
+        if (p1Inside)
+            return player1.position;
+
+        if (p2Inside)
+            return player2.position;
+
+        return transform.position;
     }
 
     public void SetPlayers(Transform p1, Transform p2)
     {
         player1 = p1;
         player2 = p2;
+    }
+
+    bool IsInsidePlayerBounds(Transform t)
+    {
+        Vector3 p = t.position;
+        return p.x >= playerMinBounds.x &&
+               p.x <= playerMaxBounds.x &&
+               p.y >= playerMinBounds.y &&
+               p.y <= playerMaxBounds.y;
     }
 
     // =========================

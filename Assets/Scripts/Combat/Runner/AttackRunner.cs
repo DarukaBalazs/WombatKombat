@@ -25,15 +25,17 @@ public class AttackRunner : MonoBehaviour
     public bool HitConnectedThisAttack { get ; private set; }
 
     private Coroutine running;
-    private float cooldownUntil;
     private AttackAsset currentAsset;
 
     public event Action<AttackAsset> OnAttackStarted;
 
+    private readonly Dictionary<AttackAsset, float> cooldowns = new();
+
     public bool TryStart(AttackAsset asset)
     {
         if (asset == null) return false;
-        if (Time.time < cooldownUntil) return false;
+        if (cooldowns.TryGetValue(asset, out float until) && Time.time < until)
+            return false;
 
         bool grounded = state != null && state.IsGrounded;
         if (asset.requiresGrounded && !grounded) return false;
@@ -52,6 +54,11 @@ public class AttackRunner : MonoBehaviour
         return true;
     }
 
+    private void StartCooldown(AttackAsset asset)
+    {
+        if (asset == null || asset.cooldown <= 0f) return;
+        cooldowns[asset] = Time.time + asset.cooldown;
+    }
     public void MarkHitConnected()
     {
         HitConnectedThisAttack = true;
@@ -145,7 +152,7 @@ public class AttackRunner : MonoBehaviour
 
     private void ExitAttack(AttackAsset asset)
     {
-        cooldownUntil = Time.time + Mathf.Max(0f, asset.cooldown);
+        StartCooldown(asset);
 
         if (state != null)
         {
