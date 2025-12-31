@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HitboxLightFat
   m_EditorClassIdentifier: Assembly-CSharp::Combat.DirectionalHitboxWindowStep
   startTime: 0
-  endTime: 0.4
+  endTime: 0.7
   forwardHitboxIds:
   - Light
   downHitboxIds: []

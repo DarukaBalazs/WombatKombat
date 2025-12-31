@@ -22,6 +22,11 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     [Header("Current states")]
     [SerializeField] State currentState = State.Idle;
+
+    [Header("Particles")]
+    [SerializeField] GameObject landParticle;
+    [SerializeField] Transform ground;
+
     #endregion
     private bool isGrounded;
     private bool isWallSliding;
@@ -221,6 +226,7 @@ public class PlayerStateManager : MonoBehaviour
             // ha esésből érkeztünk, álljunk Idle/Run-ba (hagyjuk a Movementre a döntést)
             if (IsIn(State.Fall) || IsIn(State.Jump) || IsIn(State.WallJump))
                 RequestTransition(State.Idle);
+            Instantiate(landParticle, ground.position, Quaternion.identity);
         }
     }
     public void SetWallSliding(bool wallSliding)
@@ -256,10 +262,6 @@ public class PlayerStateManager : MonoBehaviour
             if (!isGrounded && !hasAirAttacked)
                 hasAirAttacked = true;
         }
-
-        // opcionális: animátor jelzők itt (ha már be van kötve)
-        // animator?.SetBool("IsAttacking", true);
-        // animator?.SetInteger("AttackPhase", (int)currentAttackPhase);
     }
 
     public void ExitAttack()
@@ -268,11 +270,9 @@ public class PlayerStateManager : MonoBehaviour
         currentAttackPhase = AttackPhase.None;
         attackPhaseTimer = 0f;
 
-        // HA magasabb prioritású lockban vagyunk, ne váltsunk (stun/dead).
         if (isDead || isStunned || IsIn(State.Hitstun) || IsIn(State.Dead))
             return;
 
-        // Csak akkor kényszeríts vissza locomotion-be, ha tényleg Attackingból jövünk.
         if (IsIn(State.Attacking))
         {
             if (isGrounded)

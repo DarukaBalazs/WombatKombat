@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 /// <summary>
 /// Az állapotgépből, a BaseMovement-ből és a Rigidbody sebességéből
@@ -15,6 +16,7 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] BaseMovement movement;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Animator animator;
+    [SerializeField] AttackRunner attackRunner;
  
     [Header("Locomotion thresholds")]
     [SerializeField] float runSpeedThreshold = 0.1f;    // vízszintes sebesség, ami fölött futás
@@ -30,6 +32,7 @@ public class PlayerAnimator : MonoBehaviour
         if (!state) state = GetComponent<PlayerStateManager>();
         if (!movement) movement = GetComponent<BaseMovement>();
         if (!rb) rb = GetComponent<Rigidbody2D>();
+        if (!attackRunner) attackRunner = GetComponent<AttackRunner>();
         if (!animator) animator = GetComponentInChildren<Animator>();
     }
 
@@ -43,6 +46,7 @@ public class PlayerAnimator : MonoBehaviour
     {
         if (state != null)
             state.OnStateChanged -= HandleStateChanged;
+
     }
 
     void Update()
@@ -50,6 +54,7 @@ public class PlayerAnimator : MonoBehaviour
         if (!animator || !state || !rb) return;
 
         bool grounded = state.IsGrounded;
+        bool stunned  = state.IsStunned;
         Vector2 vel = rb.linearVelocity;
         float speedX = Mathf.Abs(vel.x);
         float speedY = vel.y;
@@ -60,9 +65,10 @@ public class PlayerAnimator : MonoBehaviour
         // Alap paraméterek
         animator.SetBool("IsGrounded", grounded);
         animator.SetBool("IsWallSliding", wallSliding);
+        animator.SetBool("IsStunned", stunned);
         animator.SetFloat("Speed", speedX);
         animator.SetFloat("VerticalSpeed", speedY);
-        animator.SetFloat("AnimSpeed",animSpeedX);
+        animator.SetFloat("AnimSpeed", animSpeedX);
 
         // Futás logika időküszöbbel – NE fusson/álljon le 1 frame spike-ra
         bool shouldRunNow = grounded && speedX > runSpeedThreshold && !wallSliding;
@@ -81,9 +87,12 @@ public class PlayerAnimator : MonoBehaviour
                     isRunning = false;
             }
         }
+        animator.SetBool("LightHeld", attackRunner.Input.IsLightHeld);
+        animator.SetBool("HeavyHeld", attackRunner.Input.IsHeavyHeld);
+        animator.SetBool("SpecialHeld", attackRunner.Input.IsSpecialHeld);
 
         animator.SetBool("IsRunning", isRunning);
-
+        animator.SetBool("DownPressed", attackRunner.Input.Vertical < -0.01);
         // Esés flag – csak ha nem wallslide
         bool isFalling = !grounded && speedY < fallSpeedThreshold && !wallSliding;
         animator.SetBool("IsFalling", isFalling);

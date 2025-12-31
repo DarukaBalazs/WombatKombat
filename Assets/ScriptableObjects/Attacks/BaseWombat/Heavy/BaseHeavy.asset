@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: BaseHeavy
   m_EditorClassIdentifier: Assembly-CSharp::AttackAsset
   type: 1
-  windup: 0.1
-  active: 0.6
-  recovery: 0.3
-  cooldown: 0.2
+  Windup: 40
+  Active: 45
+  Recovery: 15
+  Cooldown: 0.5
   requiresGrounded: 0
   allowAir: 1
   lockMovement: 1
   lockJump: 1
   cancelOnLanding: 0
+  stopMovementOnWindup: 1
   steps:
   - {fileID: 11400000, guid: 11aae75cd6962cf4481c8af018b01e8f, type: 2}
   - {fileID: 11400000, guid: eadd3e3856f82c44eb7a353cbd769712, type: 2}

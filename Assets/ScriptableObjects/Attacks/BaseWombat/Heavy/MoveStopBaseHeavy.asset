@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89cec6dae63f6c54b9f01c3f9c40f464, type: 3}
   m_Name: MoveStopBaseHeavy
   m_EditorClassIdentifier: Assembly-CSharp::Combat.MovementOverrideStep
-  stepName: MoveNeutralStop
   startTime: 0
-  endTime: 0.2
+  endTime: 0.01
   groundFilter: 0
   directionFilter: 0
   returnBase: 0

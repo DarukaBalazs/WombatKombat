@@ -7,6 +7,7 @@ public class Hurtbox : MonoBehaviour
     [SerializeField] StockSystem stock;
     [SerializeField] KnockbackHandler kb;
     [SerializeField] PlayerStateManager state;
+    [SerializeField] GameObject HitEffect;
 
     private void Awake()
     {
@@ -28,7 +29,7 @@ public class Hurtbox : MonoBehaviour
         bool crit = stock ? stock.RegisterHitAndRollCrit(percentgain) : false;
         if (!kb) kb = GetComponent<KnockbackHandler>();
         Vector2 dir = (transform.position - info.attacker.transform.position).normalized;
-
+        Instantiate(HitEffect, transform.position, Quaternion.FromToRotation(transform.position, info.attacker.transform.position));
         float finalKnockback = knockbackForce;
         float finalHitstun = hitstun;
 

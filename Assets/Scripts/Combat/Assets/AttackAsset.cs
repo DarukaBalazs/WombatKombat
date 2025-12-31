@@ -9,15 +9,18 @@ public class AttackAsset : ScriptableObject
     [Header("Identity")]
     public AttackType type;
 
-    [Header("Animation Settings")]
-    [Tooltip("Az Animator trigger neve, amit ez a támadás aktivál.")]
-    public string animationTriggerName;
+    [Header("Timings (MiliSeconds)")]
+    public float Windup;
+    public float Active;
+    public float Recovery;
+    [Header("CD (Seconds)")]
+    public float Cooldown;
 
-    [Header("Timings (Second)")]
-    public float windup;
-    public float active;
-    public float recovery;
-    public float cooldown;
+
+    [HideInInspector] public float windup => Windup / 60f;
+    [HideInInspector] public float active => Active / 60f;
+    [HideInInspector] public float recovery => Recovery / 60f;
+    [HideInInspector] public float cooldown => Cooldown;
 
     [Header("Rules")]
     public bool requiresGrounded;
@@ -25,6 +28,8 @@ public class AttackAsset : ScriptableObject
     public bool lockMovement;
     public bool lockJump;
     public bool cancelOnLanding;
+    [Header("Movement")]
+    public bool stopMovementOnWindup = false;
 
     [Header("Steps")]
     public List<AttackStep> steps;

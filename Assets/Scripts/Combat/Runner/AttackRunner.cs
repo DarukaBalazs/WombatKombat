@@ -25,15 +25,17 @@ public class AttackRunner : MonoBehaviour
     public bool HitConnectedThisAttack { get ; private set; }
 
     private Coroutine running;
-    private float cooldownUntil;
     private AttackAsset currentAsset;
 
     public event Action<AttackAsset> OnAttackStarted;
 
+    private readonly Dictionary<AttackAsset, float> cooldowns = new();
+
     public bool TryStart(AttackAsset asset)
     {
         if (asset == null) return false;
-        if (Time.time < cooldownUntil) return false;
+        if (cooldowns.TryGetValue(asset, out float until) && Time.time < until)
+            return false;
 
         bool grounded = state != null && state.IsGrounded;
         if (asset.requiresGrounded && !grounded) return false;
@@ -48,9 +50,15 @@ public class AttackRunner : MonoBehaviour
             StopCoroutine(running);
 
         running = StartCoroutine(Run(asset));
+        animator.SetTrigger(asset.type.ToString()+"Pressed");
         return true;
     }
 
+    private void StartCooldown(AttackAsset asset)
+    {
+        if (asset == null || asset.cooldown <= 0f) return;
+        cooldowns[asset] = Time.time + asset.cooldown;
+    }
     public void MarkHitConnected()
     {
         HitConnectedThisAttack = true;
@@ -85,12 +93,25 @@ public class AttackRunner : MonoBehaviour
         currentAsset = asset;
         LandedThisAttack = false;
         HitConnectedThisAttack = false;
+        
+        OnAttackStarted?.Invoke(asset);
 
         if (state != null)
             state.SetAttackLocks(asset.lockMovement, asset.lockJump);
 
         EnterPhase(AttackPhase.StartUp, asset);
-        yield return Wait(asset.windup);
+
+        float t = 0f;
+        while (t < asset.windup)
+        {
+            if (asset.stopMovementOnWindup && rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
+
+            t += Time.deltaTime;
+            yield return null;
+        }
 
         EnterPhase(AttackPhase.Active, asset);
         yield return StartCoroutine(RunActiveTimeline(asset));
@@ -104,21 +125,34 @@ public class AttackRunner : MonoBehaviour
 
     private void EnterPhase(AttackPhase phase, AttackAsset asset)
     {
-        if (state == null) return;
+        if (asset.lockMovement &&
+            phase == AttackPhase.StartUp &&
+            state != null &&
+            state.IsGrounded &&
+            rb != null)
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        }
 
-        float phaseDur =
-            phase == AttackPhase.StartUp ? asset.windup :
-            phase == AttackPhase.Active ? asset.active :
-            phase == AttackPhase.Recovery ? asset.recovery : 0f;
+        if (state != null)
+        {
+            float phaseDur =
+                phase == AttackPhase.StartUp ? asset.windup :
+                phase == AttackPhase.Active ? asset.active :
+                phase == AttackPhase.Recovery ? asset.recovery : 0f;
 
-        state.EnterAttackPhase(phase, phaseDur);
+            state.EnterAttackPhase(phase, phaseDur);
+        }
 
-        // ide jön majd az animáció váltás
+        if (phase == AttackPhase.StartUp && asset.stopMovementOnWindup && rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
     }
 
     private void ExitAttack(AttackAsset asset)
     {
-        cooldownUntil = Time.time + Mathf.Max(0f, asset.cooldown);
+        StartCooldown(asset);
 
         if (state != null)
         {

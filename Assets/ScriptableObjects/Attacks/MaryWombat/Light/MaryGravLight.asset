@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MaryGravLight
   m_EditorClassIdentifier: Assembly-CSharp::Combat.GravityScaleStep
   startTime: 0
-  endTime: 0.1
+  endTime: 0.2
   scale: 0

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f37965c327f6e8c41ae1daabd03930e6, type: 3}
   m_Name: HitboxBaseHeavy
   m_EditorClassIdentifier: Assembly-CSharp::Combat.HitboxWindowStep
-  stepName: Hitbox
   startTime: 0.2
   endTime: 0.6
   hitboxIds:
@@ -20,4 +19,7 @@ MonoBehaviour:
   percentGain: 20
   knockbackForce: 12
   hitstun: 0.5
+  shakeCamera: 1
+  shakeMagnitude: 0.05
+  shakeDuration: 0.1
   hitstopDuration: 0.1

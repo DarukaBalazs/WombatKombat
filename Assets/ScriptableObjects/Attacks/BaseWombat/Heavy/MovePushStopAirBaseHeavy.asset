@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89cec6dae63f6c54b9f01c3f9c40f464, type: 3}
   m_Name: MovePushStopAirBaseHeavy
   m_EditorClassIdentifier: Assembly-CSharp::Combat.MovementOverrideStep
-  stepName: MoveAirPush
-  startTime: 0.2
+  startTime: 0.01
   endTime: 0.6
   groundFilter: 2
   directionFilter: 0
   returnBase: 0
   overrideX: 1
-  xVelocity: 5
+  xVelocity: 10
   overrideY: 1
-  yVelocity: 10
+  yVelocity: 5
