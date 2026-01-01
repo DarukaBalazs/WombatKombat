@@ -1,16 +1,13 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class indikator1 : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public Sprite HPBAR;
+    public TextMeshProUGUI ReSpawCounter;
+    public TextMeshProUGUI Name;
+    public Sprite CharacterArt;
+    
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
