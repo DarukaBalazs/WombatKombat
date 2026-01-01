@@ -46472,6 +46472,8 @@ MonoBehaviour:
   zoomLimiter: 20
   minBounds: {x: -20, y: -20}
   maxBounds: {x: 20, y: 20}
+  playerMinBounds: {x: 0, y: 0}
+  playerMaxBounds: {x: 0, y: 0}
 --- !u!114 &234177615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47070,7 +47072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.63828564, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -47621,6 +47623,8 @@ MonoBehaviour:
   player1Spawn: {fileID: 1256919801}
   player2Spawn: {fileID: 115542685}
   camMovement: {fileID: 234177614}
+  p1Obj: {fileID: 0}
+  p2Obj: {fileID: 0}
 --- !u!114 &2076196523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47648,10 +47652,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87176264134ca594ca7732f0c08e7f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::indikator1
-  HPBAR: {fileID: 4845450665379371237, guid: ff475993345446a47a860fe19094d49e, type: 3}
+  HPBAR: {fileID: 1610158354}
   ReSpawCounter: {fileID: 239080881}
   Name: {fileID: 1805433728}
   CharacterArt: {fileID: 0}
+  SpawnManager: {fileID: 2076196522}
+  Marry: {fileID: 0}
+  Dagi: {fileID: 0}
+  Sima: {fileID: 0}
 --- !u!1 &2143988663
 GameObject:
   m_ObjectHideFlags: 0
