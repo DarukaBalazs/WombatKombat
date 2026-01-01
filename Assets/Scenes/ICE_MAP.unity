@@ -47649,8 +47649,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::indikator1
   HPBAR: {fileID: 4845450665379371237, guid: ff475993345446a47a860fe19094d49e, type: 3}
-  ReSpawCounter: {fileID: 0}
-  Name: {fileID: 0}
+  ReSpawCounter: {fileID: 239080881}
+  Name: {fileID: 1805433728}
   CharacterArt: {fileID: 0}
 --- !u!1 &2143988663
 GameObject:
