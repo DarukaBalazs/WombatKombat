@@ -1234,6 +1234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 003b8c1d360be4149a4142c55c94a1bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSelectionManager
+  characterSelector: {fileID: 11400000, guid: 4e84e45c66d47c543889bde987df021b, type: 2}
   player1: {fileID: 11400000, guid: 2a03984b5aa28f0449b10232ce89f0e3, type: 2}
   player2: {fileID: 11400000, guid: 2a03984b5aa28f0449b10232ce89f0e3, type: 2}
 --- !u!114 &917649934
