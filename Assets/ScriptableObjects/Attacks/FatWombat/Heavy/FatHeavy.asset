@@ -22,6 +22,7 @@ MonoBehaviour:
   lockMovement: 1
   lockJump: 1
   cancelOnLanding: 0
+  stopMovementOnWindup: 1
   steps:
   - {fileID: 11400000, guid: 05fa25ec2a3d0744e8b62808eaa5a6ad, type: 2}
   - {fileID: 11400000, guid: e19a6ebb6b60e1f47ab6672435e30d14, type: 2}

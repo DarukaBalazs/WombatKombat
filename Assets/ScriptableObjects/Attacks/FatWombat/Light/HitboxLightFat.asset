@@ -16,13 +16,14 @@ MonoBehaviour:
   endTime: 0.7
   forwardHitboxIds:
   - Light
-  downHitboxIds: []
+  downHitboxIds:
+  - LightDown
   percentGain: 10
   knockbackForward: 5
   knockbackDown: 5
   hitstun: 0.05
   shakeCamera: 1
-  shakeMagnitude: 1
+  shakeMagnitude: 0.1
   shakeDuration: 0.07
   downThreshold: -0.5
   hitstopDuration: 0.05

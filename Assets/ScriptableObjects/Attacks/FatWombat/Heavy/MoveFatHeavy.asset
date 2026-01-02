@@ -16,8 +16,8 @@ MonoBehaviour:
   endTime: 1
   groundFilter: 0
   directionFilter: 0
-  returnBase: 0
+  returnBase: 1
   overrideX: 1
-  xVelocity: 3
+  xVelocity: 10
   overrideY: 1
   yVelocity: 0

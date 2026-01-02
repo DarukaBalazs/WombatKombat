@@ -154,11 +154,13 @@ MonoBehaviour:
   player1: {fileID: 0}
   player2: {fileID: 0}
   smoothTime: 0.3
-  minZoom: 5
-  maxZoom: 10
+  minZoom: -8
+  maxZoom: -16
   zoomLimiter: 20
   minBounds: {x: -10, y: -10}
   maxBounds: {x: 10, y: 10}
+  playerMinBounds: {x: -30, y: -20}
+  playerMaxBounds: {x: 30, y: 20}
 --- !u!114 &178259310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2653,6 +2655,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7909776787052354221, guid: 218f211ca7e6be04ebe77bd2f26ed747, type: 3}
+      propertyPath: player2
+      value: 
+      objectReference: {fileID: 11400000, guid: a1f54ca405384cb4d8e4aa3be309c731, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

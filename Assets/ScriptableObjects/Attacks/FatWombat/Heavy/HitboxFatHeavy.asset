@@ -22,7 +22,7 @@ MonoBehaviour:
   knockbackDown: 5
   hitstun: 0.2
   shakeCamera: 1
-  shakeMagnitude: 2
+  shakeMagnitude: 0.2
   shakeDuration: 0.15
   downThreshold: -0.5
   hitstopDuration: 0.05
