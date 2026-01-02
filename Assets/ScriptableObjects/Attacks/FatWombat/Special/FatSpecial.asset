@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: FatSpecial
   m_EditorClassIdentifier: Assembly-CSharp::AttackAsset
   type: 2
-  Windup: 1
-  Active: 180
-  Recovery: 50
+  Windup: 10
+  Active: 90
+  Recovery: 10
   Cooldown: 5
   requiresGrounded: 0
   allowAir: 1
   lockMovement: 0
   lockJump: 1
   cancelOnLanding: 0
+  stopMovementOnWindup: 0
   steps:
   - {fileID: 11400000, guid: 50ada863c018d9542843c34552bb308c, type: 2}
   - {fileID: 11400000, guid: 96cadf0e396023743aa6e0afef21db28, type: 2}

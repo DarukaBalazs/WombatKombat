@@ -9,20 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7264361a782cbc1418fa2895e5d84fa1, type: 3}
+  m_Script: {fileID: 11500000, guid: f37965c327f6e8c41ae1daabd03930e6, type: 3}
   m_Name: HitFatSpecial3
-  m_EditorClassIdentifier: Assembly-CSharp::Combat.DirectionalHitboxWindowStep
+  m_EditorClassIdentifier: Assembly-CSharp::Combat.HitboxWindowStep
   startTime: 2
   endTime: 3
-  forwardHitboxIds:
+  hitboxIds:
   - Special
-  downHitboxIds: []
-  percentGain: 15
-  knockbackForward: 10
-  knockbackDown: 5
-  hitstun: 0.2
+  percentGain: 25
+  knockbackForce: 10
+  hitstun: 0.7
   shakeCamera: 1
-  shakeMagnitude: 3
+  shakeMagnitude: 0.2
   shakeDuration: 0.5
-  downThreshold: -0.5
-  hitstopDuration: 0.05
+  hitstopDuration: 0.2
