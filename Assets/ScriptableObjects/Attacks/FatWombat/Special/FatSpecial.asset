@@ -24,7 +24,6 @@ MonoBehaviour:
   cancelOnLanding: 0
   stopMovementOnWindup: 0
   steps:
-  - {fileID: 11400000, guid: 50ada863c018d9542843c34552bb308c, type: 2}
-  - {fileID: 11400000, guid: 96cadf0e396023743aa6e0afef21db28, type: 2}
-  - {fileID: 11400000, guid: 4198053ff7b8999469eb4f7738d77754, type: 2}
+  - {fileID: 11400000, guid: 93e27862d66824c4c93172c1646a1f4a, type: 2}
+  - {fileID: 11400000, guid: 8ff2741997714a943826ea89e4e2795d, type: 2}
   - {fileID: 11400000, guid: e68549a58ac25254fa546b3a93ec78a6, type: 2}
