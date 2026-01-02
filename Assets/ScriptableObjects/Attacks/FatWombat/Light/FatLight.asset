@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackAsset
   type: 0
   Windup: 10
-  Active: 40
-  Recovery: 20
+  Active: 20
+  Recovery: 2
   Cooldown: 0
   requiresGrounded: 0
   allowAir: 1
   lockMovement: 0
-  lockJump: 0
+  lockJump: 1
   cancelOnLanding: 0
+  stopMovementOnWindup: 0
   steps:
   - {fileID: 11400000, guid: 3e68a93bc3aadb740a4033fa887c9a74, type: 2}
