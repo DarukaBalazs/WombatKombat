@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f37965c327f6e8c41ae1daabd03930e6, type: 3}
   m_Name: HitFatSpecial3
   m_EditorClassIdentifier: Assembly-CSharp::Combat.HitboxWindowStep
-  startTime: 2
-  endTime: 3
+  startTime: 1
+  endTime: 1.5
   hitboxIds:
   - Special
   percentGain: 25

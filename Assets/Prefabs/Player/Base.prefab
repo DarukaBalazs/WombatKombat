@@ -1932,6 +1932,10 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[21].m_ActionName
       value: 'Player2/Vertical[/Keyboard/downArrow,/Keyboard/upArrow]'
       objectReference: {fileID: 0}
+    - target: {fileID: 6195341001879178083, guid: d792b12724fd30d49a80b4be7a8dc267, type: 3}
+      propertyPath: maxSpeed
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 6222608481649565268, guid: d792b12724fd30d49a80b4be7a8dc267, type: 3}
       propertyPath: m_Size.x
       value: 2.0320976

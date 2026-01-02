@@ -12,6 +12,7 @@ public class KnockbackHandler : MonoBehaviour
     [Header("References")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private PlayerStateManager state;
+    [SerializeField] private StockSystem stockSystem;
 
     [Header("Force setup")]
     [Tooltip("Kritikus találat erõszorzója.")]
@@ -27,7 +28,7 @@ public class KnockbackHandler : MonoBehaviour
     [SerializeField] private bool additive = true;
 
     [Tooltip("Maximális engedett sebesség knockback után.")]
-    [SerializeField] private float maxSpeed = 30f;
+    [SerializeField] private float maxSpeed = 150f;
 
     [Header("Hitstun")]
     [Tooltip("Minimum hitstun idõ (s).")]
@@ -104,6 +105,8 @@ public class KnockbackHandler : MonoBehaviour
     public void ApplyKnockback(Vector2 dir, float baseForce, float stunSeconds)
         => ApplyKnockback(dir, baseForce, false, stunSeconds);
 
+  
+
     private System.Collections.IEnumerator RestoreDragAfter(float seconds)
     {
         yield return new WaitForSeconds(seconds);
@@ -114,22 +117,12 @@ public class KnockbackHandler : MonoBehaviour
         _dragApplied = false;
     }
 
-    #region Public setters (ha runtime balanszolnál)
-    public void SetCritMultiplier(float m) => critMultiplier = Mathf.Max(0f, m);
-    public void SetMaxSpeed(float s) => maxSpeed = Mathf.Max(0f, s);
-    public void SetAdditive(bool on) => additive = on;
-    public void SetComponentMultipliers(float horizontal, float vertical)
-    {
-        horizontalMultiplier = horizontal;
-        verticalMultiplier = vertical;
-    }
-    #endregion
 
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         UnityEditor.Handles.Label(transform.position + Vector3.up * 1.5f,
-            $"KB: crit x{critMultiplier}, comp({horizontalMultiplier},{verticalMultiplier}), max {maxSpeed}");
+            rb.linearVelocity.x.ToString());
     }
 #endif
 }

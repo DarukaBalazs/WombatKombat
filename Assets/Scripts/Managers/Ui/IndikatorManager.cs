@@ -52,7 +52,7 @@ public class indikator1 : MonoBehaviour
 
     private void Update()
     {
-        ReSpawCounter.text = StockSis.Stocks.ToString();
+        ReSpawCounter.text = ((int)StockSis.Stocks).ToString();
         HPBAR.color = new Color((1000 - StockSis.DamagePercent) / 1000, 0, 0);
     }
 

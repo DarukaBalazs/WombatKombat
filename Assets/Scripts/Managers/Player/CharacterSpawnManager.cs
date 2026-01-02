@@ -10,13 +10,12 @@ public class CharacterSpawnManager : MonoBehaviour
 
     [HideInInspector] public GameObject p1Obj;
     [HideInInspector] public GameObject p2Obj;
-    private void Start()
+    private void Awake()
     {
         var selection = CharacterSelectionManager.Instance;
 
         if (selection == null)
         {
-            Debug.Log("no manager found");
             return;
         }
 
@@ -25,6 +24,7 @@ public class CharacterSpawnManager : MonoBehaviour
         var p1Controller = p1Obj.GetComponent<PlayerController>();
 
         p1Obj.name = selection.player1.characterName;
+        p1Obj.tag = "Player";
         p1Input.SwitchCurrentControlScheme("Keyboard&Mouse",Keyboard.current);
         p1Input.SwitchCurrentActionMap("Player1");
         p1Controller.ApplyCharacterData(selection.player1);
@@ -34,6 +34,7 @@ public class CharacterSpawnManager : MonoBehaviour
         var p2Controller = p2Obj.GetComponent <PlayerController>();
 
         p2Obj.name = selection.player2.characterName;
+        p2Obj.tag = "Player";
         p2Input.SwitchCurrentControlScheme("Keyboard&Mouse", Keyboard.current);
         p2Input.SwitchCurrentActionMap("Player2");
         p2Controller.ApplyCharacterData(selection.player2);

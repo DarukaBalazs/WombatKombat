@@ -107,8 +107,6 @@ GameObject:
   - component: {fileID: 7909776787052354221}
   - component: {fileID: 1284314387011035674}
   - component: {fileID: 7021679804024113893}
-  - component: {fileID: 3751361142806854224}
-  - component: {fileID: 7535621347872941169}
   - component: {fileID: 8315074972349298480}
   - component: {fileID: 755364860168872919}
   m_Layer: 0
@@ -192,36 +190,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitstopManager
   hitstopTimeScale: 0.05
---- !u!114 &3751361142806854224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8953537783763919694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb6f7d093d999ee448d7b457fa99fdae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ReSpawnLogic
-  PlayerNumber: 1
-  SpawnManager: {fileID: 158216192321276114}
-  respawnPoint: {fileID: 1671420487746663044}
---- !u!114 &7535621347872941169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8953537783763919694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb6f7d093d999ee448d7b457fa99fdae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ReSpawnLogic
-  PlayerNumber: 2
-  SpawnManager: {fileID: 158216192321276114}
-  respawnPoint: {fileID: 9075556752030650473}
 --- !u!114 &8315074972349298480
 MonoBehaviour:
   m_ObjectHideFlags: 0

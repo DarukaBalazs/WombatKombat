@@ -17,7 +17,7 @@ MonoBehaviour:
   hitboxIds:
   - Light
   percentGain: 10
-  knockbackForce: 2
+  knockbackForce: 0.4
   hitstun: 0.5
   shakeCamera: 1
   shakeMagnitude: 0.05

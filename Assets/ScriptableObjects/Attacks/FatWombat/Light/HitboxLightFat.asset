@@ -19,7 +19,7 @@ MonoBehaviour:
   downHitboxIds:
   - LightDown
   percentGain: 10
-  knockbackForward: 5
+  knockbackForward: 10
   knockbackDown: 5
   hitstun: 0.05
   shakeCamera: 1

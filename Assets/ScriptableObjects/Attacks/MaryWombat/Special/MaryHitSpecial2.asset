@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f37965c327f6e8c41ae1daabd03930e6, type: 3}
   m_Name: MaryHitSpecial2
   m_EditorClassIdentifier: Assembly-CSharp::Combat.HitboxWindowStep
-  startTime: 0.5
+  startTime: 0.25
   endTime: 1
   hitboxIds:
   - Special
   percentGain: 20
   knockbackForce: 10
   hitstun: 0.5
+  shakeCamera: 0
+  shakeMagnitude: 1
+  shakeDuration: 1
   hitstopDuration: 0.05

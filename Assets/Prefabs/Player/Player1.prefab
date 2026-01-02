@@ -405,11 +405,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::KnockbackHandler
   rb: {fileID: 3537785145304537796}
   state: {fileID: 9038540530244758863}
-  critMultiplier: 3
+  stockSystem: {fileID: 0}
+  critMultiplier: 1
   horizontalMultiplier: 1
   verticalMultiplier: 1
   additive: 1
-  maxSpeed: 30
+  maxSpeed: 150
   minStunSeconds: 0.1
   stunLinearDrag: 0
 --- !u!114 &5408432138965909376

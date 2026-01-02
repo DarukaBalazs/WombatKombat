@@ -31,14 +31,20 @@ public class Hurtbox : MonoBehaviour
         Vector2 dir = (transform.position - info.attacker.transform.position).normalized;
         Instantiate(HitEffect, transform.position, Quaternion.FromToRotation(transform.position, info.attacker.transform.position));
         float finalKnockback = knockbackForce;
+        if (crit)
+        {
+            finalKnockback *= stock.GiveForceWithCrit();
+            Debug.Log(stock.GiveForceWithCrit());
+        }
         float finalHitstun = hitstun;
 
         if (state != null && state.HasSuperArmor)
         {
-            finalKnockback *= 0.5f;
+            finalKnockback *= 0.2f;
             finalHitstun *= 0.5f;
         }
-        kb.ApplyKnockback(dir, knockbackForce,hitstun);
+
+        kb.ApplyKnockback(dir, finalKnockback,crit,finalHitstun);
 
     }
 }
