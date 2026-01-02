@@ -107,6 +107,10 @@ GameObject:
   - component: {fileID: 7909776787052354221}
   - component: {fileID: 1284314387011035674}
   - component: {fileID: 7021679804024113893}
+  - component: {fileID: 3751361142806854224}
+  - component: {fileID: 7535621347872941169}
+  - component: {fileID: 8315074972349298480}
+  - component: {fileID: 755364860168872919}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -146,6 +150,8 @@ MonoBehaviour:
   player1Spawn: {fileID: 1671420487746663044}
   player2Spawn: {fileID: 9075556752030650473}
   camMovement: {fileID: 0}
+  p1Obj: {fileID: 0}
+  p2Obj: {fileID: 0}
 --- !u!114 &7909776787052354221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 003b8c1d360be4149a4142c55c94a1bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSelectionManager
+  characterSelector: {fileID: 11400000, guid: 4e84e45c66d47c543889bde987df021b, type: 2}
   player1: {fileID: 11400000, guid: 2a03984b5aa28f0449b10232ce89f0e3, type: 2}
   player2: {fileID: 11400000, guid: 2a03984b5aa28f0449b10232ce89f0e3, type: 2}
 --- !u!114 &1284314387011035674
@@ -185,3 +192,75 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitstopManager
   hitstopTimeScale: 0.05
+--- !u!114 &3751361142806854224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8953537783763919694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb6f7d093d999ee448d7b457fa99fdae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReSpawnLogic
+  PlayerNumber: 1
+  SpawnManager: {fileID: 158216192321276114}
+  respawnPoint: {fileID: 1671420487746663044}
+--- !u!114 &7535621347872941169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8953537783763919694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb6f7d093d999ee448d7b457fa99fdae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReSpawnLogic
+  PlayerNumber: 2
+  SpawnManager: {fileID: 158216192321276114}
+  respawnPoint: {fileID: 9075556752030650473}
+--- !u!114 &8315074972349298480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8953537783763919694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87176264134ca594ca7732f0c08e7f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::indikator1
+  PlayerNumber: 1
+  HPBAR: {fileID: 0}
+  ReSpawCounter: {fileID: 0}
+  Name: {fileID: 0}
+  CharacterArt: {fileID: 0}
+  SpawnManager: {fileID: 158216192321276114}
+  Marry: {fileID: 2358532177015847858, guid: 69f0d0d07f8077444bdda1a4e49389af, type: 3}
+  Dagi: {fileID: -3763571558542537291, guid: 3e0ac89e0d027b04a88ad63dd9c8fc64, type: 3}
+  Sima: {fileID: 232145499586284452, guid: 32ef1e3244bc33f4e90f4f89c3c5eda9, type: 3}
+--- !u!114 &755364860168872919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8953537783763919694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87176264134ca594ca7732f0c08e7f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::indikator1
+  PlayerNumber: 1
+  HPBAR: {fileID: 0}
+  ReSpawCounter: {fileID: 0}
+  Name: {fileID: 0}
+  CharacterArt: {fileID: 0}
+  SpawnManager: {fileID: 158216192321276114}
+  Marry: {fileID: 2358532177015847858, guid: 69f0d0d07f8077444bdda1a4e49389af, type: 3}
+  Dagi: {fileID: -3763571558542537291, guid: 3e0ac89e0d027b04a88ad63dd9c8fc64, type: 3}
+  Sima: {fileID: 232145499586284452, guid: 32ef1e3244bc33f4e90f4f89c3c5eda9, type: 3}
