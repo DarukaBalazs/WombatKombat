@@ -1,8 +1,10 @@
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class StockSystem : MonoBehaviour
 {
+
     [Header("References")]
     [SerializeField] PlayerStateManager state;
     [SerializeField] Rigidbody2D rb;
@@ -20,6 +22,7 @@ public class StockSystem : MonoBehaviour
     public event Action<int> OnStockChanged;
     public event Action<float> OnPercentChanged;
     public event Action OnRespawn;
+    public event Action GameEnd;
 
     public int Stocks => stocks;
     public float DamagePercent => damagePercent;
@@ -53,7 +56,9 @@ public class StockSystem : MonoBehaviour
             ResetPercent();
             state?.ForceTransition(State.Idle);
             OnRespawn?.Invoke();
+            SceneManager.LoadScene(4);
         }
+
     }
 
     public void ResetPercent()

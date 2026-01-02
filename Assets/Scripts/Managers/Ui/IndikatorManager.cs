@@ -4,11 +4,12 @@ using UnityEngine.UI;
 
 public class indikator1 : MonoBehaviour
 {
+    public int PlayerNumber;
     public Image HPBAR;
     public TextMeshProUGUI ReSpawCounter;
     public TextMeshProUGUI Name;
-    public Sprite CharacterArt;
-    private GameObject p1Obj;
+    public Image CharacterArt;
+    private GameObject pObj;
     private StockSystem StockSis;
     public CharacterSpawnManager SpawnManager;
     
@@ -19,10 +20,21 @@ public class indikator1 : MonoBehaviour
 
     private void Start()
     {
-        p1Obj=SpawnManager.p1Obj;
-        Name.text = CharacterSelectionManager.Instance.player1.characterName;
+        
+        if (PlayerNumber == 1)
+        {
+            Name.text = CharacterSelectionManager.Instance.player1.characterName;
+            pObj = SpawnManager.p1Obj;
+        }
+        else 
+        {
+            Name.text = CharacterSelectionManager.Instance.player2.characterName;
+            pObj = SpawnManager.p2Obj;
+        }
+       
 
-        StockSis= p1Obj.GetComponent<StockSystem>();
+        StockSis= pObj.GetComponent<StockSystem>();
+
         ReSpawCounter.text = StockSis.Stocks.ToString();
         HPBAR.color = new Color((1000 - StockSis.DamagePercent) / 1000, 0, 0);
 
@@ -30,11 +42,11 @@ public class indikator1 : MonoBehaviour
         {
             case "Mary":
                 {
-                    CharacterArt = Marry; break;
+                    CharacterArt.sprite = Marry; break;
                 }
             case "Fat":
-                { CharacterArt = Dagi; break;}
-                default: { CharacterArt = Sima; break; }
+                { CharacterArt.sprite = Dagi; break;}
+                default: { CharacterArt.sprite = Sima; break; }
         }
     }
 
