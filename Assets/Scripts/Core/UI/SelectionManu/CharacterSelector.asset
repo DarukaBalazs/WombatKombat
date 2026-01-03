@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64dc311b8050abd4aa49c10a175a620c, type: 3}
   m_Name: CharacterSelector
   m_EditorClassIdentifier: "Assembly-CSharp::CharacterSelector\xFA"
-  player1: {fileID: 0}
-  player2: {fileID: 0}
+  player1: {fileID: 11400000, guid: 2a03984b5aa28f0449b10232ce89f0e3, type: 2}
+  player2: {fileID: 11400000, guid: fec39d2ab98b14c43b07cacb5169764e, type: 2}

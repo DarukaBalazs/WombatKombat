@@ -15,16 +15,17 @@ MonoBehaviour:
   type: 1
   Windup: 20
   Active: 15
-  Recovery: 5
+  Recovery: 10
   Cooldown: 1
   requiresGrounded: 0
   allowAir: 1
   lockMovement: 1
   lockJump: 1
   cancelOnLanding: 1
-  stopMovementOnWindup: 0
+  stopMovementOnWindup: 1
   steps:
   - {fileID: 11400000, guid: e3792e5fc69205a44a36b21dc9811311, type: 2}
-  - {fileID: 11400000, guid: e54dfdebcb228d14282bf39f04155e63, type: 2}
-  - {fileID: 11400000, guid: 2b0a5306adb67364d9bf44ced4082d71, type: 2}
   - {fileID: 11400000, guid: 2c5a0dd7dde9af04b9c18c0193dfb25f, type: 2}
+  - {fileID: 11400000, guid: e54dfdebcb228d14282bf39f04155e63, type: 2}
+  - {fileID: 11400000, guid: c7eb7754ad46f2b48a35e5acc226f903, type: 2}
+  - {fileID: 11400000, guid: 2b0a5306adb67364d9bf44ced4082d71, type: 2}

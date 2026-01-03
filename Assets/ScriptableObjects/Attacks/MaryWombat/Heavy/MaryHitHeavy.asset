@@ -15,7 +15,7 @@ MonoBehaviour:
   startTime: 0
   endTime: 0.2
   forwardHitboxIds:
-  - HeavyFront
+  - Heavy
   downHitboxIds:
   - HeavyDown
   percentGain: 15
@@ -23,7 +23,7 @@ MonoBehaviour:
   knockbackDown: 10
   hitstun: 0.3
   shakeCamera: 1
-  shakeMagnitude: 2
+  shakeMagnitude: 0.2
   shakeDuration: 0.5
   downThreshold: -0.5
   hitstopDuration: 0.05

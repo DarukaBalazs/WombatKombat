@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterName: Mary
   prefab: {fileID: 8427376384300993953, guid: 13ed32486fcfe27478e6ec4d5554f8bd, type: 3}
-  baseSpeed: 15
-  baseJumpForce: 15
+  baseSpeed: 10
+  baseJumpForce: 30
   loadout: {fileID: 11400000, guid: b3026e079cdc1164cbeb25ff2c4055ae, type: 2}

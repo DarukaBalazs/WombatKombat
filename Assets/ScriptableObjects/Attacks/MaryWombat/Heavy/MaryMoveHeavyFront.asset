@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Combat.MovementOverrideStep
   startTime: 0
   endTime: 0.2
-  groundFilter: 0
+  groundFilter: 1
   directionFilter: 3
-  returnBase: 1
+  returnBase: 0
   overrideX: 1
-  xVelocity: 5
+  xVelocity: 15
   overrideY: 1
   yVelocity: 0

@@ -15,13 +15,14 @@ MonoBehaviour:
   type: 0
   Windup: 5
   Active: 10
-  Recovery: 5
+  Recovery: 1
   Cooldown: 0
   requiresGrounded: 0
   allowAir: 1
   lockMovement: 0
   lockJump: 1
   cancelOnLanding: 0
+  stopMovementOnWindup: 0
   steps:
   - {fileID: 11400000, guid: ee30bf734cac3a340abf307573311a96, type: 2}
   - {fileID: 11400000, guid: 8fedf6843e3fa4b47b8d5b6a8b152200, type: 2}

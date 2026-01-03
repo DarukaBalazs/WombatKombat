@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89cec6dae63f6c54b9f01c3f9c40f464, type: 3}
-  m_Name: MaryMoveHeavyDown
+  m_Name: MaryMoveHeavyDown 1
   m_EditorClassIdentifier: Assembly-CSharp::Combat.MovementOverrideStep
   startTime: 0
   endTime: 0.2
   groundFilter: 2
-  directionFilter: 2
+  directionFilter: 3
   returnBase: 0
   overrideX: 1
-  xVelocity: 0
+  xVelocity: 15
   overrideY: 1
-  yVelocity: -15
+  yVelocity: 0

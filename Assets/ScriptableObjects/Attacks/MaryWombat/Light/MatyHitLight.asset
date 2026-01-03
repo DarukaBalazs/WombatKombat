@@ -15,7 +15,7 @@ MonoBehaviour:
   startTime: 0
   endTime: 0.2
   forwardHitboxIds:
-  - LightFront
+  - Light
   downHitboxIds:
   - LightDown1
   - LightDown2
