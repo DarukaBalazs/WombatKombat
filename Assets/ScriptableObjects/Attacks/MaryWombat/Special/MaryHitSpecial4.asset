@@ -16,7 +16,10 @@ MonoBehaviour:
   endTime: 2
   hitboxIds:
   - Special
-  percentGain: 20
-  knockbackForce: 10
-  hitstun: 0.5
+  percentGain: 25
+  knockbackForce: 30
+  hitstun: 0.9
+  shakeCamera: 1
+  shakeMagnitude: 1
+  shakeDuration: 1
   hitstopDuration: 0.05

@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: MaryHitSpecial1
   m_EditorClassIdentifier: Assembly-CSharp::Combat.HitboxWindowStep
   startTime: 0
-  endTime: 0.25
+  endTime: 0.4
   hitboxIds:
   - Special
-  percentGain: 20
-  knockbackForce: 10
-  hitstun: 0.5
+  percentGain: 10
+  knockbackForce: 5
+  hitstun: 0.2
   shakeCamera: 0
   shakeMagnitude: 1
   shakeDuration: 1
