@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2932657980745301528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6860136712953497965}
+  - component: {fileID: 7940795972560803243}
+  m_Layer: 0
+  m_Name: Wombat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6860136712953497965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932657980745301528}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.0568, y: -1.55095, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7940795972560803243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932657980745301528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d4af050fe5be44dbf8b9744da87c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WombatSpriteManager
+  sprites:
+  - {fileID: 9207850859529112920, guid: ade4dc35949e19c43a08f4b441b5cb52, type: 3}
+  - {fileID: 328947834542791073, guid: 21da719ea26064a44aa3bfb9079e1616, type: 3}
+  - {fileID: 1018833291871362165, guid: 742c5738ffc195c43a1913a63412d57e, type: 3}
+  leftPos: {fileID: 0}
+  rightPos: {fileID: 0}

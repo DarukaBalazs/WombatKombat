@@ -20,6 +20,6 @@ MonoBehaviour:
   knockbackForce: 30
   hitstun: 0.9
   shakeCamera: 1
-  shakeMagnitude: 1
+  shakeMagnitude: 0.2
   shakeDuration: 1
   hitstopDuration: 0.05

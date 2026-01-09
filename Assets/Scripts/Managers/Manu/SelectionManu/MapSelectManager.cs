@@ -4,11 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class MapSelectManager : MonoBehaviour
 {
-    private int  mapToLoad=2;
     public int Map1;
     public int Map2;
     public int Map3;
-
+    private int mapToLoad = 2;
     public Image backgroundImage;
     public Sprite Map1Image;
     public Sprite Map2Image;
@@ -40,12 +39,6 @@ public class MapSelectManager : MonoBehaviour
 
     public void ClickStart() 
     {
-        if (mapToLoad != null)
-        {
-            SceneManager.LoadScene(mapToLoad);
-        }
-
+        SceneManager.LoadScene(mapToLoad);
     }
-
-
 }

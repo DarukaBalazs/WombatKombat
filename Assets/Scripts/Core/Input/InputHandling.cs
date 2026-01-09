@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.InputSystem;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
+
 /// <summary>
 /// Beállítja a karakter adatait és inicializálja az input rendszert.
 /// </summary>

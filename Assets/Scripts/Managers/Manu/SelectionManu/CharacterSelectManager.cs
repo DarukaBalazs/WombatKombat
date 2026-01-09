@@ -1,61 +1,49 @@
+using System;
 using UnityEngine;
 
-public enum Wombat 
+public enum Wombat
 {
-    Dagi,
     Base,
+    Dagi,
     Mary
 }
+
 public class CharacterSelectManager : MonoBehaviour
 {
-    private Wombat wombat1 = Wombat.Base;
-    private Wombat wombat2 = Wombat.Base;
+    public Wombat wombat1 = Wombat.Base;
+    public Wombat wombat2 = Wombat.Base;
+
+    [Header("Character Datas")]
     public CharacterData Base;
-    public CharacterData Mary;
     public CharacterData Dagi;
-    public CharacterSelector Selector;
+    public CharacterData Mary;
 
-    public void pluss1()
+    private Wombat Cycle(Wombat w, int dir)
     {
-        wombat1++;
+        int count = Enum.GetValues(typeof(Wombat)).Length;
+        return (Wombat)(((int)w + dir + count) % count);
     }
 
-    public void minus1()
-    {
-        wombat1--;
-    }
+    public void pluss1() => wombat1 = Cycle(wombat1, 1);
+    public void minus1() => wombat1 = Cycle(wombat1, -1);
+    public void pluss2() => wombat2 = Cycle(wombat2, 1);
+    public void minus2() => wombat2 = Cycle(wombat2, -1);
 
-    public void pluss2()
+    private CharacterData GetData(Wombat w)
     {
-        wombat2++;
-    }
-
-    public void minus2()
-    {
-        wombat2--;
-    }
-    private CharacterData Selection(Wombat wombat)
-    {
-        switch (wombat)
+        return w switch
         {
-            case Wombat.Base:
-                return Base;
-                
-            case Wombat.Dagi:
-                return  Dagi;
-                
-            default:
-                return Mary;
-                
-
-        }
-
+            Wombat.Base => Base,
+            Wombat.Dagi => Dagi,
+            _ => Mary
+        };
     }
 
-    public void StarWombat()
+    public void StartGame()
     {
-        Selector.player1 = Selection(wombat1);
-        Selector.player2 = Selection(wombat2);
-        
+        CharacterSelectionManager.Instance.SetCharacters(
+            GetData(wombat2),
+            GetData(wombat1)
+        );
     }
 }

@@ -104,7 +104,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2311784587318836572}
   - component: {fileID: 158216192321276114}
-  - component: {fileID: 7909776787052354221}
   - component: {fileID: 1284314387011035674}
   - component: {fileID: 7021679804024113893}
   - component: {fileID: 8315074972349298480}
@@ -150,21 +149,6 @@ MonoBehaviour:
   camMovement: {fileID: 0}
   p1Obj: {fileID: 0}
   p2Obj: {fileID: 0}
---- !u!114 &7909776787052354221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8953537783763919694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 003b8c1d360be4149a4142c55c94a1bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterSelectionManager
-  characterSelector: {fileID: 11400000, guid: 4e84e45c66d47c543889bde987df021b, type: 2}
-  player1: {fileID: 11400000, guid: 2a03984b5aa28f0449b10232ce89f0e3, type: 2}
-  player2: {fileID: 11400000, guid: 2a03984b5aa28f0449b10232ce89f0e3, type: 2}
 --- !u!114 &1284314387011035674
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,6 +5,4 @@ public class CharacterSelector : ScriptableObject
 {
     public CharacterData player1;
     public CharacterData player2;
-    
-
 }

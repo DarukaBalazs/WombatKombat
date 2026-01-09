@@ -5,7 +5,7 @@ public class MainManuScript : MonoBehaviour
 {
     public void LoadSelectManu() 
     {
-        SceneManager.LoadSceneAsync(0);
+        SceneManager.LoadSceneAsync(1);
     }
 
     public void QuitGame()
@@ -22,7 +22,7 @@ public class MainManuScript : MonoBehaviour
 
     public void Back() 
     {
-        SceneManager.LoadSceneAsync(4);
+        SceneManager.LoadSceneAsync(0);
     }
 
 
