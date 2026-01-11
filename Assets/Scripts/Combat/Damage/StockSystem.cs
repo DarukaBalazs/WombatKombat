@@ -42,7 +42,7 @@ public class StockSystem : MonoBehaviour
     {
         audioSource.PlayOneShot(Sound);
 
-        stocks = Mathf.Max(0, stocks - 0.5f);
+        stocks = Mathf.Max(0, stocks - 1f);
 
 
         rb.linearVelocity = Vector2.zero;
@@ -54,7 +54,7 @@ public class StockSystem : MonoBehaviour
         {
             state?.ForceKill();
             audioSource.PlayOneShot(Victory);
-            SceneManager.LoadScene(4);
+            SceneManager.LoadScene(0);
         }
 
     }

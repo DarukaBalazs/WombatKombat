@@ -19,9 +19,9 @@ MonoBehaviour:
   downHitboxIds:
   - HeavyDown
   percentGain: 15
-  knockbackForward: 10
+  knockbackForward: 20
   knockbackDown: 10
-  hitstun: 0.3
+  hitstun: 0.5
   shakeCamera: 1
   shakeMagnitude: 0.2
   shakeDuration: 0.5

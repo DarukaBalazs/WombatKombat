@@ -2,7 +2,7 @@
 - Project name: KortalWombat
 - Unity version: Unity 6000.2.8f1
 - Active game object:
-  - Name: SelectioManuManager
+  - Name: Base
   - Tag: Untagged
-  - Layer: Default
+  - Layer: Player
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
