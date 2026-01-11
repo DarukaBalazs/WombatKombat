@@ -1231,7 +1231,7 @@ MonoBehaviour:
   player2: {fileID: 0}
   smoothTime: 0.3
   minZoom: -8
-  maxZoom: -24
+  maxZoom: -40
   zoomLimiter: 20
   minBounds: {x: -20, y: -10}
   maxBounds: {x: 20, y: 25}

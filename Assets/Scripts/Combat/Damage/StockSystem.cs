@@ -37,7 +37,7 @@ public class StockSystem : MonoBehaviour
 
     public void LoseStockAndRespawn(Vector3 respawnPos)
     {
-        stocks = Mathf.Max(0, stocks - 0.5f);
+        stocks = Mathf.Max(0, stocks - 1f);
 
 
         rb.linearVelocity = Vector2.zero;
@@ -47,7 +47,7 @@ public class StockSystem : MonoBehaviour
         if (stocks <= 0)
         {
             state?.ForceKill();
-            SceneManager.LoadScene(4);
+            SceneManager.LoadScene(0);
         }
 
     }

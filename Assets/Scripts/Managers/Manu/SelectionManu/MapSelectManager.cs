@@ -7,7 +7,7 @@ public class MapSelectManager : MonoBehaviour
     public int Map1;
     public int Map2;
     public int Map3;
-    private int mapToLoad = 2;
+    private int mapToLoad = 3;
     public Image backgroundImage;
     public Sprite Map1Image;
     public Sprite Map2Image;
