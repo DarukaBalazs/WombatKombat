@@ -610,7 +610,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2013098054}
         m_TargetAssemblyTypeName: CharacterSelectManager, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: StartWombat
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3297,6 +3297,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960576617}
   m_CullTransparentMesh: 1
+--- !u!114 &1991647648 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7940795972560803243, guid: ee8b7a4365ddc1f478bf64a1ccdba8fb, type: 3}
+  m_PrefabInstance: {fileID: 953520055}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d4af050fe5be44dbf8b9744da87c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WombatSpriteManager
 --- !u!1 &2013098051
 GameObject:
   m_ObjectHideFlags: 0
@@ -3367,6 +3378,7 @@ MonoBehaviour:
   Base: {fileID: 11400000, guid: 2a03984b5aa28f0449b10232ce89f0e3, type: 2}
   Dagi: {fileID: 11400000, guid: a1f54ca405384cb4d8e4aa3be309c731, type: 2}
   Mary: {fileID: 11400000, guid: fec39d2ab98b14c43b07cacb5169764e, type: 2}
+  SpriteManager: {fileID: 1991647648}
 --- !u!114 &2013098055
 MonoBehaviour:
   m_ObjectHideFlags: 0

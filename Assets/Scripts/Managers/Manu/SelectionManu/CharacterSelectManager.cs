@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public enum Wombat
@@ -10,6 +10,7 @@ public enum Wombat
 
 public class CharacterSelectManager : MonoBehaviour
 {
+    [Header("Selection")]
     public Wombat wombat1 = Wombat.Base;
     public Wombat wombat2 = Wombat.Base;
 
@@ -18,16 +19,38 @@ public class CharacterSelectManager : MonoBehaviour
     public CharacterData Dagi;
     public CharacterData Mary;
 
-    private Wombat Cycle(Wombat w, int dir)
+    [Header("Visuals")]
+    public WombatSpriteManager SpriteManager;
+
+    private Wombat Cycle(Wombat current, int dir)
     {
         int count = Enum.GetValues(typeof(Wombat)).Length;
-        return (Wombat)(((int)w + dir + count) % count);
+        return (Wombat)(((int)current + dir + count) % count);
     }
 
-    public void pluss1() => wombat1 = Cycle(wombat1, 1);
-    public void minus1() => wombat1 = Cycle(wombat1, -1);
-    public void pluss2() => wombat2 = Cycle(wombat2, 1);
-    public void minus2() => wombat2 = Cycle(wombat2, -1);
+    public void pluss1()
+    {
+        wombat1 = Cycle(wombat1, 1);
+        SpriteManager.ChangeSprite(2, GetWombatType(wombat1));
+    }
+
+    public void minus1()
+    {
+        wombat1 = Cycle(wombat1, -1);
+        SpriteManager.ChangeSprite(2, GetWombatType(wombat1));
+    }
+
+    public void pluss2()
+    {
+        wombat2 = Cycle(wombat2, 1);
+        SpriteManager.ChangeSprite(1, GetWombatType(wombat2));
+    }
+
+    public void minus2()
+    {
+        wombat2 = Cycle(wombat2, -1);
+        SpriteManager.ChangeSprite(1, GetWombatType(wombat2));
+    }
 
     private CharacterData GetData(Wombat w)
     {
@@ -39,11 +62,22 @@ public class CharacterSelectManager : MonoBehaviour
         };
     }
 
-    public void StartGame()
+    private int GetWombatType(Wombat w)
+    {
+        return w switch
+        {
+            Wombat.Base => 0,
+            Wombat.Dagi => 1,
+            _ => 2
+        };
+    }
+
+    // GOMB → START
+    public void StartWombat()
     {
         CharacterSelectionManager.Instance.SetCharacters(
-            GetData(wombat2),
-            GetData(wombat1)
+            GetData(wombat1),
+            GetData(wombat2)
         );
     }
 }

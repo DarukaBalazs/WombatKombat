@@ -16,7 +16,6 @@ public class ReSpawnLogic : MonoBehaviour
             {
                 stockSystem.LoseStockAndRespawn(respawnPoint.position);
             }
-
         }
     }
 }
