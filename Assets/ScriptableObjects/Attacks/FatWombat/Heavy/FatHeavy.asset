@@ -17,6 +17,7 @@ MonoBehaviour:
   Active: 60
   Recovery: 20
   Cooldown: 1
+  Sound: {fileID: 8300000, guid: 379362a06bf9bfb439b354736758b7f7, type: 3}
   requiresGrounded: 0
   allowAir: 1
   lockMovement: 1

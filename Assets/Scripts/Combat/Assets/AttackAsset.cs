@@ -15,13 +15,14 @@ public class AttackAsset : ScriptableObject
     public float Recovery;
     [Header("CD (Seconds)")]
     public float Cooldown;
-
+    [Header("Sounds")]
+    public AudioClip Sound;
 
     [HideInInspector] public float windup => Windup / 60f;
     [HideInInspector] public float active => Active / 60f;
     [HideInInspector] public float recovery => Recovery / 60f;
     [HideInInspector] public float cooldown => Cooldown;
-
+    
     [Header("Rules")]
     public bool requiresGrounded;
     public bool allowAir;

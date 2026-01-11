@@ -4,11 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class StockSystem : MonoBehaviour
 {
+    public AudioSource audioSource;
 
     [Header("References")]
     [SerializeField] PlayerStateManager state;
     [SerializeField] Rigidbody2D rb;
-
+    [Header("Sound")]
+    public AudioClip Victory;
+    public AudioClip Sound;
     [Header("Stocks & Damage")]
     [SerializeField] float stocks = 5;
     [SerializeField, Range(0, 999)] float damagePercent = 0f;
@@ -37,6 +40,8 @@ public class StockSystem : MonoBehaviour
 
     public void LoseStockAndRespawn(Vector3 respawnPos)
     {
+        audioSource.PlayOneShot(Sound);
+
         stocks = Mathf.Max(0, stocks - 0.5f);
 
 
@@ -44,9 +49,11 @@ public class StockSystem : MonoBehaviour
         transform.position = respawnPos;
         ResetPercent();
         state?.ForceTransition(State.Idle);
+
         if (stocks <= 0)
         {
             state?.ForceKill();
+            audioSource.PlayOneShot(Victory);
             SceneManager.LoadScene(4);
         }
 

@@ -6,6 +6,8 @@ using System;
 
 public class AttackRunner : MonoBehaviour
 {
+
+    public AudioSource audioSource;
     [Header("References")]
     [SerializeField] PlayerStateManager state;
     [SerializeField] Animator animator;
@@ -114,6 +116,7 @@ public class AttackRunner : MonoBehaviour
         }
 
         EnterPhase(AttackPhase.Active, asset);
+        audioSource.PlayOneShot(currentAsset.Sound);
         yield return StartCoroutine(RunActiveTimeline(asset));
 
         EnterPhase(AttackPhase.Recovery, asset);

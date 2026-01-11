@@ -8,13 +8,14 @@ public class Hurtbox : MonoBehaviour
     [SerializeField] KnockbackHandler kb;
     [SerializeField] PlayerStateManager state;
     [SerializeField] GameObject HitEffect;
-
+    public AudioSource audioSource;
+    public AudioClip HurtSound;
     private void Awake()
     {
          if (col == null) col = GetComponent<Collider2D>();
          col.isTrigger = true;
     }
-
+    
     public void RecieveHit(Hitbox.HitInfo info, float percentgain, float knockbackForce, float hitstun )
     {
         if (info.attacker != null)
@@ -43,7 +44,11 @@ public class Hurtbox : MonoBehaviour
             finalKnockback *= 0.2f;
             finalHitstun *= 0.5f;
         }
-
+        int rnd = Random.Range(1, 5);
+        if (rnd==4)
+        {
+            audioSource.PlayOneShot(HurtSound);
+        }
         kb.ApplyKnockback(dir, finalKnockback,crit,finalHitstun);
 
     }
