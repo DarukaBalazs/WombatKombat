@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1460721015387482727}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.99, z: 0}
+  m_LocalPosition: {x: 0, y: -1.001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -192,6 +192,8 @@ GameObject:
   - component: {fileID: 3126005631746261499}
   - component: {fileID: 5932584976318363630}
   - component: {fileID: 3809019469939993728}
+  - component: {fileID: 3873452076510504590}
+  - component: {fileID: 5196203122102784909}
   m_Layer: 7
   m_Name: Player1
   m_TagString: Untagged
@@ -319,6 +321,7 @@ MonoBehaviour:
   input: {fileID: 9155313629037338614}
   state: {fileID: 9038540530244758863}
   movement: {fileID: 4116721338042596488}
+  anim: {fileID: -3772879123134103837}
   rb: {fileID: 3537785145304537796}
   animator: {fileID: 3126005631746261499}
   spriteRenderer: {fileID: 0}
@@ -386,6 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881cc05670acb94418b10940e2661323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackRunner
+  audioSource: {fileID: 0}
   state: {fileID: 9038540530244758863}
   animator: {fileID: 3126005631746261499}
   rb: {fileID: 3537785145304537796}
@@ -430,6 +434,8 @@ MonoBehaviour:
   kb: {fileID: 6195341001879178083}
   state: {fileID: 9038540530244758863}
   HitEffect: {fileID: 5346065120485618835, guid: 2009a344d0744584087c4d36c221a6a3, type: 3}
+  audioSource: {fileID: 0}
+  HurtSound: {fileID: 0}
 --- !u!114 &-1077158784398397356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,8 +448,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c416c30435640d408e95805e34fce0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StockSystem
+  audioSource: {fileID: 0}
   state: {fileID: 9038540530244758863}
   rb: {fileID: 3537785145304537796}
+  Victory: {fileID: 0}
+  Sound: {fileID: 0}
   stocks: 5
   damagePercent: 0
   maxCritChance: 100
@@ -685,6 +694,30 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!114 &3873452076510504590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344789194333067100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f61b87b97593514d8e3fa0ef8bedb69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlatformFollower
+--- !u!210 &5196203122102784909
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344789194333067100}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &5668361505069554583
 GameObject:
   m_ObjectHideFlags: 0

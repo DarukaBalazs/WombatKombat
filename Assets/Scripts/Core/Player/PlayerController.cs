@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] InputHandling input;
     [SerializeField] PlayerStateManager state;
     [SerializeField] BaseMovement movement;
+    [SerializeField] PlayerAnimator anim;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Animator animator;
     [SerializeField] SpriteRenderer spriteRenderer;
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
         input.Tick();
         state.Tick(dt);
         movement.Tick(dt);
+        anim.Tick();
     }
 
     private void FixedUpdate()

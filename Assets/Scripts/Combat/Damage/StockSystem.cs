@@ -18,7 +18,7 @@ public class StockSystem : MonoBehaviour
 
     [Header("Crit knockback")]
     [SerializeField, Range(0, 100)] float maxCritChance = 100f;
-    [SerializeField] AnimationCurve percentToCritchance = AnimationCurve.Linear(0, 0, 150, 60);
+    [SerializeField] AnimationCurve percentToCritchance = AnimationCurve.Linear(0, 0, 150, 100);
     [SerializeField] float onHitPercentGain = 8f;
 
 
@@ -54,7 +54,6 @@ public class StockSystem : MonoBehaviour
         {
             state?.ForceKill();
             audioSource.PlayOneShot(Victory);
-            SceneManager.LoadScene(0);
         }
 
     }

@@ -3,10 +3,10 @@ using UnityEngine;
 public class PlatformSwing : MonoBehaviour
 {
     [Header("Swing Settings")]
-    [SerializeField] float radius = 3f;      // lánc hossza (amennyire lelóg)
-    [SerializeField] float angle = 30f;      // lengés szöge (bal-jobb)
-    [SerializeField] float speed = 1f;       // lengés sebessége
-    [SerializeField] Transform pivot;        // a felfüggesztés pontja
+    [SerializeField] float radius = 3f; 
+    [SerializeField] float angle = 30f;
+    [SerializeField] float speed = 1f;      
+    [SerializeField] Transform pivot;        
 
     private float t;
 
@@ -14,8 +14,8 @@ public class PlatformSwing : MonoBehaviour
     {
         t += Time.deltaTime * speed;
 
-        // Szög számítása szinuszos oda-vissza mozgással
-        float currentAngle = Mathf.Sin(t) * angle;   // -angle -> +angle
+
+        float currentAngle = Mathf.Sin(t) * angle; 
 
         // Szög radiánra alakítása
         float rad = currentAngle * Mathf.Deg2Rad;

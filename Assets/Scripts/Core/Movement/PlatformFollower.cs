@@ -8,7 +8,7 @@ public class PlatformFollower : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!onPlatform || platform == null)
+        if (!onPlatform || platform == null)  
             return;
 
         Vector3 delta = platform.position - lastPos;

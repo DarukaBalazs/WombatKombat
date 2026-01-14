@@ -36,7 +36,19 @@ public class indikator1 : MonoBehaviour
         StockSis= pObj.GetComponent<StockSystem>();
 
         ReSpawCounter.text = StockSis.Stocks.ToString();
-        HPBAR.color = new Color((1000 - StockSis.DamagePercent) / 1000, 0, 0);
+        float t = Mathf.Clamp01(StockSis.DamagePercent / 1000f);
+
+        Color color;
+        if (t < 0.5f)
+        {
+            color = Color.Lerp(Color.white, Color.red, t * 2f);
+        }
+        else
+        {
+            color = Color.Lerp(Color.red, Color.black, (t - 0.5f) * 2f);
+        }
+
+        HPBAR.color = color;
 
         switch (Name.text) 
         {
@@ -44,7 +56,7 @@ public class indikator1 : MonoBehaviour
                 {
                     CharacterArt.sprite = Marry; break;
                 }
-            case "Fat":
+            case "Fatty":
                 { CharacterArt.sprite = Dagi; break;}
                 default: { CharacterArt.sprite = Sima; break; }
         }
@@ -53,7 +65,17 @@ public class indikator1 : MonoBehaviour
     private void Update()
     {
         ReSpawCounter.text = ((int)StockSis.Stocks).ToString();
-        HPBAR.color = new Color((1000 - StockSis.DamagePercent) / 1000, 0, 0);
+        float t = Mathf.Clamp01(StockSis.DamagePercent / 1000f);
+        Color color;
+        if (t < 0.5f)
+        {
+            color = Color.Lerp(Color.white, Color.red, t * 2f);
+        }
+        else
+        {
+            color = Color.Lerp(Color.red, Color.black, (t - 0.5f) * 2f);
+        }
+        HPBAR.color = color;
     }
 
 }

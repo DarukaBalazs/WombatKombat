@@ -1,10 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-/// <summary>
-/// A karakter mozg�s��rt, ugr�s��rt, falcs�sz�s��rt �s falugr�s��rt felel�s komponens.
-/// K�l�n kezeli a coyote time-ot, jump buffert �s a duplaugr�st.
-/// </summary>
 public class BaseMovement : MonoBehaviour
 {
     [Header("Player settings")]
@@ -26,9 +22,9 @@ public class BaseMovement : MonoBehaviour
     [SerializeField] float wallSlideSpeed = 2f;
 
     [Header("Locomotion thresholds")]
-    [SerializeField] float runInputThreshold = 0.1f;     // mekkora input/sebess�gn�l sz�m�t fut�snak
-    [SerializeField] float idleStateDelay = 0.1f;     // ennyi ideig kell "�ll�s" �llapotban lennie, hogy Idle-re v�ltsunk
-    [SerializeField] float fallVelocityThreshold = -0.1f; // ez alatt m�r es�snek vessz�k (Y sebess�g)
+    [SerializeField] float runInputThreshold = 0.1f;    
+    [SerializeField] float idleStateDelay = 0.1f;     
+    [SerializeField] float fallVelocityThreshold = -0.1f; 
 
 
 
@@ -54,10 +50,9 @@ public class BaseMovement : MonoBehaviour
     bool isGrounded;
     public bool IsWallSliding => isSliding;
     public float AnimSpeed => animSpeed;
-    //animator variables
     bool faceRight;
 
-    float idleTimer; // ennyi ideje "�ll" a karakter
+    float idleTimer; 
     #endregion
 
     #region Update methods
@@ -87,7 +82,6 @@ public class BaseMovement : MonoBehaviour
         isSliding = !isWallJumping && IsWallTouch() && !isGrounded && horizontal != 0;
         #endregion
 
-        // �J: locomotion state friss�t�s (Idle / Run / Fall)
         UpdateLocomotionState(dt);
         UpdateAnimSpeed(dt);
     }
@@ -106,20 +100,12 @@ public class BaseMovement : MonoBehaviour
     #endregion
 
     #region Private methods
-    /// <summary>
-    /// V�zszintes mozg�s a megadott input alapj�n.
-    /// </summary>
     private void Move()
     {
         
         if (!isWallJumping) controller.Rb.linearVelocity = new Vector2(horizontal * speed, controller.Rb.linearVelocityY); 
     }
 
-    /// <summary>
-    /// �llapot v�lt�sok kezel�se mozg�s alapj�n:
-    /// - f�ld�n: Idle / Run
-    /// - leveg�ben: Fall (ha lefel� megy)
-    /// </summary>
     private void UpdateLocomotionState(float dt)
     {
         
@@ -241,9 +227,6 @@ public class BaseMovement : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Sprite ir�ny�nak megford�t�sa.
-    /// </summary>
     private void Flip(float targetDirection)
     {
         // Ha a jelenlegi sk�l�val nem egyezik a k�v�nt ir�ny
@@ -257,9 +240,6 @@ public class BaseMovement : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Falugr�s elind�t�sa, ir�nyv�lt�ssal �s ideiglenes input tilt�ssal.
-    /// </summary>
     private void StartWallJump()
     {
         wallJumpDirection = -Mathf.Sign(transform.localScale.x);
@@ -272,7 +252,7 @@ public class BaseMovement : MonoBehaviour
     }
 
     #region Checkers
-    private bool IsGrounded() => Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.5f, 0.1f), CapsuleDirection2D.Horizontal, 0f, groundLayer);
+    private bool IsGrounded() => Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.5f, 0.15f), CapsuleDirection2D.Horizontal, 0f, groundLayer);
 
     private bool IsWallTouch() => Physics2D.OverlapBox(wallCheck.position, new Vector2(0.16f, 1.2f), 0f, groundLayer);
     #endregion
@@ -337,7 +317,7 @@ public class BaseMovement : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.darkRed;
-        Gizmos.DrawSphere(groundCheck.position, 0.1f);
+        Gizmos.DrawSphere(groundCheck.position, 0.15f);
         Gizmos.DrawCube(wallCheck.position, new Vector2(0.15f, 1.2f));
     }
 

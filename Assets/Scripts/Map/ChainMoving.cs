@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class ChainVisual : MonoBehaviour
 {
-    public Transform pivot;        // felsõ pont
-    public Transform platform;     // alsó pont
+    public Transform pivot;        
+    public Transform platform;     
     public float chainWidth = 0.1f;
 
     private SpriteRenderer sr;
@@ -13,7 +13,7 @@ public class ChainVisual : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
 
-        // sprite fele magasság world unitban
+     
         spriteWorldHalfHeight = sr.bounds.size.y * 0.5f;
     }
 

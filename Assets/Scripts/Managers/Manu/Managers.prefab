@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 7021679804024113893}
   - component: {fileID: 8315074972349298480}
   - component: {fileID: 755364860168872919}
+  - component: {fileID: 8269889489290761484}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -147,6 +148,7 @@ MonoBehaviour:
   player1Spawn: {fileID: 1671420487746663044}
   player2Spawn: {fileID: 9075556752030650473}
   camMovement: {fileID: 0}
+  winManager: {fileID: 8269889489290761484}
   p1Obj: {fileID: 0}
   p2Obj: {fileID: 0}
 --- !u!114 &1284314387011035674
@@ -216,3 +218,21 @@ MonoBehaviour:
   Marry: {fileID: 2358532177015847858, guid: 69f0d0d07f8077444bdda1a4e49389af, type: 3}
   Dagi: {fileID: -3763571558542537291, guid: 3e0ac89e0d027b04a88ad63dd9c8fc64, type: 3}
   Sima: {fileID: 232145499586284452, guid: 32ef1e3244bc33f4e90f4f89c3c5eda9, type: 3}
+--- !u!114 &8269889489290761484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8953537783763919694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bfd7bc02273d1d48918c57e9551db46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerWinManager
+  player1StockSystem: {fileID: 0}
+  player1NameSource: {fileID: 0}
+  player2StockSystem: {fileID: 0}
+  player2NameSource: {fileID: 0}
+  winPanel: {fileID: 0}
+  winText: {fileID: 0}

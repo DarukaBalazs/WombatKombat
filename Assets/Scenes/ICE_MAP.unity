@@ -47036,6 +47036,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8269889489290761484, guid: 218f211ca7e6be04ebe77bd2f26ed747, type: 3}
+      propertyPath: winText
+      value: 
+      objectReference: {fileID: 1724335797}
+    - target: {fileID: 8269889489290761484, guid: 218f211ca7e6be04ebe77bd2f26ed747, type: 3}
+      propertyPath: winPanel
+      value: 
+      objectReference: {fileID: 1724335798}
+    - target: {fileID: 8269889489290761484, guid: 218f211ca7e6be04ebe77bd2f26ed747, type: 3}
+      propertyPath: player1NameSource
+      value: 
+      objectReference: {fileID: 1291128776}
+    - target: {fileID: 8269889489290761484, guid: 218f211ca7e6be04ebe77bd2f26ed747, type: 3}
+      propertyPath: player2NameSource
+      value: 
+      objectReference: {fileID: 1291128777}
     - target: {fileID: 8315074972349298480, guid: 218f211ca7e6be04ebe77bd2f26ed747, type: 3}
       propertyPath: Name
       value: 
@@ -47119,6 +47135,22 @@ MonoBehaviour:
   speed: 2
   waitTimeTop: 15
   waitTimeBottom: 30
+--- !u!114 &1724335797 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4250914081889839915, guid: 484d6b0e010b3834dac1b542e5749af9, type: 3}
+  m_PrefabInstance: {fileID: 1291128771}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &1724335798 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1124995954272690562, guid: 484d6b0e010b3834dac1b542e5749af9, type: 3}
+  m_PrefabInstance: {fileID: 1291128771}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1854876690
 GameObject:
   m_ObjectHideFlags: 0

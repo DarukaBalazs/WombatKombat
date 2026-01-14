@@ -19,9 +19,9 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] AttackRunner attackRunner;
  
     [Header("Locomotion thresholds")]
-    [SerializeField] float runSpeedThreshold = 0.1f;    // vízszintes sebesség, ami fölött futás
-    [SerializeField] float runStopDelay = 0.1f;     // ennyi ideig lehet lassú, mielőtt leáll a futás
-    [SerializeField] float fallSpeedThreshold = -0.1f;  // ez alatt már esésnek számít
+    [SerializeField] float runSpeedThreshold = 0.1f;   
+    [SerializeField] float runStopDelay = 0.1f;    
+    [SerializeField] float fallSpeedThreshold = -0.1f;  
 
     bool wasGroundedLastFrame;
     bool isRunning;
@@ -49,7 +49,7 @@ public class PlayerAnimator : MonoBehaviour
 
     }
 
-    void Update()
+    public void Tick()
     {
         if (!animator || !state || !rb) return;
 
@@ -62,7 +62,6 @@ public class PlayerAnimator : MonoBehaviour
 
         bool wallSliding = movement != null && movement.IsWallSliding;
 
-        // Alap paraméterek
         animator.SetBool("IsGrounded", grounded);
         animator.SetBool("IsWallSliding", wallSliding);
         animator.SetBool("IsStunned", stunned);
@@ -70,7 +69,6 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetFloat("VerticalSpeed", speedY);
         animator.SetFloat("AnimSpeed", animSpeedX);
 
-        // Futás logika időküszöbbel – NE fusson/álljon le 1 frame spike-ra
         bool shouldRunNow = grounded && speedX > runSpeedThreshold && !wallSliding;
 
         if (shouldRunNow)
@@ -93,11 +91,9 @@ public class PlayerAnimator : MonoBehaviour
 
         animator.SetBool("IsRunning", isRunning);
         animator.SetBool("DownPressed", attackRunner.Input.Vertical < -0.01);
-        // Esés flag – csak ha nem wallslide
         bool isFalling = !grounded && speedY < fallSpeedThreshold && !wallSliding;
         animator.SetBool("IsFalling", isFalling);
 
-        // Landing trigger – levegőből földre érkezés
         if (!wasGroundedLastFrame && grounded)
         {
             animator.SetTrigger("Land");
@@ -106,10 +102,6 @@ public class PlayerAnimator : MonoBehaviour
         wasGroundedLastFrame = grounded;
     }
 
-    /// <summary>
-    /// Állapotváltásokra reagálunk triggerekrel:
-    /// Jump (felugrás) és WallJump.
-    /// </summary>
     void HandleStateChanged(State previous, State current)
     {
         if (!animator) return;
